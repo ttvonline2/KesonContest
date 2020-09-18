@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="KesonContest.Page1">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid x:Name="gr_Connect" BackgroundColor="Pink" Grid.Column="0">
+                <Button x:Name="bt_Connect"
+                        Text="CONNECT"
+                        TextColor="White"
+                        BackgroundColor="Orange"
+                        HeightRequest="70"
+                        WidthRequest="140"
+                        FontSize="Large"
+                        CornerRadius="20"
+                        Margin="50,100,50,100"
+                        />
+            </Grid>
+            <Grid x:Name="gr_Skip" BackgroundColor="Wheat" Grid.Column="1">
+                <Button x:Name="bt_Skip"
+                        Clicked="bt_Skip_Clicked"
+                        Text="Skip"
+                        TextColor="White"
+                        BackgroundColor="Purple"
+                        HeightRequest="70"
+                        WidthRequest="140"
+                        FontSize="Large"
+                        CornerRadius="20"
+                        Margin="50,100,50,100"
+                        />
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

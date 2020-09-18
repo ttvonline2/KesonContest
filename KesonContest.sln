@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30204.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KesonContest.Android", "KesonContest\KesonContest.Android\KesonContest.Android.csproj", "{8D11A804-7766-4F85-913B-4A7AFC1B7784}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KesonContest", "KesonContest\KesonContest\KesonContest.csproj", "{32A2058F-510D-4C01-A6AC-CD6A1C281ED7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8D11A804-7766-4F85-913B-4A7AFC1B7784}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D11A804-7766-4F85-913B-4A7AFC1B7784}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D11A804-7766-4F85-913B-4A7AFC1B7784}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{8D11A804-7766-4F85-913B-4A7AFC1B7784}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D11A804-7766-4F85-913B-4A7AFC1B7784}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D11A804-7766-4F85-913B-4A7AFC1B7784}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{32A2058F-510D-4C01-A6AC-CD6A1C281ED7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32A2058F-510D-4C01-A6AC-CD6A1C281ED7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32A2058F-510D-4C01-A6AC-CD6A1C281ED7}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{32A2058F-510D-4C01-A6AC-CD6A1C281ED7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32A2058F-510D-4C01-A6AC-CD6A1C281ED7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32A2058F-510D-4C01-A6AC-CD6A1C281ED7}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F148D446-285C-4D79-A3E2-02669BCDD9F6}
+	EndGlobalSection
+EndGlobal
