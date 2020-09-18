@@ -9,8 +9,7 @@ namespace KesonContest
         public App()
         {
             InitializeComponent();
-
-            MainPage =  new MainPage();
+            MainPage =  new NavigationPage(new Page1());
         }
 
         protected override void OnStart()

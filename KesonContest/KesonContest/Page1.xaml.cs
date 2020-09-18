@@ -15,13 +15,12 @@ namespace KesonContest
         public Page1()
         {
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
         }
 
-        private void bt_Skip_Clicked(object sender, EventArgs e)
+        private async void bt_Skip_Clicked(object sender, EventArgs e)
         {
-            var pageOne = new Page1();
-            NavigationPage.SetHasNavigationBar(pageOne, false);
-            NavigationPage mypage = new NavigationPage(pageOne);
+            await Navigation.PushAsync(new MainPage());
         }
     }
 }
