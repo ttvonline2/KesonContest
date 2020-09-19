@@ -11,12 +11,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Fonts\Cooper Regular.ttf" />
     <None Remove="Fonts\Lobster-Regular.ttf" />
     <None Remove="Image\KesonContest.png" />
     <None Remove="KesonContest.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Fonts\Cooper Regular.ttf" />
     <EmbeddedResource Include="Fonts\Lobster-Regular.ttf" />
     <EmbeddedResource Include="Image\KesonContest.png" />
   </ItemGroup>

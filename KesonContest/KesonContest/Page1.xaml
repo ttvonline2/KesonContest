@@ -8,6 +8,7 @@
              x:Class="KesonContest.Page1">
     <Grid>
         <Image Source="{local:ImageResoureExtention KesonContest.Image.BackGround.png}"/>
+        <Label x:Name="lb_data" Text="Hello" TextColor="White"/>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
@@ -18,26 +19,27 @@
                         Text="CONNECT"
                         TextColor="White"
                         BackgroundColor="Orange"
+                        FontFamily="font1"
                         Clicked="bt_Connect_Clicked"
                         HeightRequest="70"
                         WidthRequest="140"
-                        FontSize="Large"
+                        FontSize="Title"
                         CornerRadius="20"
-                        Margin="50,100,50,100"
+                        Margin="50,120,50,120"
                         />
             </Grid>
             <Grid x:Name="gr_Skip" Grid.Column="1">
                 <Button x:Name="bt_Skip"
                         Text="Skip"
                         TextColor="White"
-                        BackgroundColor="Orange"
-                        FontFamily="Lobster"
+                        BackgroundColor="#018fff"
+                        FontFamily="font1"
                         Clicked="bt_Skip_Clicked"
                         HeightRequest="70"
                         WidthRequest="140"
-                        FontSize="Large"
+                        FontSize="Title"
                         CornerRadius="20"
-                        Margin="50,100,50,100"
+                        Margin="50,120,50,120"
                         />
             </Grid>
         </Grid>
