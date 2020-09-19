@@ -18,6 +18,7 @@
                         Text="CONNECT"
                         TextColor="White"
                         BackgroundColor="Orange"
+                        Clicked="bt_Connect_Clicked"
                         HeightRequest="70"
                         WidthRequest="140"
                         FontSize="Large"
@@ -27,19 +28,17 @@
             </Grid>
             <Grid x:Name="gr_Skip" Grid.Column="1">
                 <Button x:Name="bt_Skip"
-                        Clicked="bt_Skip_Clicked"
                         Text="Skip"
                         TextColor="White"
-                        BackgroundColor="#018fff"
+                        BackgroundColor="Orange"
+                        FontFamily="Lobster"
+                        Clicked="bt_Skip_Clicked"
                         HeightRequest="70"
                         WidthRequest="140"
                         FontSize="Large"
                         CornerRadius="20"
                         Margin="50,100,50,100"
-                        >
-                </Button>
-                <Label Text="Hello Forms with XAML"
-               FontFamily="Lobster" FontSize="50" />
+                        />
             </Grid>
         </Grid>
     </Grid>

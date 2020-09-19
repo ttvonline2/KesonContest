@@ -16,11 +16,20 @@ namespace KesonContest
         public Page1()
         {
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
+        }
+
+        private async void bt_Connect_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new MainPage());
+
+
         }
 
         private async void bt_Skip_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new MainPage());
+
         }
     }
 }
