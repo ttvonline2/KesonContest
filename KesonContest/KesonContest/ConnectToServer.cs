@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace KesonContest
 {
-    public class LinkServer
+    /* public class LinkServer
     {
         
         private static readonly Socket ClientSocket = new Socket
@@ -65,11 +65,11 @@ namespace KesonContest
             Environment.Exit(0);
         }
 
-        private static void SendRequest()
+        public void SendRequest(string text)
         {
             //Console.Write("Send a request: ");
            // string request = Console.ReadLine();
-            SendString("Hello Cuc cung");
+            SendString(text);
 
             //if (request.ToLower() == "exit")
             //{
@@ -83,7 +83,7 @@ namespace KesonContest
             ClientSocket.Send(buffer, 0, buffer.Length, SocketFlags.None);
         }
 
-        private async void RequestLoop()
+        public async void RequestLoop()
         {
             await Task.Run(() =>
             {
@@ -109,4 +109,5 @@ namespace KesonContest
             return a;
         }
     }
+    */
 }

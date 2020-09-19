@@ -9,6 +9,10 @@
 
     <Grid x:Name="gr_main">
         <Image Source="{local:ImageResoureExtention KesonContest.Image.KesonContest.png}" />
+        <Button x:Name="bt_send"
+                Margin="200,100,100,10"
+                Clicked="bt_send_Clicked"
+                />
     </Grid>
 
 </ContentPage>

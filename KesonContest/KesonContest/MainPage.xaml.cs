@@ -18,5 +18,10 @@ namespace KesonContest
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
         }
+
+        private void bt_send_Clicked(object sender, EventArgs e)
+        {
+          
+        }
     }
 }
