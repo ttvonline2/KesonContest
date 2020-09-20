@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -22,7 +23,7 @@ namespace KesonContest
            (AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
         private const int PORT = 197;
-
+        string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "data.txt");
         public Page1()
         {
             InitializeComponent();
@@ -35,11 +36,13 @@ namespace KesonContest
             Console.WriteLine("Hellooo button");
             ConnectToServer();
             RequestLoop();
+            string text = File.ReadAllText(fileName);
+            lb_data.Text = text;
         }
 
         private async void bt_Skip_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new MainPage());
+           await  Navigation.PushAsync(new Page2());
         }
 
         private static void ConnectToServer()
@@ -74,6 +77,7 @@ namespace KesonContest
         {
             byte[] buffer = Encoding.ASCII.GetBytes(text);
             ClientSocket.Send(buffer, 0, buffer.Length, SocketFlags.None);
+            
         }
 
         private async void RequestLoop()
@@ -100,6 +104,7 @@ namespace KesonContest
             {
                 lb_data.Text = a;
             });
+            File.WriteAllText(fileName, a );
             return a;
         }
 
