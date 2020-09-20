@@ -16,7 +16,7 @@
             </Grid.ColumnDefinitions>
             <Grid x:Name="gr_Connect" Grid.Column="0">
                 <Button x:Name="bt_Connect"
-                        Text="CONNECT"
+                        Text="Reload Data"
                         TextColor="White"
                         BackgroundColor="Orange"
                         FontFamily="font1"
@@ -30,7 +30,7 @@
             </Grid>
             <Grid x:Name="gr_Skip" Grid.Column="1">
                 <Button x:Name="bt_Skip"
-                        Text="Skip"
+                        Text="Default Data"
                         TextColor="White"
                         BackgroundColor="#018fff"
                         FontFamily="font1"

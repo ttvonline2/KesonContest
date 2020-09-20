@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,9 @@ namespace KesonContest
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Page2 : ContentPage
     {
+
+        string fileData = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "data.txt");
+        string fileResult = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "result.txt");
         public Page2()
         {
             InitializeComponent();
@@ -20,7 +24,9 @@ namespace KesonContest
 
         private void bt_test_Clicked(object sender, EventArgs e)
         {
-            bt_test.Text = "sadfsadjfsakdf";
+
+
+            bt_test.Text = File.ReadAllText(fileData);
         }
     }
 }

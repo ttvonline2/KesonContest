@@ -23,7 +23,8 @@ namespace KesonContest
            (AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
         private const int PORT = 197;
-        string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "data.txt");
+        string fileData = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "data.txt");
+        string fileResult = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "result.txt");
         public Page1()
         {
             InitializeComponent();
@@ -33,16 +34,22 @@ namespace KesonContest
 
         private void bt_Connect_Clicked(object sender, EventArgs e)
         {
-            Console.WriteLine("Hellooo button");
             ConnectToServer();
-            RequestLoop();
-            string text = File.ReadAllText(fileName);
-            lb_data.Text = text;
+            while(!ClientSocket.Connected)
+            {
+
+            }
+            File.WriteAllText(fileData, "");    // Delete old data
+            File.WriteAllText(fileResult, "");
+            SendString("~~*data");
+            RequestLoop();              // Replace new data
         }
 
         private async void bt_Skip_Clicked(object sender, EventArgs e)
         {
-           await  Navigation.PushAsync(new Page2());
+            ConnectToServer();
+            
+            await  Navigation.PushAsync(new Page2());
         }
 
         private static void ConnectToServer()
@@ -57,20 +64,14 @@ namespace KesonContest
                     // Change IPAddress.Loopback to a remote IP to connect to a remote host.
                     IPAddress address = IPAddress.Parse("10.12.20.25");
                     ClientSocket.Connect(address, PORT);
+
                 }
                 catch (SocketException)
                 {
+                    Console.WriteLine("Fail to Connect Server");
                 }
             }
-
-        }
-
-        private static void Exit()
-        {
-            SendString("exit"); // Tell the server we are exiting
-            ClientSocket.Shutdown(SocketShutdown.Both);
-            ClientSocket.Close();
-            Environment.Exit(0);
+            
         }
 
         private static void SendString(string text)
@@ -103,8 +104,13 @@ namespace KesonContest
             Device.BeginInvokeOnMainThread(() =>
             {
                 lb_data.Text = a;
+                string b = a.Substring(a.Length - 6, 4);
+                if (b == ".end")
+                {
+                    File.WriteAllText(fileData, a);
+                    Navigation.PushAsync(new Page2());
+                }
             });
-            File.WriteAllText(fileName, a );
             return a;
         }
 
