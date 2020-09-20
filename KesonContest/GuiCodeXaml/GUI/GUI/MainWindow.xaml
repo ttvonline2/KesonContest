@@ -1,0 +1,48 @@
+﻿<Window x:Class="GUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUI"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="1080" Width="1870">
+    <Grid>
+        <Image Source="V:\15. Xamarin\07. KesonContest\KesonContest\KesonContest\KesonContest\Image\KesonContest.png"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.9*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="0.7*"/>
+            </Grid.RowDefinitions>
+            
+            <!-- Grid Header -->
+            <Grid x:Name="gr_Header" Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="11*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Grid Avartar -->
+                <Grid x:Name="gr_avatar" Grid.Column="0">
+                    
+                </Grid>
+                
+                <!-- Grid Theme Name -->
+                <Grid x:Name="gr_themeName" Grid.Column="1">
+                    <Label Margin="20,0,60,10" FontSize="40" Content="Ensure quality and save Ensure quality and save Ensure quality and save Ensure quality and save Ensure quality and save  " Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </Grid>
+            </Grid>
+
+            <!-- Grid Mid -->
+            <Grid x:Name="gr_Mid" Grid.Row="1">
+                
+            </Grid>
+            
+            <!-- Grid Bot -->
+            <Grid x:Name="gr_Bottom" Grid.Row="2">
+                
+            </Grid>
+        </Grid>
+    </Grid>
+    
+</Window>

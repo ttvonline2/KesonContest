@@ -9,10 +9,102 @@
     
     <Grid x:Name="gr_main">
         <Image Source="{local:ImageResoureExtention KesonContest.Image.KesonContest.png}" />
-        <Button x:Name="bt_test"
-                Margin="200,100,200,100"
-                Clicked="bt_test_Clicked"
-                Text="Hello Button"
-                />
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.9*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="0.7*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Grid Header -->
+            <Grid x:Name="gr_Header" Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="11*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Grid Avartar -->
+                <Grid x:Name="gr_avatar" Grid.Column="0">
+                    <Ellipse
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        WidthRequest="70"
+                        HeightRequest="70"
+                        Stroke="#FFFF9900"
+                        StrokeThickness="4"
+                        Fill="White"/>
+                </Grid>
+
+                <!-- Grid Theme Name -->
+                <Grid x:Name="gr_themeName" Grid.Column="1">
+                    <Label FontSize="Medium"  Text="Ensure quality and save Ensure quality and save Ensure quality and save Ensure quality and save Ensure quality and save"
+                          TextColor="Blue" Margin="5,20,70,10"/>
+                </Grid>
+            </Grid>
+
+            <!-- Grid Mid -->
+            <Grid x:Name="gr_Mid" Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.3*"/>
+                    <ColumnDefinition Width="8*"/>
+                    <ColumnDefinition Width="1.3*"/>
+                </Grid.ColumnDefinitions>
+                <!-- Grid BBHD -->
+                <Grid BackgroundColor="Orange" Grid.Column="0">
+
+                </Grid>
+
+                <!-- Grid Content -->
+                <Grid Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <!-- Grid C0 -->
+                    <Grid Grid.Column="0" Margin="0,-15,0,-5">
+                        <Frame CornerRadius="30" BackgroundColor="Black" Opacity="0.5">
+
+                        </Frame>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="5*"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid Grid.Row="0">
+                                <Label Text="Challenger (30%)" TextColor="White" VerticalTextAlignment="Center" HorizontalOptions="Center"/>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+
+                    <!-- Grid C1 -->
+                    <Grid BackgroundColor="Bisque" Grid.Column="1">
+
+                    </Grid>
+
+                    <!-- Grid C2 -->
+                    <Grid BackgroundColor="Crimson" Grid.Column="2">
+
+                    </Grid>
+
+                </Grid>
+
+                <!-- Grid OETheme -->
+                <Grid BackgroundColor="Blue" Grid.Column="2">
+
+                </Grid>
+                
+            </Grid>
+
+
+
+
+            <!-- Grid Bot -->
+            <Grid x:Name="gr_Bottom" Grid.Row="2">
+
+            </Grid>
+        </Grid>
     </Grid>
 </ContentPage>

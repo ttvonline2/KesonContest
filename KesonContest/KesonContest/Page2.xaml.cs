@@ -22,11 +22,5 @@ namespace KesonContest
             NavigationPage.SetHasNavigationBar(this, false);
         }
 
-        private void bt_test_Clicked(object sender, EventArgs e)
-        {
-
-
-            bt_test.Text = File.ReadAllText(fileData);
-        }
     }
 }
