@@ -121,7 +121,7 @@
                             <ColumnDefinition Width="4*"/>
                         </Grid.ColumnDefinitions>
                         <Grid>
-                            <Label Style="{StaticResource ThemeNameLable}"
+                            <Label x:Name="t_10To17" Style="{StaticResource ThemeNameLable}"
                         Text="Ensure quality and save production cost 792,000 USD for 9Cr Panel project of CFB Boiler Sodegaura"/>
                         </Grid>
                     </Grid>
@@ -152,7 +152,8 @@
                                Margin="4">
                         </Frame>
 
-                        <Label Text="BBHD Themes"
+                        <Label x:Name="t_0" 
+                            Text="BBHD Themes"
                                Style="{StaticResource BBHDOELable}"/>
                     </Grid>
 
@@ -177,7 +178,7 @@
                                         <Image Source="{local:ImageResoureExtention KesonContest.Image.done.png}" Scale="1.7"/>
                                     </Grid>
                                     <Grid Grid.Column="1">
-                                        <Label Text="MHS" Style="{StaticResource ShopLable}" />
+                                        <Label x:Name="t_2" Text="MHS" Style="{StaticResource ShopLable}" />
                                     </Grid>
                                 </Grid>
                             </Grid>
@@ -196,7 +197,8 @@
                                         <Image Source="{local:ImageResoureExtention KesonContest.Image.done.png}" Scale="1.7"/>
                                     </Grid>
                                     <Grid Grid.Column="1">
-                                        <Label Text="MHS" Style="{StaticResource ShopLable}" />
+                                        <Label x:Name="t_3" 
+                                            Text="MHS" Style="{StaticResource ShopLable}" />
                                     </Grid>
                                 </Grid>
                             </Grid>
@@ -216,7 +218,8 @@
                                         <Image Source="{local:ImageResoureExtention KesonContest.Image.done.png}" Scale="1.7"/>
                                     </Grid>
                                     <Grid Grid.Column="1">
-                                        <Label Text="MHS" Style="{StaticResource ShopLable}" />
+                                        <Label x:Name="t_4" 
+                                            Text="MHS" Style="{StaticResource ShopLable}" />
                                     </Grid>
                                 </Grid>
                             </Grid>
@@ -235,7 +238,8 @@
                                         <Image Source="{local:ImageResoureExtention KesonContest.Image.done.png}" Scale="1.7"/>
                                     </Grid>
                                     <Grid Grid.Column="1">
-                                        <Label Text="MHS" Style="{StaticResource ShopLable}" />
+                                        <Label x:Name="t_5" 
+                                            Text="MHS" Style="{StaticResource ShopLable}" />
                                     </Grid>
                                 </Grid>
                             </Grid>
@@ -265,7 +269,8 @@
 
                             <!--Head Line-->
                             <Grid Grid.Row="0">
-                                <Label Text="Challenger (30%)" 
+                                <Label x:Name="t_18"  
+                                    Text="Challenger (30%)" 
                                        FontAttributes="Bold"
                                        FontSize="Subtitle"
                                        TextColor="White" VerticalTextAlignment="Center" 
@@ -289,12 +294,14 @@
                                         <RowDefinition Height="1*"/>
                                     </Grid.RowDefinitions>
                                     <Grid Grid.Row="0">
-                                        <Label Style="{StaticResource DetailLable}"
+                                        <Label x:Name="t_21"  
+                                            Style="{StaticResource DetailLable}"
                                            Margin="5,0,5,0"
                                         Text="(1) Theme is challenging and offers the value predominating over other comertitor"/>
                                     </Grid>
                                     <Grid Grid.Row="1">
-                                        <Label Style="{StaticResource DetailLable}"
+                                        <Label x:Name="t_22"  
+                                            Style="{StaticResource DetailLable}"
                                            Margin="5,0,5,0"
                                         Text="(1) Theme is challenging and offers the value predominating over other comertitor"/>
                                     </Grid>
@@ -318,10 +325,10 @@
                                         </Grid.ColumnDefinitions>
 
                                         <Grid Grid.Column="1" >
-                                            <Button Style="{StaticResource ScoreButton}" BackgroundColor="#ffb400"/>
+                                            <Button x:Name="t_27"  Style="{StaticResource ScoreButton}" BackgroundColor="#ffb400"/>
                                         </Grid>
                                         <Grid Grid.Column="3">
-                                            <Button Style="{StaticResource ScoreButton}"/>
+                                            <Button x:Name="t_28"  Style="{StaticResource ScoreButton}"/>
                                         </Grid>
                                     </Grid>
                                     
@@ -335,10 +342,10 @@
                                         </Grid.ColumnDefinitions>
 
                                         <Grid Grid.Column="1" >
-                                            <Button Style="{StaticResource ScoreButton}"/>
+                                            <Button x:Name="t_29"  Style="{StaticResource ScoreButton}"/>
                                         </Grid>
                                         <Grid Grid.Column="3">
-                                            <Button Style="{StaticResource ScoreButton}"/>
+                                            <Button x:Name="t_30"  Style="{StaticResource ScoreButton}"/>
                                         </Grid>
                                     </Grid>
                                 </Grid>
@@ -362,7 +369,8 @@
 
                             <!--Head Line-->
                             <Grid Grid.Row="0">
-                                <Label Text="Challenger (30%)" 
+                                <Label x:Name="t_19"  
+                                    Text="Challenger (30%)" 
                                        FontAttributes="Bold"
                                        FontSize="Subtitle"
                                        TextColor="White" VerticalTextAlignment="Center" 
@@ -386,11 +394,13 @@
                                         <RowDefinition Height="1*"/>
                                     </Grid.RowDefinitions>
                                     <Grid Grid.Row="0">
-                                        <Label Style="{StaticResource DetailLable}"
+                                        <Label x:Name="t_23"  
+                                            Style="{StaticResource DetailLable}"
                                            Margin="5,0,5,0"
                                         Text="(1) Theme is challenging and offers the value predominating over other comertitor"/>                                    </Grid>
                                     <Grid Grid.Row="1">
-                                        <Label Style="{StaticResource DetailLable}"
+                                        <Label x:Name="t_24" 
+                                            Style="{StaticResource DetailLable}"
                                            Margin="5,0,5,0"
                                         Text="(1) Theme is challenging and offers the value predominating over other comertitor"/>                                    </Grid>
                                 </Grid>
@@ -413,10 +423,10 @@
                                         </Grid.ColumnDefinitions>
 
                                         <Grid Grid.Column="1" >
-                                            <Button Style="{StaticResource ScoreButton}"/>
+                                            <Button x:Name="t_31"  Style="{StaticResource ScoreButton}"/>
                                         </Grid>
                                         <Grid Grid.Column="3">
-                                            <Button Style="{StaticResource ScoreButton}"/>
+                                            <Button x:Name="t_32"  Style="{StaticResource ScoreButton}"/>
                                         </Grid>
                                     </Grid>
 
@@ -430,10 +440,10 @@
                                         </Grid.ColumnDefinitions>
 
                                         <Grid Grid.Column="1" >
-                                            <Button Style="{StaticResource ScoreButton}"/>
+                                            <Button  x:Name="t_33"  Style="{StaticResource ScoreButton}"/>
                                         </Grid>
                                         <Grid Grid.Column="3">
-                                            <Button Style="{StaticResource ScoreButton}"  BackgroundColor="#ffb400"/>
+                                            <Button x:Name="t_34"  Style="{StaticResource ScoreButton}"  BackgroundColor="#ffb400"/>
                                         </Grid>
                                     </Grid>
                                 </Grid>
@@ -457,7 +467,8 @@
 
                             <!--Head Line-->
                             <Grid Grid.Row="0">
-                                <Label Text="Challenger (30%)" 
+                                <Label x:Name="t_20"  
+                                    Text="Challenger (30%)" 
                                        FontAttributes="Bold"
                                        FontSize="Subtitle"
                                        TextColor="White" VerticalTextAlignment="Center" 
@@ -481,11 +492,13 @@
                                         <RowDefinition Height="1*"/>
                                     </Grid.RowDefinitions>
                                     <Grid Grid.Row="0">
-                                        <Label Style="{StaticResource DetailLable}"
+                                        <Label x:Name="t_25"  
+                                            Style="{StaticResource DetailLable}"
                                            Margin="5,0,5,0"
                                         Text="(1) Theme is challenging and offers the value predominating over other comertitor"/>                                    </Grid>
                                     <Grid Grid.Row="1">
-                                        <Label Style="{StaticResource DetailLable}"
+                                        <Label x:Name="t_26"  
+                                            Style="{StaticResource DetailLable}"
                                            Margin="5,0,5,0"
                                         Text="(1) Theme is challenging and offers the value predominating over other comertitor"/>                                    </Grid>
                                 </Grid>
@@ -508,10 +521,10 @@
                                         </Grid.ColumnDefinitions>
 
                                         <Grid Grid.Column="1" >
-                                            <Button Style="{StaticResource ScoreButton}"/>
+                                            <Button x:Name="t_35"  Style="{StaticResource ScoreButton}"/>
                                         </Grid>
                                         <Grid Grid.Column="3">
-                                            <Button Style="{StaticResource ScoreButton}"/>
+                                            <Button  x:Name="t_36"  Style="{StaticResource ScoreButton}"/>
                                         </Grid>
                                     </Grid>
 
@@ -525,10 +538,10 @@
                                         </Grid.ColumnDefinitions>
 
                                         <Grid Grid.Column="1" >
-                                            <Button Style="{StaticResource ScoreButton}"  BackgroundColor="#ffb400"/>
+                                            <Button x:Name="t_37"  Style="{StaticResource ScoreButton}"  BackgroundColor="#ffb400"/>
                                         </Grid>
                                         <Grid Grid.Column="3">
-                                            <Button Style="{StaticResource ScoreButton}"/>
+                                            <Button x:Name="t_38"  Style="{StaticResource ScoreButton}"/>
                                         </Grid>
                                     </Grid>
                                 </Grid>
@@ -556,7 +569,8 @@
                                Margin="4">
                         </Frame>
 
-                        <Label Text="OE
+                        <Label x:Name="t_1"  
+                            Text="OE
                                Themes"
                                Style="{StaticResource BBHDOELable}"/>
                     </Grid>
@@ -582,7 +596,8 @@
                                         <Image Source="{local:ImageResoureExtention KesonContest.Image.done.png}" Scale="1.7"/>
                                     </Grid>
                                     <Grid Grid.Column="1">
-                                        <Label Text="MHS" Style="{StaticResource ShopLable}" />
+                                        <Label x:Name="t_6"  
+                                            Text="MHS" Style="{StaticResource ShopLable}" />
                                     </Grid>
                                 </Grid>
                             </Grid>
@@ -601,7 +616,8 @@
                                         <Image Source="{local:ImageResoureExtention KesonContest.Image.done.png}" Scale="1.7"/>
                                     </Grid>
                                     <Grid Grid.Column="1">
-                                        <Label Text="MHS" Style="{StaticResource ShopLable}" />
+                                        <Label x:Name="t_7"  
+                                            Text="MHS" Style="{StaticResource ShopLable}" />
                                     </Grid>
                                 </Grid>
                             </Grid>
@@ -621,7 +637,8 @@
                                         <Image Source="{local:ImageResoureExtention KesonContest.Image.done.png}" Scale="1.7"/>
                                     </Grid>
                                     <Grid Grid.Column="1">
-                                        <Label Text="MHS" Style="{StaticResource ShopLable}" />
+                                        <Label x:Name="t_8"  
+                                            Text="MHS" Style="{StaticResource ShopLable}" />
                                     </Grid>
                                 </Grid>
                             </Grid>
@@ -640,7 +657,8 @@
                                         <Image Source="{local:ImageResoureExtention KesonContest.Image.done.png}" Scale="1.7"/>
                                     </Grid>
                                     <Grid Grid.Column="1">
-                                        <Label Text="MHS" Style="{StaticResource ShopLable}" />
+                                        <Label x:Name="t_9"  
+                                            Text="MHS" Style="{StaticResource ShopLable}" />
                                     </Grid>
                                 </Grid>
                             </Grid>
