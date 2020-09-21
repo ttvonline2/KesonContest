@@ -11,15 +11,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Fonts\calibril.ttf" />
     <None Remove="Fonts\Cooper Regular.ttf" />
     <None Remove="Fonts\Lobster-Regular.ttf" />
+    <None Remove="Fonts\NotoSansKR-Medium.otf" />
+    <None Remove="Image\avatar.JPG" />
+    <None Remove="Image\done.png" />
     <None Remove="Image\KesonContest.png" />
     <None Remove="KesonContest.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Fonts\calibril.ttf" />
     <EmbeddedResource Include="Fonts\Cooper Regular.ttf" />
     <EmbeddedResource Include="Fonts\Lobster-Regular.ttf" />
+    <EmbeddedResource Include="Fonts\NotoSansKR-Medium.otf" />
+    <EmbeddedResource Include="Image\avatar.JPG" />
+    <EmbeddedResource Include="Image\done.png" />
     <EmbeddedResource Include="Image\KesonContest.png" />
   </ItemGroup>
 

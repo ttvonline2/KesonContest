@@ -8,8 +8,9 @@ namespace KesonContest
     {
         public App()
         {
+            Device.SetFlags(new[] { "Shapes_Experimental", "Brush_Experimental" });
             InitializeComponent();
-            MainPage =  new NavigationPage(new Page1());
+            MainPage =  new NavigationPage(new Page2());
         }
 
         protected override void OnStart()
