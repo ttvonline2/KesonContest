@@ -21,7 +21,7 @@ namespace KesonContest
     {
         private static readonly Socket ClientSocket = new Socket
            (AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-
+        String TextReceive;
         private const int PORT = 197;
         string fileData = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "data.txt");
         string fileResult = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "result.txt");
@@ -41,6 +41,7 @@ namespace KesonContest
             }
             File.WriteAllText(fileData, "");    // Delete old data
             File.WriteAllText(fileResult, "");
+            TextReceive = "";
             SendString("~~*data");
             RequestLoop();              // Replace new data
         }
@@ -87,31 +88,29 @@ namespace KesonContest
             {
                 while (true)
                 {
-                    string a = ReceiveResponse();
+                    ReceiveResponse();
                 }
             });
 
         }
 
-        private string ReceiveResponse()
+        private void ReceiveResponse()
         {
-            var buffer = new byte[2048];
+            var buffer = new byte[1024];
             int received = ClientSocket.Receive(buffer, SocketFlags.None);
-            if (received == 0) return null;
             var data = new byte[received];
             Array.Copy(buffer, data, received);
-            string a = Encoding.ASCII.GetString(data);
+            TextReceive += Encoding.ASCII.GetString(data);
             Device.BeginInvokeOnMainThread(() =>
             {
-                lb_data.Text = a;
-                string b = a.Substring(a.Length - 6, 4);
+                lb_data.Text = TextReceive;
+                String b = TextReceive.Substring(TextReceive.Length - 6, 4);
                 if (b == ".end")
                 {
-                    File.WriteAllText(fileData, a);
+                    File.WriteAllText(fileData, TextReceive);
                     Navigation.PushAsync(new Page2());
                 }
             });
-            return a;
         }
 
     }
