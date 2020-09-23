@@ -3,9 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
+             mc:Ignorable="d"          
              xmlns:local ="clr-namespace:KesonContest"
-             x:Class="KesonContest.Page2">
+             x:Class="KesonContest.MainPage">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style x:Key="ScoreButton" TargetType="Button">
@@ -20,13 +20,11 @@
 
             <Style x:Key="ShopFrameOUT" TargetType="Frame">
                 <Setter Property="CornerRadius" Value="5"/>
-                <Setter Property="Opacity" Value="0"/>
                 <Setter Property="BackgroundColor" Value="#9fe1f9"/>
             </Style>
 
             <Style x:Key="ShopFrameIN" TargetType="Frame">
                 <Setter Property="CornerRadius" Value="3"/>
-                <Setter Property="BorderColor" Value="White"/>
                 <Setter Property="BackgroundColor" Value="#817db8"/>
                 <Setter Property="Margin" Value="2"/>
             </Style>
@@ -36,7 +34,7 @@
                 <Setter Property="CornerRadius" Value="3"/>
                 <Setter Property="BackgroundColor" Value="#817db8"/>
             </Style>
-            
+
             <Style x:Key="BBHDOELable" TargetType="Label">
                 <Setter Property="TextColor" Value="White"/>
                 <Setter Property="FontSize" Value="Medium"/>
@@ -55,14 +53,14 @@
                 <Setter Property="HorizontalTextAlignment" Value="Start"/>
                 <Setter Property="LineHeight" Value="1.5"/>
             </Style>
-           
+
             <Style x:Key="DetailLable" TargetType="Label">
                 <Setter Property="TextColor" Value="White"/>
                 <Setter Property="FontSize" Value="Small"/>
                 <Setter Property="VerticalOptions" Value="Center"/>
                 <Setter Property="HorizontalOptions" Value="Center"/>
             </Style>
-            
+
             <Style x:Key="ThemeNameLable" TargetType="Label">
                 <Setter Property="TextColor" Value="#7dfef2"/>
                 <Setter Property="FontFamily" Value="noto"/>
@@ -70,32 +68,10 @@
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
-    
+
     <Grid x:Name="gr_main">
         <Image Source="{local:ImageResoureExtention KesonContest.Image.BackGround.png}" />
-        <Button x:Name="bt_Connect"
-                Clicked="bt_Connect_Clicked"
-                        Text="Reload Data"
-                        TextColor="White"
-                        BackgroundColor="Orange"
-                        FontFamily="font1"
-                        FontSize="Title"
-                        CornerRadius="20"
-                        HeightRequest="200"
-                WidthRequest="200"
-                Margin="50,170,600,170"/>
-        <Button x:Name="bt_Skip"
-                Clicked="bt_Skip_Clicked"
-                        Text="Skip"
-                        TextColor="White"
-                        BackgroundColor="#018fff"
-                        FontFamily="font1"
-                        FontSize="Title"
-                        CornerRadius="20"
-                        HeightRequest="200"
-                WidthRequest="200"
-                Margin="600,170,50,170"/>
-        <Grid x:Name="gr_page2" IsVisible="false">
+        <Grid x:Name="gr_page2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.9*"/>
                 <RowDefinition Height="3*"/>
@@ -115,9 +91,9 @@
                              Fill="White"
                              WidthRequest="100"
                             HeightRequest="100">
-                        
+
                     </Ellipse>
-                        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
                         <Frame CornerRadius="45" 
                                 HeightRequest="90"
                                 WidthRequest="90"
@@ -149,7 +125,7 @@
                         Text="Ensure quality and save production cost 792,000 USD for 9Cr Panel project of CFB Boiler Sodegaura"/>
                         </Grid>
                     </Grid>
-                  
+
                 </Grid>
             </Grid>
 
@@ -178,7 +154,6 @@
 
                         <Label x:Name="t_0" 
                             Text="BBHD Themes"
-                               
                                Style="{StaticResource BBHDOELable}"/>
                     </Grid>
 
@@ -191,56 +166,55 @@
                         </Grid.RowDefinitions>
                         <Grid Grid.Row="0"  Margin="4">
                             <Frame Style="{StaticResource ShopFrameOUT}"/>
-                            <Frame x:Name="f_2" Style="{StaticResource ShopFrameIN}"/>
+                            <Frame Style="{StaticResource ShopFrameIN}"/>
                             <Grid>
-                                
+                                <Button Style="{StaticResource ShopButton}"/>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="1.5*"/>
+                                        <ColumnDefinition Width="2*"/>
                                         <ColumnDefinition Width="4*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Grid Grid.Column="0" x:Name="c_2" IsVisible="false">
+                                    <Grid Grid.Column="0">
                                         <Image Source="{local:ImageResoureExtention KesonContest.Image.done.png}" Scale="1.7"/>
                                     </Grid>
                                     <Grid Grid.Column="1">
                                         <Label x:Name="t_2" Text="MHS" Style="{StaticResource ShopLable}" />
                                     </Grid>
                                 </Grid>
-                                <Button x:Name="b_2"  Clicked="b_2_Clicked" Opacity="0" Style="{StaticResource ShopButton}"/>
                             </Grid>
                         </Grid>
                         <Grid Grid.Row="1" Margin="4">
                             <Frame Style="{StaticResource ShopFrameOUT}"/>
-                            <Frame x:Name="f_3" Style="{StaticResource ShopFrameIN}"/>
+                            <Frame Style="{StaticResource ShopFrameIN}"/>
                             <Grid>
-
+                                <Button Style="{StaticResource ShopButton}"/>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="1.5*"/>
+                                        <ColumnDefinition Width="2*"/>
                                         <ColumnDefinition Width="4*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Grid Grid.Column="0" IsVisible="false" x:Name="c_3">
+                                    <Grid Grid.Column="0">
                                         <Image Source="{local:ImageResoureExtention KesonContest.Image.done.png}" Scale="1.7"/>
                                     </Grid>
                                     <Grid Grid.Column="1">
                                         <Label x:Name="t_3" 
-                                               Background="{x:Null}"
                                             Text="MHS" Style="{StaticResource ShopLable}" />
                                     </Grid>
                                 </Grid>
                             </Grid>
-                            <Button x:Name="b_3" Clicked="b_3_Clicked" Opacity="0" Style="{StaticResource ShopButton}"/>
+
                         </Grid>
                         <Grid Grid.Row="2" Margin="4">
                             <Frame Style="{StaticResource ShopFrameOUT}"/>
-                            <Frame x:Name="f_4" Style="{StaticResource ShopFrameIN}"/>
+                            <Frame Style="{StaticResource ShopFrameIN}"/>
                             <Grid>
+                                <Button Style="{StaticResource ShopButton}"/>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="1.5*"/>
+                                        <ColumnDefinition Width="2*"/>
                                         <ColumnDefinition Width="4*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Grid Grid.Column="0" IsVisible="false" x:Name="c_4">
+                                    <Grid Grid.Column="0">
                                         <Image Source="{local:ImageResoureExtention KesonContest.Image.done.png}" Scale="1.7"/>
                                     </Grid>
                                     <Grid Grid.Column="1">
@@ -248,19 +222,19 @@
                                             Text="MHS" Style="{StaticResource ShopLable}" />
                                     </Grid>
                                 </Grid>
-                                <Button x:Name="b_4" Clicked="b_4_Clicked" Opacity="0" Style="{StaticResource ShopButton}"/>
                             </Grid>
                         </Grid>
                         <Grid Grid.Row="3" Margin="4">
                             <Frame Style="{StaticResource ShopFrameOUT}"/>
-                            <Frame x:Name="f_5" Style="{StaticResource ShopFrameIN}"/>
+                            <Frame Style="{StaticResource ShopFrameIN}"/>
                             <Grid>
+                                <Button Style="{StaticResource ShopButton}"/>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="1.5*"/>
+                                        <ColumnDefinition Width="2*"/>
                                         <ColumnDefinition Width="4*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Grid Grid.Column="0" IsVisible="false" x:Name="c_5">
+                                    <Grid Grid.Column="0">
                                         <Image Source="{local:ImageResoureExtention KesonContest.Image.done.png}" Scale="1.7"/>
                                     </Grid>
                                     <Grid Grid.Column="1">
@@ -268,7 +242,6 @@
                                             Text="MHS" Style="{StaticResource ShopLable}" />
                                     </Grid>
                                 </Grid>
-                                <Button x:Name="b_5" Clicked="b_5_Clicked" Opacity="0" Style="{StaticResource ShopButton}"/>
                             </Grid>
                         </Grid>
                     </Grid>
@@ -314,7 +287,7 @@
                                     <RowDefinition Height="7*"/>
                                     <RowDefinition Height="9.2*"/>
                                 </Grid.RowDefinitions>
-                                
+
                                 <Grid Grid.Row="0">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="1*"/>
@@ -352,13 +325,13 @@
                                         </Grid.ColumnDefinitions>
 
                                         <Grid Grid.Column="1" >
-                                            <Button x:Name="t_27"  Clicked="t_27_Clicked" Style="{StaticResource ScoreButton}" BackgroundColor="#ffb400"/>
+                                            <Button x:Name="t_27"  Style="{StaticResource ScoreButton}" BackgroundColor="#ffb400"/>
                                         </Grid>
                                         <Grid Grid.Column="3">
-                                            <Button x:Name="t_28" Clicked="t_28_Clicked"  Style="{StaticResource ScoreButton}"/>
+                                            <Button x:Name="t_28"  Style="{StaticResource ScoreButton}"/>
                                         </Grid>
                                     </Grid>
-                                    
+
                                     <Grid Grid.Row="2">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="1.5*"/>
@@ -369,10 +342,10 @@
                                         </Grid.ColumnDefinitions>
 
                                         <Grid Grid.Column="1" >
-                                            <Button x:Name="t_29" Clicked="t_29_Clicked"  Style="{StaticResource ScoreButton}"/>
+                                            <Button x:Name="t_29"  Style="{StaticResource ScoreButton}"/>
                                         </Grid>
                                         <Grid Grid.Column="3">
-                                            <Button x:Name="t_30" Clicked="t_30_Clicked"  Style="{StaticResource ScoreButton}"/>
+                                            <Button x:Name="t_30"  Style="{StaticResource ScoreButton}"/>
                                         </Grid>
                                     </Grid>
                                 </Grid>
@@ -381,7 +354,7 @@
 
                         </Grid>
                     </Grid>
-                    
+
                     <!-- Grid C1 -->
                     <Grid  Grid.Column="1" Margin="4,-20,4,-5">
                         <Frame CornerRadius="35" BackgroundColor="#00b0f0" Opacity="0.7">
@@ -424,12 +397,14 @@
                                         <Label x:Name="t_23"  
                                             Style="{StaticResource DetailLable}"
                                            Margin="5,0,5,0"
-                                        Text="(1) Theme is challenging and offers the value predominating over other comertitor"/>                                    </Grid>
+                                        Text="(1) Theme is challenging and offers the value predominating over other comertitor"/>
+                                    </Grid>
                                     <Grid Grid.Row="1">
                                         <Label x:Name="t_24" 
                                             Style="{StaticResource DetailLable}"
                                            Margin="5,0,5,0"
-                                        Text="(1) Theme is challenging and offers the value predominating over other comertitor"/>                                    </Grid>
+                                        Text="(1) Theme is challenging and offers the value predominating over other comertitor"/>
+                                    </Grid>
                                 </Grid>
 
                                 <!--Math-->
@@ -450,10 +425,10 @@
                                         </Grid.ColumnDefinitions>
 
                                         <Grid Grid.Column="1" >
-                                            <Button x:Name="t_31" Clicked="t_31_Clicked" Style="{StaticResource ScoreButton}"/>
+                                            <Button x:Name="t_31"  Style="{StaticResource ScoreButton}"/>
                                         </Grid>
                                         <Grid Grid.Column="3">
-                                            <Button x:Name="t_32" Clicked="t_32_Clicked" Style="{StaticResource ScoreButton}"/>
+                                            <Button x:Name="t_32"  Style="{StaticResource ScoreButton}"/>
                                         </Grid>
                                     </Grid>
 
@@ -467,10 +442,10 @@
                                         </Grid.ColumnDefinitions>
 
                                         <Grid Grid.Column="1" >
-                                            <Button  x:Name="t_33" Clicked="t_33_Clicked" Style="{StaticResource ScoreButton}"/>
+                                            <Button  x:Name="t_33"  Style="{StaticResource ScoreButton}"/>
                                         </Grid>
                                         <Grid Grid.Column="3">
-                                            <Button x:Name="t_34" Clicked="t_34_Clicked"  Style="{StaticResource ScoreButton}"  BackgroundColor="#ffb400"/>
+                                            <Button x:Name="t_34"  Style="{StaticResource ScoreButton}"  BackgroundColor="#ffb400"/>
                                         </Grid>
                                     </Grid>
                                 </Grid>
@@ -522,12 +497,14 @@
                                         <Label x:Name="t_25"  
                                             Style="{StaticResource DetailLable}"
                                            Margin="5,0,5,0"
-                                        Text="(1) Theme is challenging and offers the value predominating over other comertitor"/>                                    </Grid>
+                                        Text="(1) Theme is challenging and offers the value predominating over other comertitor"/>
+                                    </Grid>
                                     <Grid Grid.Row="1">
                                         <Label x:Name="t_26"  
                                             Style="{StaticResource DetailLable}"
                                            Margin="5,0,5,0"
-                                        Text="(1) Theme is challenging and offers the value predominating over other comertitor"/>                                    </Grid>
+                                        Text="(1) Theme is challenging and offers the value predominating over other comertitor"/>
+                                    </Grid>
                                 </Grid>
 
                                 <!--Math-->
@@ -548,10 +525,10 @@
                                         </Grid.ColumnDefinitions>
 
                                         <Grid Grid.Column="1" >
-                                            <Button x:Name="t_35" Clicked="t_35_Clicked"  Style="{StaticResource ScoreButton}"/>
+                                            <Button x:Name="t_35"  Style="{StaticResource ScoreButton}"/>
                                         </Grid>
                                         <Grid Grid.Column="3">
-                                            <Button  x:Name="t_36" Clicked="t_36_Clicked"  Style="{StaticResource ScoreButton}"/>
+                                            <Button  x:Name="t_36"  Style="{StaticResource ScoreButton}"/>
                                         </Grid>
                                     </Grid>
 
@@ -564,11 +541,11 @@
                                             <ColumnDefinition Width="1.5*"/>
                                         </Grid.ColumnDefinitions>
 
-                                        <Grid Grid.Column="1" > 
-                                            <Button x:Name="t_37" Clicked="t_37_Clicked" Style="{StaticResource ScoreButton}"  BackgroundColor="#ffb400"/>
+                                        <Grid Grid.Column="1" >
+                                            <Button x:Name="t_37"  Style="{StaticResource ScoreButton}"  BackgroundColor="#ffb400"/>
                                         </Grid>
                                         <Grid Grid.Column="3">
-                                            <Button x:Name="t_38" Clicked="t_38_Clicked" Style="{StaticResource ScoreButton}"/>
+                                            <Button x:Name="t_38"  Style="{StaticResource ScoreButton}"/>
                                         </Grid>
                                     </Grid>
                                 </Grid>
@@ -611,14 +588,15 @@
                         </Grid.RowDefinitions>
                         <Grid Grid.Row="0"  Margin="4">
                             <Frame Style="{StaticResource ShopFrameOUT}"/>
-                            <Frame x:Name="f_6" Style="{StaticResource ShopFrameIN}"/>
+                            <Frame Style="{StaticResource ShopFrameIN}"/>
                             <Grid>
+                                <Button Style="{StaticResource ShopButton}"/>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="1.5*"/>
+                                        <ColumnDefinition Width="2*"/>
                                         <ColumnDefinition Width="4*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Grid Grid.Column="0" IsVisible="false" x:Name="c_6">
+                                    <Grid Grid.Column="0">
                                         <Image Source="{local:ImageResoureExtention KesonContest.Image.done.png}" Scale="1.7"/>
                                     </Grid>
                                     <Grid Grid.Column="1">
@@ -626,19 +604,19 @@
                                             Text="MHS" Style="{StaticResource ShopLable}" />
                                     </Grid>
                                 </Grid>
-                                <Button x:Name="b_6" Clicked="b_6_Clicked" Opacity="0" Style="{StaticResource ShopButton}"/>
                             </Grid>
                         </Grid>
                         <Grid Grid.Row="1" Margin="4">
                             <Frame Style="{StaticResource ShopFrameOUT}"/>
-                            <Frame x:Name="f_7" Style="{StaticResource ShopFrameIN}"/>
+                            <Frame Style="{StaticResource ShopFrameIN}"/>
                             <Grid>
+                                <Button Style="{StaticResource ShopButton}"/>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="1.5*"/>
+                                        <ColumnDefinition Width="2*"/>
                                         <ColumnDefinition Width="4*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Grid Grid.Column="0" IsVisible="false" x:Name="c_7">
+                                    <Grid Grid.Column="0">
                                         <Image Source="{local:ImageResoureExtention KesonContest.Image.done.png}" Scale="1.7"/>
                                     </Grid>
                                     <Grid Grid.Column="1">
@@ -646,20 +624,20 @@
                                             Text="MHS" Style="{StaticResource ShopLable}" />
                                     </Grid>
                                 </Grid>
-                                <Button x:Name="b_7" Clicked="b_7_Clicked" Opacity="0" Style="{StaticResource ShopButton}"/>
                             </Grid>
 
                         </Grid>
                         <Grid Grid.Row="2" Margin="4">
                             <Frame Style="{StaticResource ShopFrameOUT}"/>
-                            <Frame x:Name="f_8" Style="{StaticResource ShopFrameIN}"/>
+                            <Frame Style="{StaticResource ShopFrameIN}"/>
                             <Grid>
+                                <Button Style="{StaticResource ShopButton}"/>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="1.5*"/>
+                                        <ColumnDefinition Width="2*"/>
                                         <ColumnDefinition Width="4*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Grid Grid.Column="0" IsVisible="false" x:Name="c_8">
+                                    <Grid Grid.Column="0">
                                         <Image Source="{local:ImageResoureExtention KesonContest.Image.done.png}" Scale="1.7"/>
                                     </Grid>
                                     <Grid Grid.Column="1">
@@ -667,19 +645,19 @@
                                             Text="MHS" Style="{StaticResource ShopLable}" />
                                     </Grid>
                                 </Grid>
-                                <Button x:Name="b_8" Clicked="b_8_Clicked" Opacity="0" Style="{StaticResource ShopButton}"/>
                             </Grid>
                         </Grid>
                         <Grid Grid.Row="3" Margin="4">
                             <Frame Style="{StaticResource ShopFrameOUT}"/>
-                            <Frame x:Name="f_9" Style="{StaticResource ShopFrameIN}"/>
+                            <Frame Style="{StaticResource ShopFrameIN}"/>
                             <Grid>
+                                <Button Style="{StaticResource ShopButton}"/>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="1.5*"/>
+                                        <ColumnDefinition Width="2*"/>
                                         <ColumnDefinition Width="4*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Grid Grid.Column="0" IsVisible="false" x:Name="c_9">
+                                    <Grid Grid.Column="0">
                                         <Image Source="{local:ImageResoureExtention KesonContest.Image.done.png}" Scale="1.7"/>
                                     </Grid>
                                     <Grid Grid.Column="1">
@@ -687,7 +665,6 @@
                                             Text="MHS" Style="{StaticResource ShopLable}" />
                                     </Grid>
                                 </Grid>
-                                <Button x:Name="b_9" Clicked="b_9_Clicked" Opacity="0" Style="{StaticResource ShopButton}"/>
                             </Grid>
                         </Grid>
                     </Grid>
@@ -704,7 +681,6 @@
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="1">
                     <Button x:Name="bt_save"
-                            Clicked="bt_save_Clicked"
                             CornerRadius="14"
                             BackgroundColor="#018fff"
                             Margin="5"
