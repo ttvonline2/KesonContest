@@ -587,6 +587,11 @@ namespace KesonContest
             if (a*b*c >0)
             {
                 bt_save.Text = "Save (Total " + (a+b+c).ToString() + ")";
+                if (St_Result[int_CurrentShop, 5] != (a + b + c).ToString())
+                {
+                    bt_save.BackgroundColor = Color.FromHex(st_HexColorSave0);
+                    HideCheckDone();
+                }
             }
             else
             {
@@ -717,12 +722,138 @@ namespace KesonContest
             pressScoreC3(38); t_38.BackgroundColor = Color.FromHex(st_HexColorOrange);
         }
 
-        private void bt_save_Clicked(object sender, EventArgs e)
+        private async void bt_save_Clicked(object sender, EventArgs e)
         {
             int a = Convert.ToInt16(St_Result[int_CurrentShop, 2]);
             int b = Convert.ToInt16(St_Result[int_CurrentShop, 3]);
             int c = Convert.ToInt16(St_Result[int_CurrentShop, 4]);
-            St_Result[int_CurrentShop, 1] = "1";
+
+            if(a*b*c > 0)
+            {
+                St_Result[int_CurrentShop, 1] = "1";
+                AllResult = "";
+                St_Result[int_CurrentShop, 5] = (a + b + c).ToString();
+                for (int i = 0; i < 8; i++)
+                {
+                    for (int j = 0; j < 6; j++)
+                    {
+                        AllResult += St_Result[i, j] + "-";
+                    }
+                    AllResult += "|";
+                }
+                ShowCheckDone();
+
+                bt_save.BackgroundColor = Color.FromHex(st_HexColorOrange);
+                DependencyService.Get<Toast>().Show("Saved Successfully");
+            }
+            else
+            {
+                DependencyService.Get<Toast>().Show("Please mark before saving");
+                if (St_Result[int_CurrentShop, 2] =="0")
+                {
+                    for (int i = 0; i < 2; i++)
+                    {
+                        await f_c0.FadeTo(0, 200);
+                        await f_c0.FadeTo(0.7, 200);
+                    }
+                }
+                if (St_Result[int_CurrentShop, 3] == "0")
+                {
+                    for (int i = 0; i < 2; i++)
+                    {
+                        await f_c1.FadeTo(0, 200);
+                        await f_c1.FadeTo(0.7, 200);
+                    }
+                }
+
+                if (St_Result[int_CurrentShop, 4] == "0")
+                {
+                    for (int i = 0; i < 2; i++)
+                    {
+                        await f_c2.FadeTo(0, 200);
+                        await f_c2.FadeTo(0.7, 200);
+                    }
+                }
+        
+
+            }
+           
+            void ShowCheckDone()
+            {
+
+               switch(int_CurrentShop)
+                {
+                    case 0:
+                        c_2.IsVisible = true;
+                        break;
+                    case 1:
+                        c_3.IsVisible = true;
+                        break;
+                    case 2:
+                        c_4.IsVisible = true;
+                        break;
+                    case 3:
+                        c_5.IsVisible = true;
+                        break;
+
+                    case 4:
+                        c_6.IsVisible = true;
+                        break;
+                    case 5:
+                        c_7.IsVisible = true;
+                        break;
+                    case 6:
+                        c_8.IsVisible = true;
+                        break;
+                    case 7:
+                        c_9.IsVisible = true;
+                        break;
+                }
+                
+            }
+            
+        }
+        void HideCheckDone()
+        {
+            St_Result[int_CurrentShop, 1] = "0";
+            AllResult = "";
+           
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 6; j++)
+                {
+                    AllResult += St_Result[i, j] + "-";
+                }
+                AllResult += "|";
+            }
+            switch (int_CurrentShop)
+            {
+                case 0:
+                    c_2.IsVisible = false;
+                    break;
+                case 1:
+                    c_2.IsVisible = false;
+                    break;
+                case 2:
+                    c_4.IsVisible = false;
+                    break;
+                case 3:
+                    c_5.IsVisible = false;
+                    break;
+
+                case 4:
+                    c_6.IsVisible = false;
+                    break;
+                case 5:
+                    c_7.IsVisible = false;
+                    break;
+                case 6:
+                    c_8.IsVisible = false;
+                    break;
+                case 7:
+                    c_9.IsVisible = false;
+                    break;
+            }
         }
         #endregion
 
