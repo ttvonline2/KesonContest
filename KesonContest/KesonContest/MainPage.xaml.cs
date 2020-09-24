@@ -15,7 +15,7 @@ namespace KesonContest
         public MainPage()
         {
             InitializeComponent();
-            gr_page2.IsVisible = false;
+
         }
     }
 }

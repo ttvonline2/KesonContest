@@ -20,7 +20,7 @@ namespace KesonContest
         string fileResult = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "result.txt");
         String[] St_Data = new String[40];
         String[,] St_Result = new String[9,7];
-        String AllResult = "0-1-28-26-36-90-|1-1-28-26-40-94-|2-1-26-26-38-90-|3-0-0-0-0-0-|4-1-28-28-40-96-|5-0-0-0-0-0-|6-0-0-0-0-0-|7-0-0-0-0-0-|";
+        String DefaulResult = "0-0-0-0-0-0-|1-0-0-0-0-0-|2-0-0-0-0-0-|3-0-0-0-0-0-|4-0-0-0-0-0-|5-0-0-0-0-0-|6-0-0-0-0-0-|7-0-0-0-0-0-|";
         string st_HexColorOrange = "#ffb400";
         string st_HexColorGreen = "#30f000";
         string st_HexColorBlue = "#195e83";
@@ -30,7 +30,6 @@ namespace KesonContest
           (AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
         String TextReceive;
-        String st_Stream = "";
         private const int PORT = 197;
         int int_step = 0;
         int int_CurrentShop = 0;
@@ -41,9 +40,9 @@ namespace KesonContest
         public Page2()
         {
             InitializeComponent();
-            NavigationPage.SetHasNavigationBar(this, false);
-
+            NavigationPage.SetHasNavigationBar(this, false);   
         }
+
 
         #region Page1
         private void bt_Connect_Clicked(object sender, EventArgs e)
@@ -54,8 +53,8 @@ namespace KesonContest
 
             }
             File.WriteAllText(fileData, "");    // Delete old data
-            File.WriteAllText(fileResult, "");
-            TextReceive = ""; st_Stream = "";
+            File.WriteAllText(fileResult, DefaulResult);
+            TextReceive = "";
             int_step = 0;
             SendString("~~*data");
             RequestLoop();              // Replace new data
@@ -70,7 +69,6 @@ namespace KesonContest
             {
 
             }
-            st_Stream = "";
             SendString("~~*stream");
             RequestLoop();              // Replace new data
             bt_Connect.IsVisible = false;
@@ -166,7 +164,7 @@ namespace KesonContest
         void inputVar()
         {
 
-            //String AllResult = File.ReadAllText(fileResult);
+            String AllResult = File.ReadAllText(fileResult);
             string[] li = AllResult.Split('|');
             for (int i = 0; i < li.Length; i++)
             {
@@ -486,30 +484,36 @@ namespace KesonContest
             int received = ClientSocket.Receive(buffer, SocketFlags.None);
             var data = new byte[received];
             Array.Copy(buffer, data, received);
-            if (int_step == 0)
-            {
-                TextReceive += Encoding.ASCII.GetString(data);
-            }
-            else
-            {
-                st_Stream = Encoding.ASCII.GetString(data);
-                StreamProcessing(st_Stream);
-
-            }
+            TextReceive += Encoding.ASCII.GetString(data);
 
             Device.BeginInvokeOnMainThread(() =>
             {
-                String b = TextReceive.Substring(TextReceive.Length - 6, 4);
+                string b = "";
+                try
+                {
+                    b = TextReceive.Substring(TextReceive.Length - 6, 4);
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine(e);
+                }
                 if (b == ".end")
                 {
-                    int_step++;
                     File.WriteAllText(fileData, TextReceive);
 
                     bt_Connect.IsVisible = false;
                     bt_Skip.IsVisible = false;
                     gr_page2.IsVisible = true;
                     unfixSet();
+                    ColorButton();
                     SetButtonShop(b_2, f_2, 0);
+                    TextReceive = "";
+                }
+                else if(b==".dat")
+                {
+                    String AllResult = File.ReadAllText(fileResult);
+                    SendString("~~" + AllResult);
+                    TextReceive = "";
                 }
             });
         }
@@ -579,6 +583,15 @@ namespace KesonContest
 
         #region Button Score
 
+        void SubmitData()
+        {
+            string text = "~~*-" + int_CurrentShop.ToString() + "-";
+            for (int i = 1; i < 5; i++)
+            {
+                text += St_Result[int_CurrentShop, i] + "-";
+            }
+            SendString(text);
+        }
         void SumScore()
         {
             int a = Convert.ToInt16(St_Result[int_CurrentShop, 2]);
@@ -597,6 +610,7 @@ namespace KesonContest
             {
                 bt_save.Text = "SAVE";
             }
+
         }
         void pressScoreC1(int stt)
         {
@@ -606,8 +620,8 @@ namespace KesonContest
             t_30.BackgroundColor = Color.FromHex(st_HexcolorScore0);
             int_sumScore[int_CurrentShop, 0] = int_score[stt];
             St_Result[int_CurrentShop,2] = int_score[stt].ToString();
-            AllResult = "";
-            for(int i = 0; i < 8; i++)
+            String AllResult = "";
+            for (int i = 0; i < 8; i++)
             {
                 for(int j = 0; j < 6; j++)
                 {
@@ -615,7 +629,9 @@ namespace KesonContest
                 }
                 AllResult += "|";
             }
+            File.WriteAllText(fileResult,AllResult);
             SumScore();
+            SubmitData();
         }
 
         void pressScoreC2(int stt)
@@ -626,7 +642,7 @@ namespace KesonContest
             t_34.BackgroundColor = Color.FromHex(st_HexcolorScore0);
             int_sumScore[int_CurrentShop, 1] = int_score[stt];
             St_Result[int_CurrentShop, 3] = int_score[stt].ToString();
-            AllResult = "";
+            String AllResult = "";
             for (int i = 0; i < 8; i++)
             {
                 for (int j = 0; j < 6; j++)
@@ -635,7 +651,9 @@ namespace KesonContest
                 }
                 AllResult += "|";
             }
+            File.WriteAllText(fileResult, AllResult);
             SumScore();
+            SubmitData();
         }
 
         void pressScoreC3(int stt)
@@ -646,7 +664,7 @@ namespace KesonContest
             t_38.BackgroundColor = Color.FromHex(st_HexcolorScore0);
             int_sumScore[int_CurrentShop, 2] = int_score[stt];
             St_Result[int_CurrentShop, 4] = int_score[stt].ToString();
-            AllResult = "";
+            String AllResult = "";
             for (int i = 0; i < 8; i++)
             {
                 for (int j = 0; j < 6; j++)
@@ -655,7 +673,9 @@ namespace KesonContest
                 }
                 AllResult += "|";
             }
+            File.WriteAllText(fileResult, AllResult);
             SumScore();
+            SubmitData();
         }
 
         // c1
@@ -731,7 +751,7 @@ namespace KesonContest
             if(a*b*c > 0)
             {
                 St_Result[int_CurrentShop, 1] = "1";
-                AllResult = "";
+                String AllResult = "";
                 St_Result[int_CurrentShop, 5] = (a + b + c).ToString();
                 for (int i = 0; i < 8; i++)
                 {
@@ -742,7 +762,7 @@ namespace KesonContest
                     AllResult += "|";
                 }
                 ShowCheckDone();
-
+                File.WriteAllText(fileResult, AllResult);
                 bt_save.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 DependencyService.Get<Toast>().Show("Saved Successfully");
             }
@@ -809,6 +829,7 @@ namespace KesonContest
                         c_9.IsVisible = true;
                         break;
                 }
+                SubmitData();
                 
             }
             
@@ -816,7 +837,7 @@ namespace KesonContest
         void HideCheckDone()
         {
             St_Result[int_CurrentShop, 1] = "0";
-            AllResult = "";
+            String AllResult = "";
            
             for (int i = 0; i < 8; i++)
             {
@@ -826,13 +847,14 @@ namespace KesonContest
                 }
                 AllResult += "|";
             }
+            File.WriteAllText(fileResult, AllResult);
             switch (int_CurrentShop)
             {
                 case 0:
                     c_2.IsVisible = false;
                     break;
                 case 1:
-                    c_2.IsVisible = false;
+                    c_3.IsVisible = false;
                     break;
                 case 2:
                     c_4.IsVisible = false;

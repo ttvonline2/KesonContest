@@ -72,8 +72,28 @@
     </ContentPage.Resources>
     
     <Grid x:Name="gr_main">
-        <Image Source="{local:ImageResoureExtention KesonContest.Image.BackGround.png}" />
-        <Button x:Name="bt_Connect"
+        <Image x:Name="im_bg" Source="{local:ImageResoureExtention KesonContest.Image.BackGround.png}" />
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="1">
+                <Button x:Name="bt_Skip"
+                Clicked="bt_Skip_Clicked"
+                        Text="Skip"
+                        TextColor="White"
+                        BackgroundColor="#018fff"
+                        FontFamily="font1"
+                        FontSize="Title"
+                        CornerRadius="20"
+                        HeightRequest="200"
+                        WidthRequest="200"
+                        Margin="20"/>
+            </Grid>
+            <Grid Grid.Column="0">
+                <Button x:Name="bt_Connect"
                 Clicked="bt_Connect_Clicked"
                         Text="Reload Data"
                         TextColor="White"
@@ -83,18 +103,11 @@
                         CornerRadius="20"
                         HeightRequest="200"
                 WidthRequest="200"
-                Margin="50,170,600,170"/>
-        <Button x:Name="bt_Skip"
-                Clicked="bt_Skip_Clicked"
-                        Text="Skip"
-                        TextColor="White"
-                        BackgroundColor="#018fff"
-                        FontFamily="font1"
-                        FontSize="Title"
-                        CornerRadius="20"
-                        HeightRequest="200"
-                WidthRequest="200"
-                Margin="600,170,50,170"/>
+                Margin="10"/>
+            </Grid>
+            
+        </Grid>
+
         <Grid x:Name="gr_page2" IsVisible="false">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.9*"/>
@@ -146,7 +159,7 @@
                         </Grid.ColumnDefinitions>
                         <Grid>
                             <Label x:Name="t_10To17" Style="{StaticResource ThemeNameLable}"
-                        Text="Ensure quality and save production cost 792,000 USD for 9Cr Panel project of CFB Boiler Sodegaura"/>
+                        Text="TExxxxxxxxxxx"/>
                         </Grid>
                     </Grid>
                   
