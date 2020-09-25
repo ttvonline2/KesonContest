@@ -2,6 +2,10 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+[assembly: ExportFont("Lobster-Regular.ttf", Alias = "Lobster")]
+[assembly: ExportFont("Cooper Regular.ttf", Alias = "font1")]
+[assembly: ExportFont("NotoSansKR-Medium.otf", Alias = "noto")]
+
 namespace KesonContest
 {
     public partial class App : Application

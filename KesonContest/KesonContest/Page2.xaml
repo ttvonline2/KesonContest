@@ -11,8 +11,8 @@
             <Style x:Key="ScoreButton" TargetType="Button">
                 <Setter Property="BackgroundColor" Value="#c5c6ff"/>
                 <Setter Property="Text" Value="26"/>
-                <Setter Property="FontFamily" Value="font1"/>
-                <Setter Property="FontSize" Value="Large"/>
+                <Setter Property="FontFamily" Value="Lobster"/>
+                <Setter Property="FontSize" Value="14"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
                 <Setter Property="CornerRadius" Value="5"/>
                 <Setter Property="TextColor" Value="White"/>
@@ -28,29 +28,29 @@
                 <Setter Property="CornerRadius" Value="3"/>
                 <Setter Property="BorderColor" Value="White"/>
                 <Setter Property="BackgroundColor" Value="#817db8"/>
-                <Setter Property="Margin" Value="2"/>
+                <Setter Property="Margin" Value="0"/>
             </Style>
 
             <Style x:Key="ShopButton" TargetType="Button">
-                <Setter Property="Margin" Value="2"/>
+                <Setter Property="Margin" Value="0"/>
                 <Setter Property="CornerRadius" Value="3"/>
                 <Setter Property="BackgroundColor" Value="#817db8"/>
             </Style>
             
             <Style x:Key="BBHDOELable" TargetType="Label">
                 <Setter Property="TextColor" Value="White"/>
-                <Setter Property="FontSize" Value="Medium"/>
-                <Setter Property="FontFamily" Value="font1"/>
+                <Setter Property="FontSize" Value="Small"/>
+                <Setter Property="FontFamily" Value="Lobster"/>
                 <Setter Property="VerticalOptions" Value="Center"/>
                 <Setter Property="HorizontalOptions" Value="Center"/>
                 <Setter Property="HorizontalTextAlignment" Value="Center"/>
-                <Setter Property="LineHeight" Value="1.5"/>
+                <Setter Property="LineHeight" Value="1"/>
             </Style>
 
             <Style x:Key="ShopLable" TargetType="Label">
                 <Setter Property="TextColor" Value="White"/>
-                <Setter Property="FontSize" Value="Medium"/>
-                <Setter Property="FontFamily" Value="font1"/>
+                <Setter Property="FontSize" Value="Small"/>
+                <Setter Property="FontFamily" Value="Lobster"/>
                 <Setter Property="VerticalOptions" Value="Center"/>
                 <Setter Property="HorizontalTextAlignment" Value="Start"/>
                 <Setter Property="LineHeight" Value="1.5"/>
@@ -58,7 +58,7 @@
            
             <Style x:Key="DetailLable" TargetType="Label">
                 <Setter Property="TextColor" Value="White"/>
-                <Setter Property="FontSize" Value="Small"/>
+                <Setter Property="FontSize" Value="9.5"/>
                 <Setter Property="VerticalOptions" Value="Center"/>
                 <Setter Property="HorizontalOptions" Value="Center"/>
             </Style>
@@ -66,7 +66,7 @@
             <Style x:Key="ThemeNameLable" TargetType="Label">
                 <Setter Property="TextColor" Value="#7dfef2"/>
                 <Setter Property="FontFamily" Value="noto"/>
-                <Setter Property="FontSize" Value="Medium"/>
+                <Setter Property="FontSize" Value="14"/>
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -85,7 +85,7 @@
                         Text="Skip"
                         TextColor="White"
                         BackgroundColor="#018fff"
-                        FontFamily="font1"
+                        FontFamily="Lobster"
                         FontSize="Title"
                         CornerRadius="20"
                         HeightRequest="200"
@@ -98,7 +98,7 @@
                         Text="Reload Data"
                         TextColor="White"
                         BackgroundColor="Orange"
-                        FontFamily="font1"
+                        FontFamily="Lobster"
                         FontSize="Title"
                         CornerRadius="20"
                         HeightRequest="200"
@@ -110,7 +110,7 @@
 
         <Grid x:Name="gr_page2" IsVisible="false">
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.9*"/>
+                <RowDefinition Height="1.2*"/>
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="0.7*"/>
             </Grid.RowDefinitions>
@@ -123,26 +123,21 @@
                 </Grid.ColumnDefinitions>
 
                 <!-- Grid Avartar -->
-                <Grid x:Name="gr_avatar" Margin="10,4,0,-7" Grid.Column="0">
-                    <Ellipse VerticalOptions="Center" HorizontalOptions="Center"
-                             Fill="White"
-                             WidthRequest="100"
-                            HeightRequest="100">
-                        
-                    </Ellipse>
-                        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-                        <Frame CornerRadius="45" 
-                                HeightRequest="90"
-                                WidthRequest="90"
-                               VerticalOptions="Center"
-                                HorizontalOptions="Center"
-                                Padding="0"
-                                IsClippedToBounds="True">
-                            <Image Source="{local:ImageResoureExtention KesonContest.Image.avatar.JPG}"
-                                 HorizontalOptions="Center"
-                                VerticalOptions="Center" />
-                        </Frame>
-                    </StackLayout>
+                <Grid x:Name="gr_avatar" Grid.Column="0">
+                    <Frame VerticalOptions="Center" Padding="40" CornerRadius="40" HorizontalOptions="Center"
+                             BackgroundColor="White"/>
+                    <Image Source="{local:ImageResoureExtention KesonContest.Image.avatar.JPG}" VerticalOptions="Center" HorizontalOptions="Center"         
+                           WidthRequest="70"
+                        HeightRequest="70" >
+                        <Image.Clip>
+                            <EllipseGeometry
+                            Center="35,35"
+                            RadiusX="35"
+                                
+                                RadiusY="35"/>
+                        </Image.Clip>
+                    </Image>
+
                 </Grid>
 
                 <!-- Grid Theme Name -->
@@ -174,19 +169,19 @@
                     <ColumnDefinition Width="1.3*"/>
                 </Grid.ColumnDefinitions>
                 <!-- Grid BBHD -->
-                <Grid Grid.Column="0" Margin="4,4,4,0">
+                <Grid Grid.Column="0" Margin="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="4*"/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
                         <Frame BackgroundColor="#8de7f9"
-                               CornerRadius="14">
+                               CornerRadius="10">
                         </Frame>
 
                         <Frame BackgroundColor="#334c9f"
                                CornerRadius="10"
-                               Margin="4">
+                               Margin="2">
                         </Frame>
 
                         <Label x:Name="t_0" 
@@ -296,7 +291,7 @@
                     </Grid.ColumnDefinitions>
 
                     <!-- Grid C0 -->
-                    <Grid Grid.Column="0" Margin="4,-20,4,-5">
+                    <Grid Grid.Column="0" Margin="4,-20,2,-5">
                         <Frame x:Name="f_c0" CornerRadius="35" BackgroundColor="#4472c4" Opacity="0.7">
 
                         </Frame>
@@ -312,7 +307,7 @@
                                 <Label x:Name="t_18"  
                                     Text="Challenger (30%)" 
                                        FontAttributes="Bold"
-                                       FontSize="Subtitle"
+                                       FontSize="Small"
                                        TextColor="White" VerticalTextAlignment="Center" 
                                        HorizontalOptions="Center"/>
                                 <!--Line-->
@@ -396,7 +391,7 @@
                     </Grid>
                     
                     <!-- Grid C1 -->
-                    <Grid  Grid.Column="1" Margin="4,-20,4,-5">
+                    <Grid  Grid.Column="1" Margin="2,-20,2,-5">
                         <Frame x:Name="f_c1" CornerRadius="35" BackgroundColor="#00b0f0" Opacity="0.7">
 
                         </Frame>
@@ -412,7 +407,7 @@
                                 <Label x:Name="t_19"  
                                     Text="Challenger (30%)" 
                                        FontAttributes="Bold"
-                                       FontSize="Subtitle"
+                                       FontSize="Small"
                                        TextColor="White" VerticalTextAlignment="Center" 
                                        HorizontalOptions="Center"/>
                                 <!--Line-->
@@ -494,7 +489,7 @@
                     </Grid>
 
                     <!-- Grid C2 -->
-                    <Grid Grid.Column="2" Margin="4,-20,4,-5">
+                    <Grid Grid.Column="2" Margin="2,-20,2,-5">
                         <Frame x:Name="f_c2" CornerRadius="35" BackgroundColor="#7f60d6" Opacity="0.7">
 
                         </Frame>
@@ -510,7 +505,7 @@
                                 <Label x:Name="t_20"  
                                     Text="Challenger (30%)" 
                                        FontAttributes="Bold"
-                                       FontSize="Subtitle"
+                                       FontSize="Small"
                                        TextColor="White" VerticalTextAlignment="Center" 
                                        HorizontalOptions="Center"/>
                                 <!--Line-->
@@ -594,19 +589,19 @@
                 </Grid>
 
                 <!-- Grid OETheme -->
-                <Grid Grid.Column="2" Margin="0,4,4,4">
+                <Grid Grid.Column="2" Margin="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="4*"/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
                         <Frame BackgroundColor="#8de7f9"
-                               CornerRadius="14">
+                               CornerRadius="10">
                         </Frame>
 
                         <Frame BackgroundColor="#334c9f"
                                CornerRadius="10"
-                               Margin="4">
+                               Margin="2">
                         </Frame>
 
                         <Label x:Name="t_1"  
@@ -722,8 +717,8 @@
                             BackgroundColor="#018fff"
                             Margin="5"
                             Text="SAVE (total 94)"
-                            FontFamily="font1"
-                            FontSize="Large"
+                            FontFamily="Lobster"
+                            FontSize="Medium"
                             TextColor="White"/>
                 </Grid>
             </Grid>
