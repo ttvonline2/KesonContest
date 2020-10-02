@@ -17,37 +17,68 @@ namespace KesonContest
     {
         #region Variable
         string fileData = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "data.txt");
+        string filettGK = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ttgk.txt");
         string fileResult = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "result.txt");
         String[] St_Data = new String[40];
-        String[,] St_Result = new String[9,7];
-        String DefaulResult = "0-0-0-0-0-0-|1-0-0-0-0-0-|2-0-0-0-0-0-|3-0-0-0-0-0-|4-0-0-0-0-0-|5-0-0-0-0-0-|6-0-0-0-0-0-|7-0-0-0-0-0-|";
+        String[,] St_Result = new String[8,5];
+        String DefaulResult = "0-0-0-0-0|0-0-0-0-0|0-0-0-0-0|0-0-0-0-0|0-0-0-0-0|0-0-0-0-0|0-0-0-0-0|0-0-0-0-0";
         string st_HexColorOrange = "#ffb400";
         string st_HexColorGreen = "#30f000";
         string st_HexColorBlue = "#195e83";
         string st_HexColorSave0 = "#018fff";
         string st_HexcolorScore0 = "#c5c6ff";
+        IPAddress address;
         private static readonly Socket ClientSocket = new Socket
           (AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-
         String TextReceive;
         private const int PORT = 197;
         int int_step = 0;
         int int_CurrentShop = 0;
         int[] int_score = new int[40];
+        string[] st_code = new string[5];
         int[,] int_sumScore = new int[8,4];
         #endregion
 
         public Page2()
         {
             InitializeComponent();
-            NavigationPage.SetHasNavigationBar(this, false);   
+            NavigationPage.SetHasNavigationBar(this, false);
+            NavigationPage.SetHasBackButton(this, false);
         }
 
 
         #region Page1
+        void setup_string_code()
+        {
+            
+            string _ttgk = et_ttgk.Text;
+            if(_ttgk == null)
+            {
+                string tt = File.ReadAllText(filettGK);
+                string[] line = tt.Split(':');
+                
+                address = IPAddress.Parse(line[0]);
+                _ttgk = line[1];
+            }
+            else
+            {
+                File.WriteAllText(filettGK, _ttgk);
+                string tt = File.ReadAllText(filettGK);
+                string[] line = tt.Split(':');
+
+                address = IPAddress.Parse(line[0]);
+                _ttgk = line[1];
+            }
+            st_code[0] = "~~*cn" + _ttgk; // Thong bao cho SV da connected
+            st_code[1] = "~~*da";// request data all.
+            st_code[2] = "~~*re" + _ttgk; // Send data to server
+
+        }
         private void bt_Connect_Clicked(object sender, EventArgs e)
         {
+            setup_string_code();
             ConnectToServer();
+            
             while (!ClientSocket.Connected)
             {
 
@@ -56,7 +87,7 @@ namespace KesonContest
             File.WriteAllText(fileResult, DefaulResult);
             TextReceive = "";
             int_step = 0;
-            SendString("~~*data");
+            SendString(st_code[1]);
             RequestLoop();              // Replace new data
 
         }
@@ -64,15 +95,14 @@ namespace KesonContest
         private void bt_Skip_Clicked(object sender, EventArgs e)
         {
             int_step++;
+            setup_string_code();
             ConnectToServer();
             while (!ClientSocket.Connected)
             {
 
             }
-            SendString("~~*stream");
             RequestLoop();              // Replace new data
-            bt_Connect.IsVisible = false;
-            bt_Skip.IsVisible = false;
+            gr_page1.IsVisible = false;
             gr_page2.IsVisible = true;
 
             unfixSet();
@@ -80,7 +110,7 @@ namespace KesonContest
         }
 
 
-        private static void ConnectToServer()
+        private void ConnectToServer()
         {
             int attempts = 0;
 
@@ -90,8 +120,8 @@ namespace KesonContest
                 {
                     attempts++;
                     // Change IPAddress.Loopback to a remote IP to connect to a remote host.
-                    IPAddress address = IPAddress.Parse("10.12.20.25");
                     ClientSocket.Connect(address, PORT);
+                    SendString(st_code[0]);
 
                 }
                 catch (SocketException)
@@ -169,7 +199,7 @@ namespace KesonContest
             for (int i = 0; i < li.Length; i++)
             {
                 string[] n = li[i].Split('-');
-                for (int j = 0; j < n.Length; j++)
+                for (int j = 0; j < 4; j++)
                 {
                     St_Result[i, j] = n[j];
                 }
@@ -178,7 +208,7 @@ namespace KesonContest
 
         void ColorButton()
         {
-            if (St_Result[0, 1] == "0")
+            if (St_Result[0, 0] == "0")
             {
                 f_2.BackgroundColor = Color.FromHex(st_HexColorBlue); c_2.IsVisible = false;
             }
@@ -187,7 +217,7 @@ namespace KesonContest
                 f_2.BackgroundColor = Color.FromHex(st_HexColorOrange); c_2.IsVisible = true;
             }
 
-            if (St_Result[1, 1] == "0")
+            if (St_Result[1, 0] == "0")
             {
                 f_3.BackgroundColor = Color.FromHex(st_HexColorBlue); c_3.IsVisible = false;
             }
@@ -196,7 +226,7 @@ namespace KesonContest
                 f_3.BackgroundColor = Color.FromHex(st_HexColorOrange); c_3.IsVisible = true;
             }
 
-            if (St_Result[2, 1] == "0")
+            if (St_Result[2, 0] == "0")
             {
                 f_4.BackgroundColor = Color.FromHex(st_HexColorBlue); c_4.IsVisible = false;
             }
@@ -205,7 +235,7 @@ namespace KesonContest
                 f_4.BackgroundColor = Color.FromHex(st_HexColorOrange); c_4.IsVisible = true;
             }
 
-            if (St_Result[3, 1] == "0")
+            if (St_Result[3, 0] == "0")
             {
                 f_5.BackgroundColor = Color.FromHex(st_HexColorBlue); c_5.IsVisible = false;
             }
@@ -214,7 +244,7 @@ namespace KesonContest
                 f_5.BackgroundColor = Color.FromHex(st_HexColorOrange); c_5.IsVisible = true;
             }
 
-            if (St_Result[4, 1] == "0")
+            if (St_Result[4, 0] == "0")
             {
                 f_6.BackgroundColor = Color.FromHex(st_HexColorBlue); c_6.IsVisible = false;
             }
@@ -223,7 +253,7 @@ namespace KesonContest
                 f_6.BackgroundColor = Color.FromHex(st_HexColorOrange); c_6.IsVisible = true;
             }
 
-            if (St_Result[5, 1] == "0")
+            if (St_Result[5, 0] == "0")
             {
                 f_7.BackgroundColor = Color.FromHex(st_HexColorBlue); c_7.IsVisible = false;
             }
@@ -232,7 +262,7 @@ namespace KesonContest
                 f_7.BackgroundColor = Color.FromHex(st_HexColorOrange); c_7.IsVisible = true;
             }
 
-            if (St_Result[6, 1] == "0")
+            if (St_Result[6, 0] == "0")
             {
                 f_8.BackgroundColor = Color.FromHex(st_HexColorBlue); c_8.IsVisible = false;
             }
@@ -241,7 +271,7 @@ namespace KesonContest
                 f_8.BackgroundColor = Color.FromHex(st_HexColorOrange); c_8.IsVisible = true;
             }
 
-            if (St_Result[7, 1] == "0")
+            if (St_Result[7, 0] == "0")
             {
                 f_9.BackgroundColor = Color.FromHex(st_HexColorBlue); c_9.IsVisible = false;
             }
@@ -286,25 +316,25 @@ namespace KesonContest
             bt_save.BackgroundColor = Color.FromHex(st_HexColorSave0);
 
             //Change color score of shop
-            if (St_Result[stt, 1] == "1")
+            if (St_Result[stt, 0] == "1")
             {
                 _bt.IsVisible = true;
                 bt_save.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 
                 //c1
-                if (St_Result[stt, 2] == St_Data[27])
+                if (St_Result[stt, 1] == St_Data[27])
                 {
                     t_27.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 }
-                else if (St_Result[stt, 2] == St_Data[28])
+                else if (St_Result[stt, 1] == St_Data[28])
                 {
                     t_28.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 }
-                else if (St_Result[stt, 2] == St_Data[29])
+                else if (St_Result[stt, 1] == St_Data[29])
                 {
                     t_29.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 }
-                else if (St_Result[stt, 2] == St_Data[30])
+                else if (St_Result[stt, 1] == St_Data[30])
                 {
                     t_30.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 }
@@ -318,19 +348,19 @@ namespace KesonContest
 
                 // c2
 
-                if (St_Result[stt, 3] == St_Data[31])
+                if (St_Result[stt, 2] == St_Data[31])
                 {
                     t_31.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 }
-                else if (St_Result[stt, 3] == St_Data[32])
+                else if (St_Result[stt, 2] == St_Data[32])
                 {
                     t_32.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 }
-                else if (St_Result[stt, 3] == St_Data[33])
+                else if (St_Result[stt, 2] == St_Data[33])
                 {
                     t_33.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 }
-                else if (St_Result[stt, 3] == St_Data[34])
+                else if (St_Result[stt, 2] == St_Data[34])
                 {
                     t_34.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 }
@@ -344,19 +374,19 @@ namespace KesonContest
 
                 // c3
 
-                if (St_Result[stt, 4] == St_Data[35])
+                if (St_Result[stt, 3] == St_Data[35])
                 {
                     t_35.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 }
-                else if (St_Result[stt, 4] == St_Data[36])
+                else if (St_Result[stt, 3] == St_Data[36])
                 {
                     t_36.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 }
-                else if (St_Result[stt, 4] == St_Data[37])
+                else if (St_Result[stt, 3] == St_Data[37])
                 {
                     t_37.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 }
-                else if (St_Result[stt, 4] == St_Data[38])
+                else if (St_Result[stt, 3] == St_Data[38])
                 {
                     t_38.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 }
@@ -374,19 +404,19 @@ namespace KesonContest
             {
                 _fr.BackgroundColor = Color.FromHex(st_HexColorGreen);
                 //c1
-                if (St_Result[stt, 2] == St_Data[27])
+                if (St_Result[stt, 1] == St_Data[27])
                 {
                     t_27.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 }
-                else if (St_Result[stt, 2] == St_Data[28])
+                else if (St_Result[stt, 1] == St_Data[28])
                 {
                     t_28.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 }
-                else if (St_Result[stt, 2] == St_Data[29])
+                else if (St_Result[stt, 1] == St_Data[29])
                 {
                     t_29.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 }
-                else if (St_Result[stt, 2] == St_Data[30])
+                else if (St_Result[stt, 1] == St_Data[30])
                 {
                     t_30.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 }
@@ -400,19 +430,19 @@ namespace KesonContest
 
                 // c2
 
-                if (St_Result[stt, 3] == St_Data[31])
+                if (St_Result[stt, 2] == St_Data[31])
                 {
                     t_31.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 }
-                else if (St_Result[stt, 3] == St_Data[32])
+                else if (St_Result[stt, 2] == St_Data[32])
                 {
                     t_32.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 }
-                else if (St_Result[stt, 3] == St_Data[33])
+                else if (St_Result[stt, 2] == St_Data[33])
                 {
                     t_33.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 }
-                else if (St_Result[stt, 3] == St_Data[34])
+                else if (St_Result[stt, 2] == St_Data[34])
                 {
                     t_34.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 }
@@ -426,19 +456,19 @@ namespace KesonContest
 
                 // c3
 
-                if (St_Result[stt, 4] == St_Data[35])
+                if (St_Result[stt, 3] == St_Data[35])
                 {
                     t_35.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 }
-                else if (St_Result[stt, 4] == St_Data[36])
+                else if (St_Result[stt, 3] == St_Data[36])
                 {
                     t_36.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 }
-                else if (St_Result[stt, 4] == St_Data[37])
+                else if (St_Result[stt, 3] == St_Data[37])
                 {
                     t_37.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 }
-                else if (St_Result[stt, 4] == St_Data[38])
+                else if (St_Result[stt, 3] == St_Data[38])
                 {
                     t_38.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 }
@@ -500,9 +530,7 @@ namespace KesonContest
                 if (b == ".end")
                 {
                     File.WriteAllText(fileData, TextReceive);
-
-                    bt_Connect.IsVisible = false;
-                    bt_Skip.IsVisible = false;
+                    gr_page1.IsVisible = false;
                     gr_page2.IsVisible = true;
                     unfixSet();
                     ColorButton();
@@ -512,31 +540,12 @@ namespace KesonContest
                 else if(b==".dat")
                 {
                     String AllResult = File.ReadAllText(fileResult);
-                    SendString("~~" + AllResult);
+                    SendString(st_code[2] + AllResult);
                     TextReceive = "";
                 }
             });
         }
         #endregion
-
-
-        void StreamProcessing(String mess)
-        {
-            string a = "";
-            try
-            {
-                a = mess.Substring(mess.Length - 6, 4);
-            }
-            catch (Exception e)
-            {
-                Console.Write(e);
-            }
-
-            if (a == ".stream")
-            {
-                
-            }
-        }
 
         #region Button Shop
         private void b_5_Clicked(object sender, EventArgs e)
@@ -585,22 +594,18 @@ namespace KesonContest
 
         void SubmitData()
         {
-            string text = "~~*-" + int_CurrentShop.ToString() + "-";
-            for (int i = 1; i < 5; i++)
-            {
-                text += St_Result[int_CurrentShop, i] + "-";
-            }
-            SendString(text);
+            String AllResult = File.ReadAllText(fileResult);
+            SendString(st_code[2] + AllResult);
         }
         void SumScore()
         {
-            int a = Convert.ToInt16(St_Result[int_CurrentShop, 2]);
-            int b = Convert.ToInt16(St_Result[int_CurrentShop, 3]);
-            int c = Convert.ToInt16(St_Result[int_CurrentShop, 4]);
+            int a = Convert.ToInt16(St_Result[int_CurrentShop, 1]);
+            int b = Convert.ToInt16(St_Result[int_CurrentShop, 2]);
+            int c = Convert.ToInt16(St_Result[int_CurrentShop, 3]);
             if (a*b*c >0)
             {
                 bt_save.Text = "Save (Total " + (a+b+c).ToString() + ")";
-                if (St_Result[int_CurrentShop, 5] != (a + b + c).ToString())
+                if (St_Result[int_CurrentShop, 4] != (a + b + c).ToString())
                 {
                     bt_save.BackgroundColor = Color.FromHex(st_HexColorSave0);
                     HideCheckDone();
@@ -619,15 +624,26 @@ namespace KesonContest
             t_29.BackgroundColor = Color.FromHex(st_HexcolorScore0);
             t_30.BackgroundColor = Color.FromHex(st_HexcolorScore0);
             int_sumScore[int_CurrentShop, 0] = int_score[stt];
-            St_Result[int_CurrentShop,2] = int_score[stt].ToString();
+            St_Result[int_CurrentShop,1] = int_score[stt].ToString();
             String AllResult = "";
             for (int i = 0; i < 8; i++)
             {
-                for(int j = 0; j < 6; j++)
+                for(int j = 0; j < 4; j++)
                 {
-                    AllResult += St_Result[i, j] + "-";
+                    if(j==3)
+                    {
+                        AllResult += St_Result[i, j];
+                    }
+                    else
+                    {
+                        AllResult += St_Result[i, j] + "-";
+                    }
+                   
                 }
-                AllResult += "|";
+                if(i!=7)
+                {
+                    AllResult += "|";
+                }
             }
             File.WriteAllText(fileResult,AllResult);
             SumScore();
@@ -641,15 +657,26 @@ namespace KesonContest
             t_33.BackgroundColor = Color.FromHex(st_HexcolorScore0);
             t_34.BackgroundColor = Color.FromHex(st_HexcolorScore0);
             int_sumScore[int_CurrentShop, 1] = int_score[stt];
-            St_Result[int_CurrentShop, 3] = int_score[stt].ToString();
+            St_Result[int_CurrentShop, 2] = int_score[stt].ToString();
             String AllResult = "";
             for (int i = 0; i < 8; i++)
             {
-                for (int j = 0; j < 6; j++)
+                for (int j = 0; j < 4; j++)
                 {
-                    AllResult += St_Result[i, j] + "-";
+                    if (j == 3)
+                    {
+                        AllResult += St_Result[i, j];
+                    }
+                    else
+                    {
+                        AllResult += St_Result[i, j] + "-";
+                    }
+
                 }
-                AllResult += "|";
+                if (i != 7)
+                {
+                    AllResult += "|";
+                }
             }
             File.WriteAllText(fileResult, AllResult);
             SumScore();
@@ -663,15 +690,26 @@ namespace KesonContest
             t_37.BackgroundColor = Color.FromHex(st_HexcolorScore0);
             t_38.BackgroundColor = Color.FromHex(st_HexcolorScore0);
             int_sumScore[int_CurrentShop, 2] = int_score[stt];
-            St_Result[int_CurrentShop, 4] = int_score[stt].ToString();
+            St_Result[int_CurrentShop, 3] = int_score[stt].ToString();
             String AllResult = "";
             for (int i = 0; i < 8; i++)
             {
-                for (int j = 0; j < 6; j++)
+                for (int j = 0; j < 4; j++)
                 {
-                    AllResult += St_Result[i, j] + "-";
+                    if (j == 3)
+                    {
+                        AllResult += St_Result[i, j];
+                    }
+                    else
+                    {
+                        AllResult += St_Result[i, j] + "-";
+                    }
+
                 }
-                AllResult += "|";
+                if (i != 7)
+                {
+                    AllResult += "|";
+                }
             }
             File.WriteAllText(fileResult, AllResult);
             SumScore();
@@ -744,32 +782,44 @@ namespace KesonContest
 
         private async void bt_save_Clicked(object sender, EventArgs e)
         {
-            int a = Convert.ToInt16(St_Result[int_CurrentShop, 2]);
-            int b = Convert.ToInt16(St_Result[int_CurrentShop, 3]);
-            int c = Convert.ToInt16(St_Result[int_CurrentShop, 4]);
+            int a = Convert.ToInt16(St_Result[int_CurrentShop, 1]);
+            int b = Convert.ToInt16(St_Result[int_CurrentShop, 2]);
+            int c = Convert.ToInt16(St_Result[int_CurrentShop, 3]);
 
             if(a*b*c > 0)
             {
-                St_Result[int_CurrentShop, 1] = "1";
+                St_Result[int_CurrentShop, 0] = "1";
                 String AllResult = "";
-                St_Result[int_CurrentShop, 5] = (a + b + c).ToString();
+                St_Result[int_CurrentShop, 4] = (a + b + c).ToString();
                 for (int i = 0; i < 8; i++)
                 {
-                    for (int j = 0; j < 6; j++)
+                    for (int j = 0; j < 4; j++)
                     {
-                        AllResult += St_Result[i, j] + "-";
+                        if (j == 3)
+                        {
+                            AllResult += St_Result[i, j];
+                        }
+                        else
+                        {
+                            AllResult += St_Result[i, j] + "-";
+                        }
+
                     }
-                    AllResult += "|";
+                    if (i != 7)
+                    {
+                        AllResult += "|";
+                    }
                 }
                 ShowCheckDone();
                 File.WriteAllText(fileResult, AllResult);
+                SendString(st_code[2] + AllResult);
                 bt_save.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 DependencyService.Get<Toast>().Show("Saved Successfully");
             }
             else
             {
                 DependencyService.Get<Toast>().Show("Please mark before saving");
-                if (St_Result[int_CurrentShop, 2] =="0")
+                if (St_Result[int_CurrentShop, 1] =="0")
                 {
                     for (int i = 0; i < 2; i++)
                     {
@@ -777,7 +827,7 @@ namespace KesonContest
                         await f_c0.FadeTo(0.7, 200);
                     }
                 }
-                if (St_Result[int_CurrentShop, 3] == "0")
+                if (St_Result[int_CurrentShop, 2] == "0")
                 {
                     for (int i = 0; i < 2; i++)
                     {
@@ -786,7 +836,7 @@ namespace KesonContest
                     }
                 }
 
-                if (St_Result[int_CurrentShop, 4] == "0")
+                if (St_Result[int_CurrentShop, 3] == "0")
                 {
                     for (int i = 0; i < 2; i++)
                     {
@@ -836,16 +886,27 @@ namespace KesonContest
         }
         void HideCheckDone()
         {
-            St_Result[int_CurrentShop, 1] = "0";
+            St_Result[int_CurrentShop, 0] = "0";
             String AllResult = "";
-           
+
             for (int i = 0; i < 8; i++)
             {
-                for (int j = 0; j < 6; j++)
+                for (int j = 0; j < 4; j++)
                 {
-                    AllResult += St_Result[i, j] + "-";
+                    if (j == 3)
+                    {
+                        AllResult += St_Result[i, j];
+                    }
+                    else
+                    {
+                        AllResult += St_Result[i, j] + "-";
+                    }
+
                 }
-                AllResult += "|";
+                if (i != 7)
+                {
+                    AllResult += "|";
+                }
             }
             File.WriteAllText(fileResult, AllResult);
             switch (int_CurrentShop)
@@ -879,5 +940,12 @@ namespace KesonContest
         }
         #endregion
 
+        private void bt_Check_Pressed(object sender, EventArgs e)
+        {
+           string a =   DependencyService.Get<getPathAndroid>().StringPathAndroid();
+            string b = "avatar1.jpg";
+             string c = System.IO.Path.Combine(a, b);
+            im_avatar.Source = c;
+        }
     }
 }

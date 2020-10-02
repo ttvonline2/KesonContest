@@ -72,14 +72,20 @@
     </ContentPage.Resources>
     
     <Grid x:Name="gr_main">
-        <Image x:Name="im_bg" Source="{local:ImageResoureExtention KesonContest.Image.BackGround.png}" />
+        <Image x:Name="im_bg" Aspect="AspectFill" Source="{local:ImageResoureExtention KesonContest.Image.BackGround.png}" />
 
-        <Grid>
+        <Grid x:Name="gr_page1" IsVisible="true">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="1">
+            <Grid Grid.Column="0">
+                <Entry x:Name="et_ttgk">
+                    
+                </Entry>
+            </Grid>
+            <Grid Grid.Column="2">
                 <Button x:Name="bt_Skip"
                 Clicked="bt_Skip_Clicked"
                         Text="Skip"
@@ -92,7 +98,7 @@
                         WidthRequest="200"
                         Margin="20"/>
             </Grid>
-            <Grid Grid.Column="0">
+            <Grid Grid.Column="1">
                 <Button x:Name="bt_Connect"
                 Clicked="bt_Connect_Clicked"
                         Text="Reload Data"
@@ -103,12 +109,12 @@
                         CornerRadius="20"
                         HeightRequest="200"
                 WidthRequest="200"
-                Margin="10"/>
+                Margin="20"/>
             </Grid>
-            
+
         </Grid>
 
-        <Grid x:Name="gr_page2" IsVisible="false">
+        <Grid x:Name="gr_page2" IsVisible="false" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="1.2*"/>
                 <RowDefinition Height="3*"/>
@@ -124,17 +130,17 @@
 
                 <!-- Grid Avartar -->
                 <Grid x:Name="gr_avatar" Grid.Column="0">
-                    <Frame VerticalOptions="Center" Padding="40" CornerRadius="40" HorizontalOptions="Center"
-                             BackgroundColor="White"/>
-                    <Image Source="{local:ImageResoureExtention KesonContest.Image.avatar.JPG}" VerticalOptions="Center" HorizontalOptions="Center"         
-                           WidthRequest="70"
-                        HeightRequest="70" >
+
+                    <Frame BackgroundColor="White" HorizontalOptions="Center" VerticalOptions="Center"
+                           WidthRequest="50" HeightRequest="50" CornerRadius="70" />
+                    <Image x:Name="im_avatar" VerticalOptions="Center" HorizontalOptions="Center"         
+                           WidthRequest="82"
+                        HeightRequest="82" >
                         <Image.Clip>
                             <EllipseGeometry
-                            Center="35,35"
-                            RadiusX="35"
-                                
-                                RadiusY="35"/>
+                            Center="41,41"
+                            RadiusX="41"
+                            RadiusY="41"/>
                         </Image.Clip>
                     </Image>
 
@@ -720,6 +726,9 @@
                             FontFamily="Lobster"
                             FontSize="Medium"
                             TextColor="White"/>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <Button Style="{StaticResource ScoreButton}" x:Name="bt_Check" Text="Checking" Pressed="bt_Check_Pressed"/>
                 </Grid>
             </Grid>
         </Grid>
