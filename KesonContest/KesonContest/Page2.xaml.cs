@@ -79,10 +79,6 @@ namespace KesonContest
             setup_string_code();
             ConnectToServer();
             
-            while (!ClientSocket.Connected)
-            {
-
-            }
             File.WriteAllText(fileData, "");    // Delete old data
             File.WriteAllText(fileResult, DefaulResult);
             TextReceive = "";
@@ -97,36 +93,31 @@ namespace KesonContest
             int_step++;
             setup_string_code();
             ConnectToServer();
-            while (!ClientSocket.Connected)
-            {
-
-            }
             RequestLoop();              // Replace new data
             gr_page1.IsVisible = false;
             gr_page2.IsVisible = true;
 
             unfixSet();
+            ScanOldResult();
             SetButtonShop(b_2, f_2, 0);
         }
 
 
         private void ConnectToServer()
         {
-            int attempts = 0;
 
             while (!ClientSocket.Connected)
             {
                 try
                 {
-                    attempts++;
-                    // Change IPAddress.Loopback to a remote IP to connect to a remote host.
                     ClientSocket.Connect(address, PORT);
                     SendString(st_code[0]);
+                    DependencyService.Get<Toast>().Show("Connect Successfully");
 
                 }
                 catch (SocketException)
                 {
-                    Console.WriteLine("Fail to Connect Server");
+                    DependencyService.Get<Toast>().Show("Connect Fail");
                 }
             }
 
@@ -191,9 +182,21 @@ namespace KesonContest
 
         #region Stream DATA
 
+        void ScanOldResult()
+        {
+            String AllResult = File.ReadAllText(fileResult);
+            string[] li = AllResult.Split('|');
+            for (int i = 0; i < li.Length; i++)
+            {
+                string[] n = li[i].Split('-');
+                if (n[0] == "1")
+                {
+                    St_Result[i, 4] = (Convert.ToInt16(n[1]) + Convert.ToInt16(n[2]) + Convert.ToInt16(n[3])).ToString();
+                }
+            }
+        }
         void inputVar()
         {
-
             String AllResult = File.ReadAllText(fileResult);
             string[] li = AllResult.Split('|');
             for (int i = 0; i < li.Length; i++)
@@ -484,6 +487,7 @@ namespace KesonContest
             //Change color sellected shop
             _fr.BackgroundColor = Color.FromHex(st_HexColorGreen);
 
+            add_avatar(stt + 1);
 
         }
         #endregion
@@ -500,12 +504,13 @@ namespace KesonContest
         {
             await Task.Run(() =>
             {
-                while (true)
+                while (ClientSocket.Connected)
                 {
                     ReceiveResponse();
                 }
+                
             });
-
+            DependencyService.Get<Toast>().Show("Server disconnect!");
         }
 
         private void ReceiveResponse()
@@ -591,7 +596,6 @@ namespace KesonContest
         #endregion
 
         #region Button Score
-
         void SubmitData()
         {
             String AllResult = File.ReadAllText(fileResult);
@@ -940,12 +944,13 @@ namespace KesonContest
         }
         #endregion
 
-        private void bt_Check_Pressed(object sender, EventArgs e)
+        void add_avatar(int vt_shop)
         {
-           string a =   DependencyService.Get<getPathAndroid>().StringPathAndroid();
-            string b = "avatar1.jpg";
-             string c = System.IO.Path.Combine(a, b);
+            string a = DependencyService.Get<getPathAndroid>().StringPathAndroid();
+            string b = vt_shop.ToString() + ".JPG";
+            string c = System.IO.Path.Combine(a, b);
             im_avatar.Source = c;
         }
+
     }
 }

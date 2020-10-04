@@ -13,8 +13,8 @@
   <ItemGroup>
     <None Remove="Fonts\calibril.ttf" />
     <None Remove="Fonts\Cooper Regular.ttf" />
-    <None Remove="Fonts\Lobster-Regular.ttf" />
     <None Remove="Fonts\NotoSansKR-Medium.otf" />
+    <None Remove="Fonts\Shrikhand-Regular.ttf" />
     <None Remove="Image\avatar.JPG" />
     <None Remove="Image\done.png" />
     <None Remove="Image\KesonContest.png" />
@@ -28,12 +28,10 @@
     <EmbeddedResource Include="Fonts\Cooper Regular.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fonts\Lobster-Regular.ttf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
     <EmbeddedResource Include="Fonts\NotoSansKR-Medium.otf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="Fonts\Shrikhand-Regular.ttf" />
     <EmbeddedResource Include="Image\avatar.JPG" />
     <EmbeddedResource Include="Image\done.png" />
     <EmbeddedResource Include="Image\KesonContest.png" />
