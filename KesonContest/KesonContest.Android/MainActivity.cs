@@ -21,6 +21,7 @@ namespace KesonContest.Droid
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
             Window.AddFlags(WindowManagerFlags.Fullscreen);
+            Window.SetFlags(WindowManagerFlags.KeepScreenOn, WindowManagerFlags.KeepScreenOn);
 
             base.OnCreate(savedInstanceState);
 

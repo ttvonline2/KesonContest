@@ -11,10 +11,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Fonts\calibril.ttf" />
-    <None Remove="Fonts\Cooper Regular.ttf" />
     <None Remove="Fonts\NotoSansKR-Medium.otf" />
-    <None Remove="Fonts\Shrikhand-Regular.ttf" />
+    <None Remove="Fonts\OFL.txt" />
+    <None Remove="Fonts\PassionOne-Regular.ttf" />
     <None Remove="Image\avatar.JPG" />
     <None Remove="Image\done.png" />
     <None Remove="Image\KesonContest.png" />
@@ -22,16 +21,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Fonts\calibril.ttf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Fonts\Cooper Regular.ttf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
     <EmbeddedResource Include="Fonts\NotoSansKR-Medium.otf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fonts\Shrikhand-Regular.ttf" />
+    <EmbeddedResource Include="Fonts\OFL.txt" />
+    <EmbeddedResource Include="Fonts\PassionOne-Regular.ttf" />
     <EmbeddedResource Include="Image\avatar.JPG" />
     <EmbeddedResource Include="Image\done.png" />
     <EmbeddedResource Include="Image\KesonContest.png" />
@@ -64,11 +58,5 @@
     <EmbeddedResource Update="Page2.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Fonts\OFL.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 </Project>

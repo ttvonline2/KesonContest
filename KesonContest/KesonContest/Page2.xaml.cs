@@ -54,20 +54,40 @@ namespace KesonContest
             string _ttgk = et_ttgk.Text;
             if(_ttgk == null)
             {
-                string tt = File.ReadAllText(filettGK);
-                string[] line = tt.Split(':');
-                
-                address = IPAddress.Parse(line[0]);
-                _ttgk = line[1];
+                try
+                {
+                    string tt = File.ReadAllText(filettGK);
+                    string[] line = tt.Split(':');
+
+                    address = IPAddress.Parse(line[0]);
+                    _ttgk = line[1];
+                }
+                catch
+                {
+                    File.WriteAllText(filettGK, _ttgk);
+                    string tt = File.ReadAllText(filettGK);
+                    string[] line = tt.Split(':');
+                    address = IPAddress.Parse(line[0]);
+                    _ttgk = line[1];
+                    DependencyService.Get<Toast>().Show("Used current address");
+                }
+
             }
             else
             {
-                File.WriteAllText(filettGK, _ttgk);
-                string tt = File.ReadAllText(filettGK);
-                string[] line = tt.Split(':');
+                try
+                {
+                    File.WriteAllText(filettGK, _ttgk);
+                    string tt = File.ReadAllText(filettGK);
+                    string[] line = tt.Split(':');
+                    address = IPAddress.Parse(line[0]);
+                    _ttgk = line[1];
+                }
+                catch
+                {
+                    DependencyService.Get<Toast>().Show("The current address have problem");
+                }
 
-                address = IPAddress.Parse(line[0]);
-                _ttgk = line[1];
             }
             st_code[0] = "~~*cn" + _ttgk; // Thong bao cho SV da connected
             st_code[1] = "~~*da";// request data all.
@@ -94,6 +114,20 @@ namespace KesonContest
             setup_string_code();
             ConnectToServer();
             RequestLoop();              // Replace new data
+            gr_page1.IsVisible = false;
+            gr_page2.IsVisible = true;
+
+            unfixSet();
+            ScanOldResult();
+            SetButtonShop(b_2, f_2, 0);
+        }
+        private void bt_ResetResult_Clicked(object sender, EventArgs e)
+        {
+            int_step++;
+            setup_string_code();
+            ConnectToServer();
+            RequestLoop();              // Replace new data
+            File.WriteAllText(fileResult, DefaulResult);
             gr_page1.IsVisible = false;
             gr_page2.IsVisible = true;
 
@@ -165,18 +199,18 @@ namespace KesonContest
             t_24.Text = St_Data[24];
             t_25.Text = St_Data[25];
             t_26.Text = St_Data[26];
-            t_27.Text = St_Data[27];
-            t_28.Text = St_Data[28];
-            t_29.Text = St_Data[29];
-            t_30.Text = St_Data[30];
-            t_31.Text = St_Data[31];
-            t_32.Text = St_Data[32];
-            t_33.Text = St_Data[33];
-            t_34.Text = St_Data[34];
-            t_35.Text = St_Data[35];
-            t_36.Text = St_Data[36];
-            t_37.Text = St_Data[37];
-            t_38.Text = St_Data[38];
+            l_27.Text = St_Data[27];
+            l_28.Text = St_Data[28];
+            l_29.Text = St_Data[29];
+            l_30.Text = St_Data[30];
+            l_31.Text = St_Data[31];
+            l_32.Text = St_Data[32];
+            l_33.Text = St_Data[33];
+            l_34.Text = St_Data[34];
+            l_35.Text = St_Data[35];
+            l_36.Text = St_Data[36];
+            l_37.Text = St_Data[37];
+            l_38.Text = St_Data[38];
         }
         #endregion
 
@@ -299,20 +333,20 @@ namespace KesonContest
 
             //Reset color Sorce
 
-            t_27.BackgroundColor = Color.FromHex("#c5c6ff");
-            t_28.BackgroundColor = Color.FromHex("#c5c6ff");
-            t_29.BackgroundColor = Color.FromHex("#c5c6ff");
-            t_30.BackgroundColor = Color.FromHex("#c5c6ff");
+            f_27.BackgroundColor = Color.FromHex("#c5c6ff");
+            f_28.BackgroundColor = Color.FromHex("#c5c6ff");
+            f_29.BackgroundColor = Color.FromHex("#c5c6ff");
+            f_30.BackgroundColor = Color.FromHex("#c5c6ff");
 
-            t_31.BackgroundColor = Color.FromHex("#c5c6ff");
-            t_32.BackgroundColor = Color.FromHex("#c5c6ff");
-            t_33.BackgroundColor = Color.FromHex("#c5c6ff");
-            t_34.BackgroundColor = Color.FromHex("#c5c6ff");
+            f_31.BackgroundColor = Color.FromHex("#c5c6ff");
+            f_32.BackgroundColor = Color.FromHex("#c5c6ff");
+            f_33.BackgroundColor = Color.FromHex("#c5c6ff");
+            f_34.BackgroundColor = Color.FromHex("#c5c6ff");
 
-            t_35.BackgroundColor = Color.FromHex("#c5c6ff");
-            t_36.BackgroundColor = Color.FromHex("#c5c6ff");
-            t_37.BackgroundColor = Color.FromHex("#c5c6ff");
-            t_38.BackgroundColor = Color.FromHex("#c5c6ff");
+            f_35.BackgroundColor = Color.FromHex("#c5c6ff");
+            f_36.BackgroundColor = Color.FromHex("#c5c6ff");
+            f_37.BackgroundColor = Color.FromHex("#c5c6ff");
+            f_38.BackgroundColor = Color.FromHex("#c5c6ff");
 
             // Reset Text at Save Button
             SumScore();
@@ -327,78 +361,78 @@ namespace KesonContest
                 //c1
                 if (St_Result[stt, 1] == St_Data[27])
                 {
-                    t_27.BackgroundColor = Color.FromHex(st_HexColorOrange);
+                    f_27.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 }
                 else if (St_Result[stt, 1] == St_Data[28])
                 {
-                    t_28.BackgroundColor = Color.FromHex(st_HexColorOrange);
+                    f_28.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 }
                 else if (St_Result[stt, 1] == St_Data[29])
                 {
-                    t_29.BackgroundColor = Color.FromHex(st_HexColorOrange);
+                    f_29.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 }
                 else if (St_Result[stt, 1] == St_Data[30])
                 {
-                    t_30.BackgroundColor = Color.FromHex(st_HexColorOrange);
+                    f_30.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 }
                 else
                 {
-                    t_27.BackgroundColor = Color.FromHex("#c5c6ff");
-                    t_28.BackgroundColor = Color.FromHex("#c5c6ff");
-                    t_29.BackgroundColor = Color.FromHex("#c5c6ff");
-                    t_30.BackgroundColor = Color.FromHex("#c5c6ff");
+                    f_27.BackgroundColor = Color.FromHex("#c5c6ff");
+                    f_28.BackgroundColor = Color.FromHex("#c5c6ff");
+                    f_29.BackgroundColor = Color.FromHex("#c5c6ff");
+                    f_30.BackgroundColor = Color.FromHex("#c5c6ff");
                 }
 
                 // c2
 
                 if (St_Result[stt, 2] == St_Data[31])
                 {
-                    t_31.BackgroundColor = Color.FromHex(st_HexColorOrange);
+                    f_31.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 }
                 else if (St_Result[stt, 2] == St_Data[32])
                 {
-                    t_32.BackgroundColor = Color.FromHex(st_HexColorOrange);
+                    f_32.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 }
                 else if (St_Result[stt, 2] == St_Data[33])
                 {
-                    t_33.BackgroundColor = Color.FromHex(st_HexColorOrange);
+                    f_33.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 }
                 else if (St_Result[stt, 2] == St_Data[34])
                 {
-                    t_34.BackgroundColor = Color.FromHex(st_HexColorOrange);
+                    f_34.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 }
                 else
                 {
-                    t_31.BackgroundColor = Color.FromHex("#c5c6ff");
-                    t_32.BackgroundColor = Color.FromHex("#c5c6ff");
-                    t_33.BackgroundColor = Color.FromHex("#c5c6ff");
-                    t_34.BackgroundColor = Color.FromHex("#c5c6ff");
+                    f_31.BackgroundColor = Color.FromHex("#c5c6ff");
+                    f_32.BackgroundColor = Color.FromHex("#c5c6ff");
+                    f_33.BackgroundColor = Color.FromHex("#c5c6ff");
+                    f_34.BackgroundColor = Color.FromHex("#c5c6ff");
                 }
 
                 // c3
 
                 if (St_Result[stt, 3] == St_Data[35])
                 {
-                    t_35.BackgroundColor = Color.FromHex(st_HexColorOrange);
+                    f_35.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 }
                 else if (St_Result[stt, 3] == St_Data[36])
                 {
-                    t_36.BackgroundColor = Color.FromHex(st_HexColorOrange);
+                    f_36.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 }
                 else if (St_Result[stt, 3] == St_Data[37])
                 {
-                    t_37.BackgroundColor = Color.FromHex(st_HexColorOrange);
+                    f_37.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 }
                 else if (St_Result[stt, 3] == St_Data[38])
                 {
-                    t_38.BackgroundColor = Color.FromHex(st_HexColorOrange);
+                    f_38.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 }
                 else
                 {
-                    t_35.BackgroundColor = Color.FromHex("#c5c6ff");
-                    t_36.BackgroundColor = Color.FromHex("#c5c6ff");
-                    t_37.BackgroundColor = Color.FromHex("#c5c6ff");
-                    t_38.BackgroundColor = Color.FromHex("#c5c6ff");
+                    f_35.BackgroundColor = Color.FromHex("#c5c6ff");
+                    f_36.BackgroundColor = Color.FromHex("#c5c6ff");
+                    f_37.BackgroundColor = Color.FromHex("#c5c6ff");
+                    f_38.BackgroundColor = Color.FromHex("#c5c6ff");
                 }
 
 
@@ -409,78 +443,78 @@ namespace KesonContest
                 //c1
                 if (St_Result[stt, 1] == St_Data[27])
                 {
-                    t_27.BackgroundColor = Color.FromHex(st_HexColorOrange);
+                    f_27.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 }
                 else if (St_Result[stt, 1] == St_Data[28])
                 {
-                    t_28.BackgroundColor = Color.FromHex(st_HexColorOrange);
+                    f_28.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 }
                 else if (St_Result[stt, 1] == St_Data[29])
                 {
-                    t_29.BackgroundColor = Color.FromHex(st_HexColorOrange);
+                    f_29.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 }
                 else if (St_Result[stt, 1] == St_Data[30])
                 {
-                    t_30.BackgroundColor = Color.FromHex(st_HexColorOrange);
+                    f_30.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 }
                 else
                 {
-                    t_27.BackgroundColor = Color.FromHex("#c5c6ff");
-                    t_28.BackgroundColor = Color.FromHex("#c5c6ff");
-                    t_29.BackgroundColor = Color.FromHex("#c5c6ff");
-                    t_30.BackgroundColor = Color.FromHex("#c5c6ff");
+                    f_27.BackgroundColor = Color.FromHex("#c5c6ff");
+                    f_28.BackgroundColor = Color.FromHex("#c5c6ff");
+                    f_29.BackgroundColor = Color.FromHex("#c5c6ff");
+                    f_30.BackgroundColor = Color.FromHex("#c5c6ff");
                 }
 
                 // c2
 
                 if (St_Result[stt, 2] == St_Data[31])
                 {
-                    t_31.BackgroundColor = Color.FromHex(st_HexColorOrange);
+                    f_31.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 }
                 else if (St_Result[stt, 2] == St_Data[32])
                 {
-                    t_32.BackgroundColor = Color.FromHex(st_HexColorOrange);
+                    f_32.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 }
                 else if (St_Result[stt, 2] == St_Data[33])
                 {
-                    t_33.BackgroundColor = Color.FromHex(st_HexColorOrange);
+                    f_33.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 }
                 else if (St_Result[stt, 2] == St_Data[34])
                 {
-                    t_34.BackgroundColor = Color.FromHex(st_HexColorOrange);
+                    f_34.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 }
                 else
                 {
-                    t_31.BackgroundColor = Color.FromHex("#c5c6ff");
-                    t_32.BackgroundColor = Color.FromHex("#c5c6ff");
-                    t_33.BackgroundColor = Color.FromHex("#c5c6ff");
-                    t_34.BackgroundColor = Color.FromHex("#c5c6ff");
+                    f_31.BackgroundColor = Color.FromHex("#c5c6ff");
+                    f_32.BackgroundColor = Color.FromHex("#c5c6ff");
+                    f_33.BackgroundColor = Color.FromHex("#c5c6ff");
+                    f_34.BackgroundColor = Color.FromHex("#c5c6ff");
                 }
 
                 // c3
 
                 if (St_Result[stt, 3] == St_Data[35])
                 {
-                    t_35.BackgroundColor = Color.FromHex(st_HexColorOrange);
+                    f_35.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 }
                 else if (St_Result[stt, 3] == St_Data[36])
                 {
-                    t_36.BackgroundColor = Color.FromHex(st_HexColorOrange);
+                    f_36.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 }
                 else if (St_Result[stt, 3] == St_Data[37])
                 {
-                    t_37.BackgroundColor = Color.FromHex(st_HexColorOrange);
+                    f_37.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 }
                 else if (St_Result[stt, 3] == St_Data[38])
                 {
-                    t_38.BackgroundColor = Color.FromHex(st_HexColorOrange);
+                    f_38.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 }
                 else
                 {
-                    t_35.BackgroundColor = Color.FromHex("#c5c6ff");
-                    t_36.BackgroundColor = Color.FromHex("#c5c6ff");
-                    t_37.BackgroundColor = Color.FromHex("#c5c6ff");
-                    t_38.BackgroundColor = Color.FromHex("#c5c6ff");
+                    f_35.BackgroundColor = Color.FromHex("#c5c6ff");
+                    f_36.BackgroundColor = Color.FromHex("#c5c6ff");
+                    f_37.BackgroundColor = Color.FromHex("#c5c6ff");
+                    f_38.BackgroundColor = Color.FromHex("#c5c6ff");
                 }
             }
 
@@ -546,6 +580,16 @@ namespace KesonContest
                 {
                     String AllResult = File.ReadAllText(fileResult);
                     SendString(st_code[2] + AllResult);
+                    TextReceive = "";
+                }
+                else if (b == "*not")
+                {
+                    DisplayAlert("You have a message", TextReceive.Substring(0,(TextReceive.Length-6)), "Oke");
+                    TextReceive = "";
+                }
+                else if (b == "*nex")
+                {
+                    gr_Theme2.IsVisible = true;
                     TextReceive = "";
                 }
             });
@@ -623,10 +667,10 @@ namespace KesonContest
         }
         void pressScoreC1(int stt)
         {
-            t_27.BackgroundColor = Color.FromHex(st_HexcolorScore0);
-            t_28.BackgroundColor = Color.FromHex(st_HexcolorScore0);
-            t_29.BackgroundColor = Color.FromHex(st_HexcolorScore0);
-            t_30.BackgroundColor = Color.FromHex(st_HexcolorScore0);
+            f_27.BackgroundColor = Color.FromHex(st_HexcolorScore0);
+            f_28.BackgroundColor = Color.FromHex(st_HexcolorScore0);
+            f_29.BackgroundColor = Color.FromHex(st_HexcolorScore0);
+            f_30.BackgroundColor = Color.FromHex(st_HexcolorScore0);
             int_sumScore[int_CurrentShop, 0] = int_score[stt];
             St_Result[int_CurrentShop,1] = int_score[stt].ToString();
             String AllResult = "";
@@ -656,10 +700,10 @@ namespace KesonContest
 
         void pressScoreC2(int stt)
         {
-            t_31.BackgroundColor = Color.FromHex(st_HexcolorScore0);
-            t_32.BackgroundColor = Color.FromHex(st_HexcolorScore0);
-            t_33.BackgroundColor = Color.FromHex(st_HexcolorScore0);
-            t_34.BackgroundColor = Color.FromHex(st_HexcolorScore0);
+            f_31.BackgroundColor = Color.FromHex(st_HexcolorScore0);
+            f_32.BackgroundColor = Color.FromHex(st_HexcolorScore0);
+            f_33.BackgroundColor = Color.FromHex(st_HexcolorScore0);
+            f_34.BackgroundColor = Color.FromHex(st_HexcolorScore0);
             int_sumScore[int_CurrentShop, 1] = int_score[stt];
             St_Result[int_CurrentShop, 2] = int_score[stt].ToString();
             String AllResult = "";
@@ -689,10 +733,10 @@ namespace KesonContest
 
         void pressScoreC3(int stt)
         {
-            t_35.BackgroundColor = Color.FromHex(st_HexcolorScore0);
-            t_36.BackgroundColor = Color.FromHex(st_HexcolorScore0);
-            t_37.BackgroundColor = Color.FromHex(st_HexcolorScore0);
-            t_38.BackgroundColor = Color.FromHex(st_HexcolorScore0);
+            f_35.BackgroundColor = Color.FromHex(st_HexcolorScore0);
+            f_36.BackgroundColor = Color.FromHex(st_HexcolorScore0);
+            f_37.BackgroundColor = Color.FromHex(st_HexcolorScore0);
+            f_38.BackgroundColor = Color.FromHex(st_HexcolorScore0);
             int_sumScore[int_CurrentShop, 2] = int_score[stt];
             St_Result[int_CurrentShop, 3] = int_score[stt].ToString();
             String AllResult = "";
@@ -723,65 +767,65 @@ namespace KesonContest
         // c1
         private void t_28_Clicked(object sender, EventArgs e)
         {
-            pressScoreC1(28); t_28.BackgroundColor = Color.FromHex(st_HexColorOrange);
+            pressScoreC1(28); f_28.BackgroundColor = Color.FromHex(st_HexColorOrange);
         }
 
         private void t_27_Clicked(object sender, EventArgs e)
         {
-            pressScoreC1(27); t_27.BackgroundColor = Color.FromHex(st_HexColorOrange);
+            pressScoreC1(27); f_27.BackgroundColor = Color.FromHex(st_HexColorOrange);
         }
 
         private void t_29_Clicked(object sender, EventArgs e)
         {
-            pressScoreC1(29); t_29.BackgroundColor = Color.FromHex(st_HexColorOrange);
+            pressScoreC1(29); f_29.BackgroundColor = Color.FromHex(st_HexColorOrange);
         }
 
         private void t_30_Clicked(object sender, EventArgs e)
         {
-            pressScoreC1(30); t_30.BackgroundColor = Color.FromHex(st_HexColorOrange);
+            pressScoreC1(30); f_30.BackgroundColor = Color.FromHex(st_HexColorOrange);
         }
 
 
         //c2 
         private void t_31_Clicked(object sender, EventArgs e)
         {
-            pressScoreC2(31); t_31.BackgroundColor = Color.FromHex(st_HexColorOrange);
+            pressScoreC2(31); f_31.BackgroundColor = Color.FromHex(st_HexColorOrange);
         }
 
         private void t_33_Clicked(object sender, EventArgs e)
         {
-            pressScoreC2(33); t_33.BackgroundColor = Color.FromHex(st_HexColorOrange);
+            pressScoreC2(33); f_33.BackgroundColor = Color.FromHex(st_HexColorOrange);
         }
 
         private void t_32_Clicked(object sender, EventArgs e)
         {
-            pressScoreC2(32); t_32.BackgroundColor = Color.FromHex(st_HexColorOrange);
+            pressScoreC2(32); f_32.BackgroundColor = Color.FromHex(st_HexColorOrange);
         }
 
         private void t_34_Clicked(object sender, EventArgs e)
         {
-            pressScoreC2(34); t_34.BackgroundColor = Color.FromHex(st_HexColorOrange);
+            pressScoreC2(34); f_34.BackgroundColor = Color.FromHex(st_HexColorOrange);
         }
 
         //c3
         private void t_35_Clicked(object sender, EventArgs e)
         {
-            pressScoreC3(35); t_35.BackgroundColor = Color.FromHex(st_HexColorOrange);
+            pressScoreC3(35); f_35.BackgroundColor = Color.FromHex(st_HexColorOrange);
         }
 
         private void t_36_Clicked(object sender, EventArgs e)
         {
-            pressScoreC3(36); t_36.BackgroundColor = Color.FromHex(st_HexColorOrange);
+            pressScoreC3(36); f_36.BackgroundColor = Color.FromHex(st_HexColorOrange);
         }
 
         private void t_37_Clicked(object sender, EventArgs e)
         {
-            pressScoreC3(37); t_37.BackgroundColor = Color.FromHex(st_HexColorOrange);
+            pressScoreC3(37); f_37.BackgroundColor = Color.FromHex(st_HexColorOrange);
         }
 
         private void t_38_Clicked(object sender, EventArgs e)
         {
-            pressScoreC3(38); t_38.BackgroundColor = Color.FromHex(st_HexColorOrange);
+            pressScoreC3(38); f_38.BackgroundColor = Color.FromHex(st_HexColorOrange);
         }
 
         private async void bt_save_Clicked(object sender, EventArgs e)
@@ -951,6 +995,7 @@ namespace KesonContest
             string c = System.IO.Path.Combine(a, b);
             im_avatar.Source = c;
         }
+        
 
     }
 }
