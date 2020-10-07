@@ -15,12 +15,13 @@ namespace KesonContest
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage : ContentPage
     {
+        #region var
         string fileData = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "data.txt");
         string filettGK = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ttgk.txt");
         string fileResult = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "result.txt");
         string fileFont = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "font.txt");
 
-        String[] St_Data = new String[40];
+        String[] St_Data = new String[50];
         String[,] St_Result = new String[8, 5];
         String DefaulResult = "0-0-0-0-0|0-0-0-0-0|0-0-0-0-0|0-0-0-0-0|0-0-0-0-0|0-0-0-0-0|0-0-0-0-0|0-0-0-0-0";
         string st_HexColorOrange = "#ffb400";
@@ -39,7 +40,11 @@ namespace KesonContest
         string[] st_code = new string[5];
         int[,] int_sumScore = new int[8, 4];
 
-        int int_FontSize = 13; // Theme name font size
+        double db_FontSize = 13; // Theme name font size
+        double db_FontThemeName = 13, db_FontChallenge = 15, db_FontDetail = 9.5, db_FontScore = 24,
+            db_FontOEBBHD = 18, db_FontName = 10, db_FontSave = 24, db_FontShop = 17, db_FontSum = 10;
+
+        #endregion
         public MainPage()
         {
             InitializeComponent();
@@ -47,7 +52,6 @@ namespace KesonContest
             NavigationPage.SetHasBackButton(this, false);
             SetupGUIdata();
         }
-
 
         private void SetupGUIdata()
         {
@@ -58,7 +62,17 @@ namespace KesonContest
                 {
                     try
                     {
-                        int_FontSize = Convert.ToInt16(_a);
+                        db_FontSize = Convert.ToInt16(_a);
+                        lb_SetSize.FontSize = db_FontSize;
+                        db_FontThemeName = db_FontSize*13 / 13;
+                        db_FontChallenge = db_FontSize * 15 / 13;
+                        db_FontDetail = db_FontSize * 9.5 /13;
+                        db_FontScore = db_FontSize * 24 /13;
+                        db_FontOEBBHD = db_FontSize * 18 /13;
+                        db_FontName = db_FontSize * 10 /13;
+                        db_FontSave = db_FontSize * 24 /13;
+                        db_FontShop = db_FontSize * 17 / 13;
+                        db_FontSum = db_FontSize * 10 / 13;
                     }
                     catch
                     {
@@ -201,38 +215,40 @@ namespace KesonContest
         void unfixSet()
         {
             UnfixData();
-            t_0.Text = St_Data[0];
-            t_1.Text = St_Data[1];
-            t_2.Text = St_Data[2];
-            t_3.Text = St_Data[3];
-            t_4.Text = St_Data[4];
-            t_5.Text = St_Data[5];
-            t_6.Text = St_Data[6];
-            t_7.Text = St_Data[7];
-            t_8.Text = St_Data[8];
-            t_9.Text = St_Data[9];
-            t_10To17.Text = St_Data[10];             //Change
-            t_18.Text = St_Data[18];
-            t_19.Text = St_Data[19];
-            t_20.Text = St_Data[20];
-            t_21.Text = St_Data[21];
-            t_22.Text = St_Data[22];
-            t_23.Text = St_Data[23];
-            t_24.Text = St_Data[24];
-            t_25.Text = St_Data[25];
-            t_26.Text = St_Data[26];
-            l_27.Text = St_Data[27];
-            l_28.Text = St_Data[28];
-            l_29.Text = St_Data[29];
-            l_30.Text = St_Data[30];
-            l_31.Text = St_Data[31];
-            l_32.Text = St_Data[32];
-            l_33.Text = St_Data[33];
-            l_34.Text = St_Data[34];
-            l_35.Text = St_Data[35];
-            l_36.Text = St_Data[36];
-            l_37.Text = St_Data[37];
-            l_38.Text = St_Data[38];
+            t_0.Text = St_Data[0]; t_0.FontSize = db_FontOEBBHD;
+            t_1.Text = St_Data[1]; t_1.FontSize = db_FontOEBBHD;
+            t_2.Text = St_Data[2]; t_2.FontSize = db_FontShop;
+            t_3.Text = St_Data[3]; t_3.FontSize = db_FontShop;
+            t_4.Text = St_Data[4]; t_4.FontSize = db_FontShop;
+            t_5.Text = St_Data[5]; t_5.FontSize = db_FontShop;
+            t_6.Text = St_Data[6]; t_6.FontSize = db_FontShop;
+            t_7.Text = St_Data[7]; t_7.FontSize = db_FontShop;
+            t_8.Text = St_Data[8]; t_8.FontSize = db_FontShop;
+            t_9.Text = St_Data[9]; t_9.FontSize = db_FontShop;
+            t_10To17.Text = St_Data[10]; t_10To17.FontSize = db_FontThemeName;
+            t_18.Text = St_Data[18]; t_18.FontSize = db_FontChallenge;
+            t_19.Text = St_Data[19]; t_19.FontSize = db_FontChallenge;
+            t_20.Text = St_Data[20]; t_20.FontSize = db_FontChallenge;
+            t_21.Text = St_Data[21]; t_21.FontSize = db_FontDetail;
+            t_22.Text = St_Data[22]; t_22.FontSize = db_FontDetail;
+            t_23.Text = St_Data[23]; t_23.FontSize = db_FontDetail;
+            t_24.Text = St_Data[24]; t_24.FontSize = db_FontDetail;
+            t_25.Text = St_Data[25]; t_25.FontSize = db_FontDetail;
+            t_26.Text = St_Data[26]; t_26.FontSize = db_FontDetail;
+
+            l_27.Text = St_Data[27];l_27.FontSize = db_FontScore;
+            l_28.Text = St_Data[28];l_28.FontSize = db_FontScore;
+            l_29.Text = St_Data[29];l_29.FontSize = db_FontScore;
+            l_30.Text = St_Data[30];l_30.FontSize = db_FontScore;
+            l_31.Text = St_Data[31];l_31.FontSize = db_FontScore;
+            l_32.Text = St_Data[32];l_32.FontSize = db_FontScore;
+            l_33.Text = St_Data[33];l_33.FontSize = db_FontScore;
+            l_34.Text = St_Data[34];l_34.FontSize = db_FontScore;
+            l_35.Text = St_Data[35];l_35.FontSize = db_FontScore;
+            l_36.Text = St_Data[36];l_36.FontSize = db_FontScore;
+            l_37.Text = St_Data[37];l_37.FontSize = db_FontScore;
+            l_38.Text = St_Data[38];l_38.FontSize = db_FontScore;
+            l_avatarName.Text = St_Data[39]; l_avatarName.FontSize = db_FontName;
         }
         #endregion
 
@@ -273,7 +289,7 @@ namespace KesonContest
             }
             else
             {
-                f_2.BackgroundColor = Color.FromHex(st_HexColorOrange); c_2.IsVisible = true;
+                f_2.BackgroundColor = Color.FromHex(st_HexColorOrange); c_2.IsVisible = true; l_2.Text = St_Result[0, 4]; l_2.FontSize = db_FontSum;
             }
 
             if (St_Result[1, 0] == "0")
@@ -282,7 +298,7 @@ namespace KesonContest
             }
             else
             {
-                f_3.BackgroundColor = Color.FromHex(st_HexColorOrange); c_3.IsVisible = true;
+                f_3.BackgroundColor = Color.FromHex(st_HexColorOrange); c_3.IsVisible = true; l_3.Text = St_Result[1, 4]; l_3.FontSize = db_FontSum;
             }
 
             if (St_Result[2, 0] == "0")
@@ -291,7 +307,7 @@ namespace KesonContest
             }
             else
             {
-                f_4.BackgroundColor = Color.FromHex(st_HexColorOrange); c_4.IsVisible = true;
+                f_4.BackgroundColor = Color.FromHex(st_HexColorOrange); c_4.IsVisible = true; l_4.Text = St_Result[2, 4]; l_4.FontSize = db_FontSum;
             }
 
             if (St_Result[3, 0] == "0")
@@ -300,7 +316,7 @@ namespace KesonContest
             }
             else
             {
-                f_5.BackgroundColor = Color.FromHex(st_HexColorOrange); c_5.IsVisible = true;
+                f_5.BackgroundColor = Color.FromHex(st_HexColorOrange); c_5.IsVisible = true; l_5.Text = St_Result[3, 4]; l_5.FontSize = db_FontSum;
             }
 
             if (St_Result[4, 0] == "0")
@@ -309,7 +325,7 @@ namespace KesonContest
             }
             else
             {
-                f_6.BackgroundColor = Color.FromHex(st_HexColorOrange); c_6.IsVisible = true;
+                f_6.BackgroundColor = Color.FromHex(st_HexColorOrange); c_6.IsVisible = true; l_6.Text = St_Result[4, 4]; l_6.FontSize = db_FontSum;
             }
 
             if (St_Result[5, 0] == "0")
@@ -318,7 +334,7 @@ namespace KesonContest
             }
             else
             {
-                f_7.BackgroundColor = Color.FromHex(st_HexColorOrange); c_7.IsVisible = true;
+                f_7.BackgroundColor = Color.FromHex(st_HexColorOrange); c_7.IsVisible = true; l_7.Text = St_Result[5, 4]; l_7.FontSize = db_FontSum;
             }
 
             if (St_Result[6, 0] == "0")
@@ -327,7 +343,7 @@ namespace KesonContest
             }
             else
             {
-                f_8.BackgroundColor = Color.FromHex(st_HexColorOrange); c_8.IsVisible = true;
+                f_8.BackgroundColor = Color.FromHex(st_HexColorOrange); c_8.IsVisible = true; l_8.Text = St_Result[6, 4]; l_8.FontSize = db_FontSum;
             }
 
             if (St_Result[7, 0] == "0")
@@ -336,7 +352,7 @@ namespace KesonContest
             }
             else
             {
-                f_9.BackgroundColor = Color.FromHex(st_HexColorOrange); c_9.IsVisible = true;
+                f_9.BackgroundColor = Color.FromHex(st_HexColorOrange); c_9.IsVisible = true; l_9.Text = St_Result[7, 4]; l_9.FontSize = db_FontSum;
             }
 
         }
@@ -351,7 +367,8 @@ namespace KesonContest
 
 
             //Change Theme Name
-            t_10To17.Text = St_Data[10 + stt];
+            t_10To17.Text = St_Data[10 + stt]; t_10To17.FontSize = db_FontThemeName;
+            l_avatarName.Text = St_Data[39 + stt];l_avatarName.FontSize = db_FontName;
 
             //Reset color Sorce
 
@@ -372,13 +389,13 @@ namespace KesonContest
 
             // Reset Text at Save Button
             SumScore();
-            bt_save.BackgroundColor = Color.FromHex(st_HexColorSave0);
+            f_save.BackgroundColor = Color.FromHex(st_HexColorSave0);
 
             //Change color score of shop
             if (St_Result[stt, 0] == "1")
             {
                 _bt.IsVisible = true;
-                bt_save.BackgroundColor = Color.FromHex(st_HexColorOrange);
+                f_save.BackgroundColor = Color.FromHex(st_HexColorOrange);
 
                 //c1
                 if (St_Result[stt, 1] == St_Data[27])
@@ -674,16 +691,18 @@ namespace KesonContest
             int c = Convert.ToInt16(St_Result[int_CurrentShop, 3]);
             if (a * b * c > 0)
             {
-                bt_save.Text = "Save (Total " + (a + b + c).ToString() + ")";
+                l_save.Text = "SAVE (Total " + (a + b + c).ToString() + ")";
+                l_save.FontSize = db_FontSave;
                 if (St_Result[int_CurrentShop, 4] != (a + b + c).ToString())
                 {
-                    bt_save.BackgroundColor = Color.FromHex(st_HexColorSave0);
+                    f_save.BackgroundColor = Color.FromHex(st_HexColorSave0);
                     HideCheckDone();
                 }
             }
             else
             {
-                bt_save.Text = "SAVE";
+                l_save.Text = "SAVE";
+                l_save.FontSize = db_FontSave;
             }
 
         }
@@ -883,7 +902,7 @@ namespace KesonContest
                 ShowCheckDone();
                 File.WriteAllText(fileResult, AllResult);
                 SendString(st_code[2] + AllResult);
-                bt_save.BackgroundColor = Color.FromHex(st_HexColorOrange);
+                f_save.BackgroundColor = Color.FromHex(st_HexColorOrange);
                 DependencyService.Get<Toast>().Show("Saved Successfully");
             }
             else
@@ -924,37 +943,37 @@ namespace KesonContest
                 switch (int_CurrentShop)
                 {
                     case 0:
-                        l_2.Text = St_Result[int_CurrentShop, 4];
+                        l_2.Text = St_Result[int_CurrentShop, 4];l_2.FontSize = db_FontSum;
                         c_2.IsVisible = true;
                         
                         break;
                     case 1:
-                        l_3.Text = St_Result[int_CurrentShop, 4];
+                        l_3.Text = St_Result[int_CurrentShop, 4]; l_3.FontSize = db_FontSum;
                         c_3.IsVisible = true;
                         break;
                     case 2:
-                        l_4.Text = St_Result[int_CurrentShop, 4];
+                        l_4.Text = St_Result[int_CurrentShop, 4]; l_4.FontSize = db_FontSum;
                         c_4.IsVisible = true;
                         break;
                     case 3:
-                        l_5.Text = St_Result[int_CurrentShop, 4];
+                        l_5.Text = St_Result[int_CurrentShop, 4]; l_5.FontSize = db_FontSum;
                         c_5.IsVisible = true;
                         break;
 
                     case 4:
-                        l_6.Text = St_Result[int_CurrentShop, 4];
+                        l_6.Text = St_Result[int_CurrentShop, 4]; l_6.FontSize = db_FontSum;
                         c_6.IsVisible = true;
                         break;
                     case 5:
-                        l_7.Text = St_Result[int_CurrentShop, 4];
+                        l_7.Text = St_Result[int_CurrentShop, 4]; l_7.FontSize = db_FontSum;
                         c_7.IsVisible = true;
                         break;
                     case 6:
-                        l_8.Text = St_Result[int_CurrentShop, 4];
+                        l_8.Text = St_Result[int_CurrentShop, 4]; l_8.FontSize = db_FontSum;
                         c_8.IsVisible = true;
                         break;
                     case 7:
-                        l_9.Text = St_Result[int_CurrentShop, 4];
+                        l_9.Text = St_Result[int_CurrentShop, 4]; l_9.FontSize = db_FontSum;
                         c_9.IsVisible = true;
                         break;
                 }
@@ -1027,14 +1046,32 @@ namespace KesonContest
             im_avatar.Source = c;
         }
 
+        private void SetupFontSize(double _size)
+        {
+            lb_SetSize.FontSize = _size;
+            File.WriteAllText(fileFont, _size.ToString());
+            db_FontThemeName = db_FontSize * 13 / 13;
+            db_FontChallenge = db_FontSize * 15 / 13;
+            db_FontDetail = db_FontSize * 9.5 / 13;
+            db_FontScore = db_FontSize * 24 / 13;
+            db_FontOEBBHD = db_FontSize * 18 / 13;
+            db_FontName = db_FontSize * 10 / 13;
+            db_FontSave = db_FontSize * 24 / 13;
+            db_FontShop = db_FontSize * 17 / 13;
+            db_FontSum = db_FontSize * 10 / 13;
+        }
         private void bt_SizeUp_Clicked(object sender, EventArgs e)
         {
+            db_FontSize += 0.5;
+            SetupFontSize(db_FontSize);
 
         }
 
         private void bt_SizeDown_Clicked(object sender, EventArgs e)
         {
-
+            db_FontSize -= 0.5;
+            SetupFontSize(db_FontSize);
         }
+
     }
 }

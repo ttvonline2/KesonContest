@@ -253,7 +253,7 @@
 
                         <!--Name Themer leader-->
                         <Grid Grid.Row="2"  RowSpacing="0" ColumnSpacing="0">
-                            <Label x:Name="lb_avatarName"  Style="{StaticResource lableName}"/>
+                            <Label x:Name="l_avatarName"  Style="{StaticResource lableName}"/>
                         </Grid>
 
                         <!--DATA 0-->
@@ -715,7 +715,6 @@
                             <RowDefinition Height="23*"/>
                         </Grid.RowDefinitions>
 
-
                         <!--DATA 0-->
                         <Grid Grid.Row="3" RowSpacing="0" ColumnSpacing="0">
                             <Frame Style="{StaticResource FrameOEBBHD}" />
@@ -829,8 +828,8 @@
                         <ColumnDefinition Width="135*"/>
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="1">
-                        <Frame BackgroundColor="#018fff" CornerRadius="10"/>
-                        <Label Style="{StaticResource BBHDOELable}" Text="SAVE (Total 94)"/>
+                        <Frame x:Name="f_save" BackgroundColor="#018fff" CornerRadius="10"/>
+                        <Label x:Name="l_save" Style="{StaticResource BBHDOELable}" Text="SAVE (Total 94)"/>
                         <Button x:Name="bt_save" Opacity="0" Clicked="bt_save_Clicked"/>
                     </Grid>
                 </Grid>
