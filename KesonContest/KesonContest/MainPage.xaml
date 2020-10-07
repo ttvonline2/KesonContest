@@ -4,82 +4,838 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"          
-             xmlns:local ="clr-namespace:KesonContest"
+             xmlns:local ="clr-namespace:KesonContest" 
+             xmlns:ci1="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              x:Class="KesonContest.MainPage">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style x:Key="ScoreButton" TargetType="Button">
-                <Setter Property="BackgroundColor" Value="#c5c6ff"/>
-                <Setter Property="Text" Value="26"/>
-                <Setter Property="FontFamily" Value="font1"/>
-                <Setter Property="FontSize" Value="Large"/>
-                <Setter Property="FontAttributes" Value="Bold"/>
                 <Setter Property="CornerRadius" Value="5"/>
+                <Setter Property="Opacity" Value="0"/>
+            </Style>
+
+            <Style x:Key="St_ButtonAdmin" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="Orange"/>
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="FontFamily" Value="Lobster"/>
                 <Setter Property="TextColor" Value="White"/>
             </Style>
-
-            <Style x:Key="ShopFrameOUT" TargetType="Frame">
-                <Setter Property="CornerRadius" Value="5"/>
-                <Setter Property="BackgroundColor" Value="#9fe1f9"/>
+            
+            <Style x:Key="lableScore" TargetType="Label">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="Text" Value="26"/>
+                <Setter Property="FontSize" Value="24"/>
+                <Setter Property="FontFamily" Value="Lobster"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            </Style>
+            
+            <Style x:Key="lableName" TargetType="Label">
+                <Setter Property="TextColor" Value="Aqua"/>
+                <Setter Property="Text" Value="Mr. Vang"/>
+                <Setter Property="FontSize" Value="10"/>
+                <Setter Property="FontFamily" Value="FontName"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
             </Style>
 
-            <Style x:Key="ShopFrameIN" TargetType="Frame">
-                <Setter Property="CornerRadius" Value="3"/>
+            <Style x:Key="FrameScore" TargetType="Frame">
+                <Setter Property="CornerRadius" Value="5"/>
+                <Setter Property="BackgroundColor" Value="#c5c6ff"/>
+            </Style>
+            
+            <Style x:Key="FrameOEBBHD" TargetType="Frame">
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="BorderColor" Value="#8de7f9"/>
+                <Setter Property="BackgroundColor" Value="#334c9f"/>
+            </Style>
+
+            <Style x:Key="ShopFrame" TargetType="Frame">
+                <Setter Property="CornerRadius" Value="5"/>
+                <Setter Property="BorderColor" Value="White"/>
                 <Setter Property="BackgroundColor" Value="#817db8"/>
-                <Setter Property="Margin" Value="2"/>
             </Style>
 
             <Style x:Key="ShopButton" TargetType="Button">
-                <Setter Property="Margin" Value="2"/>
                 <Setter Property="CornerRadius" Value="3"/>
-                <Setter Property="BackgroundColor" Value="#817db8"/>
+                <Setter Property="Opacity" Value="0"/>
             </Style>
 
             <Style x:Key="BBHDOELable" TargetType="Label">
                 <Setter Property="TextColor" Value="White"/>
-                <Setter Property="FontSize" Value="Medium"/>
-                <Setter Property="FontFamily" Value="font1"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="FontFamily" Value="Lobster"/>
                 <Setter Property="VerticalOptions" Value="Center"/>
                 <Setter Property="HorizontalOptions" Value="Center"/>
                 <Setter Property="HorizontalTextAlignment" Value="Center"/>
-                <Setter Property="LineHeight" Value="1.5"/>
             </Style>
 
             <Style x:Key="ShopLable" TargetType="Label">
                 <Setter Property="TextColor" Value="White"/>
-                <Setter Property="FontSize" Value="Medium"/>
-                <Setter Property="FontFamily" Value="font1"/>
+                <Setter Property="FontSize" Value="17"/>
+                <Setter Property="Text" Value="Boiler"/>
+                <Setter Property="FontFamily" Value="Lobster"/>
                 <Setter Property="VerticalOptions" Value="Center"/>
                 <Setter Property="HorizontalTextAlignment" Value="Start"/>
-                <Setter Property="LineHeight" Value="1.5"/>
             </Style>
 
             <Style x:Key="DetailLable" TargetType="Label">
                 <Setter Property="TextColor" Value="White"/>
-                <Setter Property="FontSize" Value="Small"/>
+                <Setter Property="FontSize" Value="9.5"/>
                 <Setter Property="VerticalOptions" Value="Center"/>
                 <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="FontAttributes" Value="Italic"/>
+                <Setter Property="Text" Value="(1) Theme is ahihi ahuhu challenging and offers the value predominating over other comertitor"/>
             </Style>
 
-            <Style x:Key="ThemeNameLable" TargetType="Label">
+            <Style x:Key="SumScore" TargetType="Label">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontSize" Value="9.5"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="Text" Value="96"/>
+            </Style>
+
+            <Style x:Key="LablePercent" TargetType="Label">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="Text" Value="Challenge (30%)"/>
+            </Style>
+
+            <Style   x:Key="ThemeNameLable" TargetType="Label">
                 <Setter Property="TextColor" Value="#7dfef2"/>
                 <Setter Property="FontFamily" Value="noto"/>
-                <Setter Property="FontSize" Value="Medium"/>
+                <Setter Property="Text" Value="Ensure quality and save production cost 792,000 USD for 9Cr Panel project of CFB Boiler Sodegaura"/>
+                <Setter Property="FontSize" Value="13"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
-
-    <Grid x:Name="gr_main">
-        <Image Source="{local:ImageResoureExtention KesonContest.Image.BackGround.png}" />
-        <Button x:Name="bt_Connect"
-                        Text="Reload Data"
+    <Grid RowSpacing="0" ColumnSpacing="0">
+        <Image x:Name="im_bg"  Aspect="AspectFill" Source="{local:ImageResoureExtention KesonContest.Image.BackGround.png}" />
+        <Grid x:Name="gr_page1"  RowSpacing="0" ColumnSpacing="0" IsVisible="true">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="0.2*"/>
+            </Grid.RowDefinitions>
+            <Grid RowSpacing="0" ColumnSpacing="0" Grid.Row="1">
+                <Entry x:Name="et_ttgk" TextColor="White" FontSize="10"/>
+            </Grid>
+            <Grid RowSpacing="0" ColumnSpacing="0" Grid.Row="3">
+                <Button x:Name="bt_Skip"
+                Clicked="bt_Skip_Clicked"
+                        Text="Continue"
                         TextColor="White"
-                        BackgroundColor="Orange"
-                        FontFamily="font1"
-                        FontSize="Title"
-                        CornerRadius="20"
-                        HeightRequest="200"
-                WidthRequest="200"
-                Margin="40"/>
+                        BackgroundColor="#018fff"
+                        FontFamily="Lobster"
+                        FontSize="20"
+                        CornerRadius="20"/>
+            </Grid>
+            <Grid RowSpacing="0" ColumnSpacing="0" Grid.Row="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="0.2*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="0.2*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="0.2*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Label x:Name="lb_SetSize" Style="{StaticResource ThemeNameLable}" Text="a b c d e f g h i j k l m n o p q r s t u v w x y z"/>
+                </Grid>
+                <Grid RowSpacing="0" ColumnSpacing="0" Grid.Column="1">
+                    <Button x:Name="bt_Connect"
+                        Clicked="bt_Connect_Clicked"
+                        Text="New Data" Style="{StaticResource St_ButtonAdmin}"/>
+                </Grid>
+                <Grid RowSpacing="0" ColumnSpacing="0" Grid.Column="3">
+                    <Button x:Name="bt_ResetResult"
+                            Clicked="bt_ResetResult_Clicked"
+                        Text="Reset Result"  Style="{StaticResource St_ButtonAdmin}" />
+                </Grid>
+                <Grid Grid.Column="5">
+                    <Button x:Name="bt_SizeUp"
+                            Clicked="bt_SizeUp_Clicked"
+                        Text="Up Size"  Style="{StaticResource St_ButtonAdmin}" />
+                </Grid>
+                <Grid Grid.Column="7">
+                    <Button x:Name="bt_SizeDown"
+                            Clicked="bt_SizeDown_Clicked"
+                        Text="Down size"  Style="{StaticResource St_ButtonAdmin}" />
+                </Grid>
+            </Grid>
+        </Grid>
+            
+        <Grid x:Name="gr_page2" RowSpacing="0" ColumnSpacing="0" IsVisible="false">
+            <Grid RowSpacing="0" ColumnSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="190*"/>
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="28*"/>
+                    <RowDefinition Height="3*"/>
+                </Grid.RowDefinitions>
+                <!--dont contain save button-->
+                <Grid    Grid.Row="1" RowSpacing="0" ColumnSpacing="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="52*"/>
+                        <ColumnDefinition Width="6*"/>
+                        <ColumnDefinition Width="350*"/>
+                        <ColumnDefinition Width="6*"/>
+                        <ColumnDefinition Width="52*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!--Avatar + Theme 1-->
+                    <Grid Grid.Column="1" RowSpacing="0" ColumnSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0*"/>
+                            <RowDefinition Height="48*"/>
+                            <RowDefinition Height="10*"/>
+                            <RowDefinition Height="28*"/>
+                            <RowDefinition Height="7*"/>
+                            <RowDefinition Height="23*"/>
+                            <RowDefinition Height="4*"/>
+                            <RowDefinition Height="23*"/>
+                            <RowDefinition Height="4*"/>
+                            <RowDefinition Height="23*"/>
+                            <RowDefinition Height="4*"/>
+                            <RowDefinition Height="23*"/>
+                        </Grid.RowDefinitions>
+
+                        <!--Avatar-->
+                        <Grid Grid.Row="1" RowSpacing="0" ColumnSpacing="0">
+                                <Frame BackgroundColor="White"
+                               HorizontalOptions="FillAndExpand" 
+                               VerticalOptions="FillAndExpand"
+                              CornerRadius="100">
+                                </Frame>
+                            <Grid RowSpacing="0" ColumnSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="2*"/>
+                                    <RowDefinition Height="41*"/>
+                                    <RowDefinition Height="2*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="41*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid Grid.Row="1" Grid.Column="1">
+                                    <ci1:CircleImage   
+                            Aspect="AspectFill"
+                                        x:Name="im_avatar"
+                            Source="{local:ImageResoureExtention KesonContest.Image.avatar.JPG}"
+                            >
+                                    </ci1:CircleImage>
+                                </Grid>
+                            </Grid>
+
+
+                        </Grid>
+
+                        <!--Name Themer leader-->
+                        <Grid Grid.Row="2"  RowSpacing="0" ColumnSpacing="0">
+                            <Label x:Name="lb_avatarName"  Style="{StaticResource lableName}"/>
+                        </Grid>
+
+                        <!--DATA 0-->
+                        <Grid Grid.Row="3" RowSpacing="0" ColumnSpacing="0">
+                            <Frame Style="{StaticResource FrameOEBBHD}" />
+                            <Label x:Name="t_0" Style="{StaticResource BBHDOELable}" Text="OE Themes"/>
+                        </Grid>
+
+                        <!--Data 2 -->
+                        <Grid Grid.Row="5" RowSpacing="0" ColumnSpacing="0">
+                            <Frame x:Name="f_2" Style="{StaticResource ShopFrame}"/>
+                            <Grid RowSpacing="0" ColumnSpacing="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="11*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="27*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="1" x:Name="c_2">
+                                    <Image Source="{local:ImageResoureExtention KesonContest.Image.done.png}" 
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Center" />
+                                    <Label x:Name="l_2" Style="{StaticResource SumScore}" />
+                                </Grid>
+                                <Grid Grid.Column="3">
+                                    <Label x:Name="t_2" Style="{StaticResource ShopLable}"/>
+                                </Grid>
+                            </Grid>
+                            <Button  x:Name="b_2" Style="{StaticResource ShopButton}" Clicked="b_2_Clicked"/>
+                        </Grid>
+
+                        <!--Data 3-->
+                        <Grid Grid.Row="7" RowSpacing="0" ColumnSpacing="0">
+                            <Frame  x:Name="f_3"  Style="{StaticResource ShopFrame}"/>
+                            <Grid RowSpacing="0" ColumnSpacing="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="11*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="27*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="1" x:Name="c_3">
+                                    <Image Source="{local:ImageResoureExtention KesonContest.Image.done.png}" 
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Center" />
+                                    <Label x:Name="l_3" Style="{StaticResource SumScore}" />
+                                </Grid>
+                                <Grid Grid.Column="3">
+                                    <Label x:Name="t_3" Style="{StaticResource ShopLable}"/>
+                                </Grid>
+                            </Grid>
+                            <Button  x:Name="b_3" Style="{StaticResource ShopButton}" Clicked="b_3_Clicked"/>
+                        </Grid>
+
+                        <!--Data 4-->
+                        <Grid Grid.Row="9" RowSpacing="0" ColumnSpacing="0">
+                            <Frame x:Name="f_4"  Style="{StaticResource ShopFrame}"/>
+                            <Grid RowSpacing="0" ColumnSpacing="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="11*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="27*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="1" x:Name="c_4">
+                                    <Image Source="{local:ImageResoureExtention KesonContest.Image.done.png}" 
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Center" />
+                                    <Label x:Name="l_4" Style="{StaticResource SumScore}" />
+                                </Grid>
+                                <Grid Grid.Column="3">
+                                    <Label x:Name="t_4" Style="{StaticResource ShopLable}"/>
+                                </Grid>
+                            </Grid>
+                            <Button x:Name="b_4"  Style="{StaticResource ShopButton}" Clicked="b_4_Clicked"/>
+                        </Grid>
+
+                        <!--Data 5-->
+                        <Grid Grid.Row="11"  RowSpacing="0" ColumnSpacing="0">
+                            <Frame x:Name="f_5"  Style="{StaticResource ShopFrame}"/>
+                            <Grid RowSpacing="0" ColumnSpacing="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="11*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="27*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="1" x:Name="c_5">
+                                    <Image Source="{local:ImageResoureExtention KesonContest.Image.done.png}" 
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Center" />
+                                    <Label x:Name="l_5" Style="{StaticResource SumScore}" />
+                                </Grid>
+                                <Grid Grid.Column="3">
+                                    <Label  x:Name="t_5" Style="{StaticResource ShopLable}"/>
+                                </Grid>
+                            </Grid>
+                            <Button x:Name="b_5"  Style="{StaticResource ShopButton}" Clicked="b_5_Clicked"/>
+                        </Grid>
+                    </Grid>
+
+                    <!--Theme name + 3 Column-->
+                    <Grid Grid.Column="3" RowSpacing="0" ColumnSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="35*"/>
+                            <RowDefinition Height="158*"/>
+                        </Grid.RowDefinitions>
+
+                        <!--Theme name area-->
+                        <Grid Grid.Row="0" RowSpacing="0" ColumnSpacing="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1.5*"/>
+                                <RowDefinition Height="30*"/>
+                                <RowDefinition Height="1.5*"/>
+                            </Grid.RowDefinitions>
+
+                            <!-- Labele Theme name-->
+                            <Grid Grid.Row="1" >
+                                <Label x:Name="t_10To17" Style="{StaticResource ThemeNameLable}" />
+                            </Grid>
+                        </Grid>
+
+                        <!--3 Column-->
+                        <Grid Grid.Row="1" RowSpacing="0" ColumnSpacing="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="97*"/>
+                                <ColumnDefinition Width="6*"/>
+                                <ColumnDefinition Width="97*"/>
+                                <ColumnDefinition Width="6*"/>
+                                <ColumnDefinition Width="97*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!--Colmn 1-->
+                            <Grid Grid.Column="0" RowSpacing="0" ColumnSpacing="0">
+                                <Frame x:Name="f_c0" CornerRadius="35" BackgroundColor="#4472c4" Opacity="0.7"/>
+                                <Grid RowSpacing="0" ColumnSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="22*"/>
+                                        <RowDefinition Height="1.5*"/>
+                                        <RowDefinition Height="3*"/>
+                                        <RowDefinition Height="26*"/>
+                                        <RowDefinition Height="26*"/>
+                                        <RowDefinition Height="7*"/>
+                                        <RowDefinition Height="25*"/>
+                                        <RowDefinition Height="6*"/>
+                                        <RowDefinition Height="25*"/>
+                                        <RowDefinition Height="16*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <!--Challenge 30%-->
+                                    <Grid Grid.Row="0" >
+                                        <Label x:Name="t_18" Style="{StaticResource LablePercent}"/>
+                                    </Grid>
+                                    <!-- White line-->
+                                    <Grid Grid.Row="1" BackgroundColor="White">
+
+                                    </Grid>
+
+                                    <!--Instruction 1-->
+                                    <Grid Grid.Row="3" RowSpacing="0" ColumnSpacing="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="5*"/>
+                                            <ColumnDefinition Width="87*"/>
+                                            <ColumnDefinition Width="5*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid Grid.Column="1">
+                                            <Label x:Name="t_21" Style="{StaticResource DetailLable}"/>
+                                        </Grid>
+                                    </Grid>
+
+                                    <!--Instruction 1-->
+                                    <Grid Grid.Row="4" RowSpacing="0" ColumnSpacing="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="5*"/>
+                                            <ColumnDefinition Width="87*"/>
+                                            <ColumnDefinition Width="5*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid Grid.Column="1">
+                                            <Label x:Name="t_22" Style="{StaticResource DetailLable}"/>
+                                        </Grid>
+                                    </Grid>
+
+                                    <!--Score 1 2-->
+                                    <Grid Grid.Row="6" RowSpacing="0" ColumnSpacing="0" >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="10*"/>
+                                            <ColumnDefinition Width="30*"/>
+                                            <ColumnDefinition Width="14*"/>
+                                            <ColumnDefinition Width="30*"/>
+                                            <ColumnDefinition Width="10*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <!--Score 1 -->
+                                        <Grid Grid.Column="1" RowSpacing="0" ColumnSpacing="0">
+                                            <Frame x:Name="f_27" Style="{StaticResource FrameScore}"/>
+                                            <Label x:Name="l_27" Style="{StaticResource lableScore}"/>
+                                            <Button x:Name="t_27" Style="{StaticResource ScoreButton}" Clicked="t_27_Clicked"/>
+                                        </Grid>
+
+                                        <!--Score 2 -->
+                                        <Grid Grid.Column="3"  RowSpacing="0" ColumnSpacing="0">
+                                            <Frame x:Name="f_28" Style="{StaticResource FrameScore}"/>
+                                            <Label x:Name="l_28" Style="{StaticResource lableScore}"/>
+                                            <Button x:Name="t_28"  Style="{StaticResource ScoreButton}" Clicked="t_28_Clicked"/>
+                                        </Grid>
+                                    </Grid>
+
+                                    <Grid Grid.Row="8" RowSpacing="0" ColumnSpacing="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="10*"/>
+                                            <ColumnDefinition Width="30*"/>
+                                            <ColumnDefinition Width="14*"/>
+                                            <ColumnDefinition Width="30*"/>
+                                            <ColumnDefinition Width="10*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <!--Score 1 -->
+                                        <Grid Grid.Column="1" RowSpacing="0" ColumnSpacing="0">
+                                            <Frame x:Name="f_29" Style="{StaticResource FrameScore}"/>
+                                            <Label x:Name="l_29" Style="{StaticResource lableScore}"/>
+                                            <Button x:Name="t_29"  Style="{StaticResource ScoreButton}" Clicked="t_29_Clicked"/>
+                                        </Grid>
+
+                                        <!--Score 2 -->
+                                        <Grid Grid.Column="3"  RowSpacing="0" ColumnSpacing="0">
+                                            <Frame x:Name="f_30" Style="{StaticResource FrameScore}"/>
+                                            <Label x:Name="l_30" Style="{StaticResource lableScore}"/>
+                                            <Button  x:Name="t_30" Style="{StaticResource ScoreButton}" Clicked="t_30_Clicked"/>
+                                        </Grid>
+                                    </Grid>
+
+                                </Grid>
+                            </Grid>
+
+                            <!--Colmn 2-->
+                            <Grid Grid.Column="2" RowSpacing="0" ColumnSpacing="0">
+                                <Frame x:Name="f_c1" CornerRadius="35" BackgroundColor="#00b0f0" Opacity="0.7"/>
+                                <Grid RowSpacing="0" ColumnSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="22*"/>
+                                        <RowDefinition Height="1.5*"/>
+                                        <RowDefinition Height="3*"/>
+                                        <RowDefinition Height="26*"/>
+                                        <RowDefinition Height="26*"/>
+                                        <RowDefinition Height="7*"/>
+                                        <RowDefinition Height="25*"/>
+                                        <RowDefinition Height="6*"/>
+                                        <RowDefinition Height="25*"/>
+                                        <RowDefinition Height="16*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <!--Challenge 30%-->
+                                    <Grid Grid.Row="0" >
+                                        <Label x:Name="t_19"  Style="{StaticResource LablePercent}"/>
+                                    </Grid>
+                                    <!-- White line-->
+                                    <Grid Grid.Row="1" BackgroundColor="White">
+
+                                    </Grid>
+
+                                    <!--Instruction 1-->
+                                    <Grid Grid.Row="3" RowSpacing="0" ColumnSpacing="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="5*"/>
+                                            <ColumnDefinition Width="87*"/>
+                                            <ColumnDefinition Width="5*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid Grid.Column="1">
+                                            <Label x:Name="t_23" Style="{StaticResource DetailLable}"/>
+                                        </Grid>
+                                    </Grid>
+
+                                    <!--Instruction 1-->
+                                    <Grid Grid.Row="4" RowSpacing="0" ColumnSpacing="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="5*"/>
+                                            <ColumnDefinition Width="87*"/>
+                                            <ColumnDefinition Width="5*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid Grid.Column="1">
+                                            <Label x:Name="t_24" Style="{StaticResource DetailLable}"/>
+                                        </Grid>
+                                    </Grid>
+
+                                    <!--Score 1 2-->
+                                    <Grid Grid.Row="6" RowSpacing="0" ColumnSpacing="0" >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="10*"/>
+                                            <ColumnDefinition Width="30*"/>
+                                            <ColumnDefinition Width="14*"/>
+                                            <ColumnDefinition Width="30*"/>
+                                            <ColumnDefinition Width="10*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <!--Score 1 -->
+                                        <Grid Grid.Column="1" RowSpacing="0" ColumnSpacing="0">
+                                            <Frame  x:Name="f_31"  Style="{StaticResource FrameScore}"/>
+                                            <Label x:Name="l_31" Style="{StaticResource lableScore}"/>
+                                            <Button  x:Name="t_31" Style="{StaticResource ScoreButton}" Clicked="t_31_Clicked"/>
+                                        </Grid>
+
+                                        <!--Score 2 -->
+                                        <Grid Grid.Column="3"  RowSpacing="0" ColumnSpacing="0">
+                                            <Frame  x:Name="f_32" Style="{StaticResource FrameScore}"/>
+                                            <Label  x:Name="l_32" Style="{StaticResource lableScore}"/>
+                                            <Button  x:Name="t_32"  Style="{StaticResource ScoreButton}" Clicked="t_32_Clicked"/>
+                                        </Grid>
+                                    </Grid>
+
+                                    <Grid Grid.Row="8" RowSpacing="0" ColumnSpacing="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="10*"/>
+                                            <ColumnDefinition Width="30*"/>
+                                            <ColumnDefinition Width="14*"/>
+                                            <ColumnDefinition Width="30*"/>
+                                            <ColumnDefinition Width="10*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <!--Score 1 -->
+                                        <Grid Grid.Column="1" RowSpacing="0" ColumnSpacing="0">
+                                            <Frame  x:Name="f_33"  Style="{StaticResource FrameScore}"/>
+                                            <Label x:Name="l_33" Style="{StaticResource lableScore}"/>
+                                            <Button  x:Name="t_33"  Style="{StaticResource ScoreButton}" Clicked="t_33_Clicked"/>
+                                        </Grid>
+
+                                        <!--Score 2 -->
+                                        <Grid Grid.Column="3"  RowSpacing="0" ColumnSpacing="0">
+                                            <Frame x:Name="f_34"  Style="{StaticResource FrameScore}"/>
+                                            <Label x:Name="l_34" Style="{StaticResource lableScore}"/>
+                                            <Button x:Name="t_34"  Style="{StaticResource ScoreButton}" Clicked="t_34_Clicked"/>
+                                        </Grid>
+                                    </Grid>
+
+                                </Grid>
+                            </Grid>
+
+                            <!--Colmn 3-->
+                            <Grid Grid.Column="4" RowSpacing="0" ColumnSpacing="0">
+                                <Frame x:Name="f_c2" CornerRadius="35" BackgroundColor="#7f60d6" Opacity="0.7"/>
+                                <Grid RowSpacing="0" ColumnSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="22*"/>
+                                        <RowDefinition Height="1.5*"/>
+                                        <RowDefinition Height="3*"/>
+                                        <RowDefinition Height="26*"/>
+                                        <RowDefinition Height="26*"/>
+                                        <RowDefinition Height="7*"/>
+                                        <RowDefinition Height="25*"/>
+                                        <RowDefinition Height="6*"/>
+                                        <RowDefinition Height="25*"/>
+                                        <RowDefinition Height="16*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <!--Challenge 30%-->
+                                    <Grid Grid.Row="0" >
+                                        <Label x:Name="t_20"  Style="{StaticResource LablePercent}"/>
+                                    </Grid>
+                                    <!-- White line-->
+                                    <Grid Grid.Row="1" BackgroundColor="White">
+
+                                    </Grid>
+
+                                    <!--Instruction 1-->
+                                    <Grid Grid.Row="3" RowSpacing="0" ColumnSpacing="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="5*"/>
+                                            <ColumnDefinition Width="87*"/>
+                                            <ColumnDefinition Width="5*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid Grid.Column="1">
+                                            <Label x:Name="t_25" Style="{StaticResource DetailLable}"/>
+                                        </Grid>
+                                    </Grid>
+
+                                    <!--Instruction 1-->
+                                    <Grid Grid.Row="4" RowSpacing="0" ColumnSpacing="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="5*"/>
+                                            <ColumnDefinition Width="87*"/>
+                                            <ColumnDefinition Width="5*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid Grid.Column="1">
+                                            <Label x:Name="t_26" Style="{StaticResource DetailLable}"/>
+                                        </Grid>
+                                    </Grid>
+
+                                    <!--Score 1 2-->
+                                    <Grid Grid.Row="6" RowSpacing="0" ColumnSpacing="0" >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="10*"/>
+                                            <ColumnDefinition Width="30*"/>
+                                            <ColumnDefinition Width="14*"/>
+                                            <ColumnDefinition Width="30*"/>
+                                            <ColumnDefinition Width="10*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <!--Score 1 -->
+                                        <Grid Grid.Column="1" RowSpacing="0" ColumnSpacing="0">
+                                            <Frame  x:Name="f_35"  Style="{StaticResource FrameScore}"/>
+                                            <Label x:Name="l_35" Style="{StaticResource lableScore}"/>
+                                            <Button  x:Name="t_35"  Style="{StaticResource ScoreButton}" Clicked="t_35_Clicked"/>
+                                        </Grid>
+
+                                        <!--Score 2 -->
+                                        <Grid Grid.Column="3"  RowSpacing="0" ColumnSpacing="0">
+                                            <Frame x:Name="f_36"  Style="{StaticResource FrameScore}"/>
+                                            <Label x:Name="l_36" Style="{StaticResource lableScore}"/>
+                                            <Button x:Name="t_36"  Style="{StaticResource ScoreButton}" Clicked="t_36_Clicked"/>
+                                        </Grid>
+                                    </Grid>
+
+                                    <Grid Grid.Row="8" RowSpacing="0" ColumnSpacing="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="10*"/>
+                                            <ColumnDefinition Width="30*"/>
+                                            <ColumnDefinition Width="14*"/>
+                                            <ColumnDefinition Width="30*"/>
+                                            <ColumnDefinition Width="10*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <!--Score 1 -->
+                                        <Grid Grid.Column="1" RowSpacing="0" ColumnSpacing="0">
+                                            <Frame  x:Name="f_37" Style="{StaticResource FrameScore}"/>
+                                            <Label x:Name="l_37" Style="{StaticResource lableScore}"/>
+                                            <Button  x:Name="t_37"  Style="{StaticResource ScoreButton}" Clicked="t_37_Clicked"/>
+                                        </Grid>
+
+                                        <!--Score 2 -->
+                                        <Grid Grid.Column="3"  RowSpacing="0" ColumnSpacing="0">
+                                            <Frame  x:Name="f_38"  Style="{StaticResource FrameScore}"/>
+                                            <Label x:Name="l_38" Style="{StaticResource lableScore}"/>
+                                            <Button x:Name="t_38"  Style="{StaticResource ScoreButton}" Clicked="t_38_Clicked"/>
+                                        </Grid>
+                                    </Grid>
+
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+
+                    <!--Theme 2-->
+                    <Grid x:Name="gr_Theme2" Grid.Column="5" RowSpacing="0" ColumnSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0*"/>
+                            <RowDefinition Height="48*"/>
+                            <RowDefinition Height="10*"/>
+                            <RowDefinition Height="28*"/>
+                            <RowDefinition Height="7*"/>
+                            <RowDefinition Height="23*"/>
+                            <RowDefinition Height="4*"/>
+                            <RowDefinition Height="23*"/>
+                            <RowDefinition Height="4*"/>
+                            <RowDefinition Height="23*"/>
+                            <RowDefinition Height="4*"/>
+                            <RowDefinition Height="23*"/>
+                        </Grid.RowDefinitions>
+
+
+                        <!--DATA 0-->
+                        <Grid Grid.Row="3" RowSpacing="0" ColumnSpacing="0">
+                            <Frame Style="{StaticResource FrameOEBBHD}" />
+                            <Label x:Name="t_1" Style="{StaticResource BBHDOELable}" Text="BBHD Themes"/>
+                        </Grid>
+
+                        <!--Data 2 -->
+                        <Grid Grid.Row="5" RowSpacing="0" ColumnSpacing="0">
+                            <Frame x:Name="f_6"  Style="{StaticResource ShopFrame}"/>
+                            <Grid RowSpacing="0" ColumnSpacing="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="11*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="27*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="1" x:Name="c_6">
+                                    <Image Source="{local:ImageResoureExtention KesonContest.Image.done.png}" 
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Center" />
+                                    <Label x:Name="l_6" Style="{StaticResource SumScore}" />
+                                </Grid>
+                                <Grid Grid.Column="3">
+                                    <Label x:Name="t_6"  Style="{StaticResource ShopLable}"/>
+                                </Grid>
+                            </Grid>
+                            <Button x:Name="b_6"  Style="{StaticResource ShopButton}" Clicked="b_6_Clicked"/>
+                        </Grid>
+
+                        <!--Data 3-->
+                        <Grid Grid.Row="7" RowSpacing="0" ColumnSpacing="0">
+                            <Frame x:Name="f_7"  Style="{StaticResource ShopFrame}"/>
+                            <Grid RowSpacing="0" ColumnSpacing="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="11*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="27*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="1" x:Name="c_7">
+                                    <Image Source="{local:ImageResoureExtention KesonContest.Image.done.png}" 
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Center" />
+                                    <Label x:Name="l_7" Style="{StaticResource SumScore}" />
+                                </Grid>
+                                <Grid Grid.Column="3">
+                                    <Label x:Name="t_7" Style="{StaticResource ShopLable}"/>
+                                </Grid>
+                            </Grid>
+                            <Button  x:Name="b_7" Style="{StaticResource ShopButton}" Clicked="b_7_Clicked"/>
+                        </Grid>
+
+                        <!--Data 4-->
+                        <Grid Grid.Row="9" RowSpacing="0" ColumnSpacing="0">
+                            <Frame  x:Name="f_8" Style="{StaticResource ShopFrame}"/>
+                            <Grid RowSpacing="0" ColumnSpacing="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="11*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="27*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="1" x:Name="c_8">
+                                    <Image Source="{local:ImageResoureExtention KesonContest.Image.done.png}" 
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Center" />
+                                    <Label x:Name="l_8" Style="{StaticResource SumScore}" />
+                                </Grid>
+                                <Grid Grid.Column="3">
+                                    <Label x:Name="t_8" Style="{StaticResource ShopLable}"/>
+                                </Grid>
+                            </Grid>
+                            <Button x:Name="b_8"  Style="{StaticResource ShopButton}" Clicked="b_8_Clicked"/>
+                        </Grid>
+
+                        <!--Data 5-->
+                        <Grid Grid.Row="11"  RowSpacing="0" ColumnSpacing="0">
+                            <Frame  x:Name="f_9" Style="{StaticResource ShopFrame}"/>
+                            <Grid RowSpacing="0" ColumnSpacing="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="11*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="27*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="1" x:Name="c_9">
+                                    <Image Source="{local:ImageResoureExtention KesonContest.Image.done.png}" 
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Center" />
+                                    <Label x:Name="l_9" Style="{StaticResource SumScore}" />
+                                </Grid>
+                                <Grid Grid.Column="3">
+                                    <Label x:Name="t_9" Style="{StaticResource ShopLable}"/>
+                                </Grid>
+                            </Grid>
+                            <Button  x:Name="b_9"  Style="{StaticResource ShopButton}" Clicked="b_9_Clicked"/>
+                        </Grid>
+                    </Grid>
+
+                </Grid>
+
+                <!--Save button + note area-->
+                <Grid Grid.Row="3"  >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="135*"/>
+                        <ColumnDefinition Width="135*"/>
+                        <ColumnDefinition Width="135*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="1">
+                        <Frame BackgroundColor="#018fff" CornerRadius="10"/>
+                        <Label Style="{StaticResource BBHDOELable}" Text="SAVE (Total 94)"/>
+                        <Button x:Name="bt_save" Opacity="0" Clicked="bt_save_Clicked"/>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
     </Grid>
+
 </ContentPage>

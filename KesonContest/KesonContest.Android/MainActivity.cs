@@ -7,7 +7,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Xamarin.Forms;
-
+using ImageCircle.Forms.Plugin.Droid;
 
 namespace KesonContest.Droid
 {
@@ -30,6 +30,8 @@ namespace KesonContest.Droid
 
             DependencyService.Register<AddImage>();
             DependencyService.Get<AddImage>().SetActivity(this);
+
+            ImageCircleRenderer.Init();
 
             LoadApplication(new App());
         }

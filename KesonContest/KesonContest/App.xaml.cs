@@ -14,7 +14,7 @@ namespace KesonContest
         {
             Device.SetFlags(new[] { "Shapes_Experimental", "Brush_Experimental" });
             InitializeComponent();
-            MainPage =  new NavigationPage(new Page2());
+            MainPage =  new NavigationPage(new MainPage());
         }
 
         protected override void OnStart()

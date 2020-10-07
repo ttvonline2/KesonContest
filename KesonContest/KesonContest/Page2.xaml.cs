@@ -23,7 +23,7 @@ namespace KesonContest
         String[,] St_Result = new String[8,5];
         String DefaulResult = "0-0-0-0-0|0-0-0-0-0|0-0-0-0-0|0-0-0-0-0|0-0-0-0-0|0-0-0-0-0|0-0-0-0-0|0-0-0-0-0";
         string st_HexColorOrange = "#ffb400";
-        string st_HexColorGreen = "#30f000";
+        readonly string st_HexColorGreen = "#30f000";
         string st_HexColorBlue = "#195e83";
         string st_HexColorSave0 = "#018fff";
         string st_HexcolorScore0 = "#c5c6ff";
