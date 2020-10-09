@@ -192,6 +192,40 @@ namespace KesonContest
             }
 
         }
+        void add_avatar(int vt_shop)
+        {
+            string a = DependencyService.Get<getPathAndroid>().StringPathAndroid();
+            string b = vt_shop.ToString() + ".JPG";
+            string c = System.IO.Path.Combine(a, b);
+            im_avatar.Source = c;
+        }
+
+        private void SetupFontSize(double _size)
+        {
+            lb_SetSize.FontSize = _size;
+            File.WriteAllText(fileFont, _size.ToString());
+            db_FontThemeName = db_FontSize * 13 / 13;
+            db_FontChallenge = db_FontSize * 15 / 13;
+            db_FontDetail = db_FontSize * 9.5 / 13;
+            db_FontScore = db_FontSize * 24 / 13;
+            db_FontOEBBHD = db_FontSize * 18 / 13;
+            db_FontName = db_FontSize * 10 / 13;
+            db_FontSave = db_FontSize * 24 / 13;
+            db_FontShop = db_FontSize * 17 / 13;
+            db_FontSum = db_FontSize * 10 / 13;
+        }
+        private void bt_SizeUp_Clicked(object sender, EventArgs e)
+        {
+            db_FontSize += 0.5;
+            SetupFontSize(db_FontSize);
+
+        }
+
+        private void bt_SizeDown_Clicked(object sender, EventArgs e)
+        {
+            db_FontSize -= 0.5;
+            SetupFontSize(db_FontSize);
+        }
 
         #endregion
 
@@ -226,6 +260,7 @@ namespace KesonContest
             t_8.Text = St_Data[8]; t_8.FontSize = db_FontShop;
             t_9.Text = St_Data[9]; t_9.FontSize = db_FontShop;
             t_10To17.Text = St_Data[10]; t_10To17.FontSize = db_FontThemeName;
+
             t_18.Text = St_Data[18]; t_18.FontSize = db_FontChallenge;
             t_19.Text = St_Data[19]; t_19.FontSize = db_FontChallenge;
             t_20.Text = St_Data[20]; t_20.FontSize = db_FontChallenge;
@@ -254,6 +289,13 @@ namespace KesonContest
 
         #region Stream DATA
 
+        private void bt_Theme2_Clicked(object sender, EventArgs e)
+        {
+            string a = St_Data[1];
+            string b = "Not yet time for " + a +" contest";
+            DependencyService.Get<Toast>().Show(b);
+
+        }
         void ScanOldResult()
         {
             String AllResult = File.ReadAllText(fileResult);
@@ -628,7 +670,7 @@ namespace KesonContest
                 }
                 else if (b == "*nex")
                 {
-                    gr_Theme2.IsVisible = true;
+                    gr_Theme2.IsVisible = false;
                     TextReceive = "";
                 }
             });
@@ -838,6 +880,7 @@ namespace KesonContest
             pressScoreC2(33); f_33.BackgroundColor = Color.FromHex(st_HexColorOrange);
         }
 
+
         private void t_32_Clicked(object sender, EventArgs e)
         {
             pressScoreC2(32); f_32.BackgroundColor = Color.FromHex(st_HexColorOrange);
@@ -1038,40 +1081,7 @@ namespace KesonContest
         }
         #endregion
 
-        void add_avatar(int vt_shop)
-        {
-            string a = DependencyService.Get<getPathAndroid>().StringPathAndroid();
-            string b = vt_shop.ToString() + ".JPG";
-            string c = System.IO.Path.Combine(a, b);
-            im_avatar.Source = c;
-        }
 
-        private void SetupFontSize(double _size)
-        {
-            lb_SetSize.FontSize = _size;
-            File.WriteAllText(fileFont, _size.ToString());
-            db_FontThemeName = db_FontSize * 13 / 13;
-            db_FontChallenge = db_FontSize * 15 / 13;
-            db_FontDetail = db_FontSize * 9.5 / 13;
-            db_FontScore = db_FontSize * 24 / 13;
-            db_FontOEBBHD = db_FontSize * 18 / 13;
-            db_FontName = db_FontSize * 10 / 13;
-            db_FontSave = db_FontSize * 24 / 13;
-            db_FontShop = db_FontSize * 17 / 13;
-            db_FontSum = db_FontSize * 10 / 13;
-        }
-        private void bt_SizeUp_Clicked(object sender, EventArgs e)
-        {
-            db_FontSize += 0.5;
-            SetupFontSize(db_FontSize);
-
-        }
-
-        private void bt_SizeDown_Clicked(object sender, EventArgs e)
-        {
-            db_FontSize -= 0.5;
-            SetupFontSize(db_FontSize);
-        }
 
     }
 }

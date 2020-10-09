@@ -181,6 +181,7 @@
             </Grid>
         </Grid>
             
+        
         <Grid x:Name="gr_page2" RowSpacing="0" ColumnSpacing="0" IsVisible="false">
             <Grid RowSpacing="0" ColumnSpacing="0">
                 <Grid.RowDefinitions>
@@ -699,122 +700,133 @@
                     </Grid>
 
                     <!--Theme 2-->
-                    <Grid x:Name="gr_Theme2" Grid.Column="5" RowSpacing="0" ColumnSpacing="0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="0*"/>
-                            <RowDefinition Height="48*"/>
-                            <RowDefinition Height="10*"/>
-                            <RowDefinition Height="28*"/>
-                            <RowDefinition Height="7*"/>
-                            <RowDefinition Height="23*"/>
-                            <RowDefinition Height="4*"/>
-                            <RowDefinition Height="23*"/>
-                            <RowDefinition Height="4*"/>
-                            <RowDefinition Height="23*"/>
-                            <RowDefinition Height="4*"/>
-                            <RowDefinition Height="23*"/>
-                        </Grid.RowDefinitions>
+                    <Grid Grid.Column="5" RowSpacing="0" ColumnSpacing="0">
+                        <Grid  RowSpacing="0" ColumnSpacing="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0*"/>
+                                <RowDefinition Height="48*"/>
+                                <RowDefinition Height="10*"/>
+                                <RowDefinition Height="28*"/>
+                                <RowDefinition Height="7*"/>
+                                <RowDefinition Height="23*"/>
+                                <RowDefinition Height="4*"/>
+                                <RowDefinition Height="23*"/>
+                                <RowDefinition Height="4*"/>
+                                <RowDefinition Height="23*"/>
+                                <RowDefinition Height="4*"/>
+                                <RowDefinition Height="23*"/>
+                            </Grid.RowDefinitions>
 
-                        <!--DATA 0-->
-                        <Grid Grid.Row="3" RowSpacing="0" ColumnSpacing="0">
-                            <Frame Style="{StaticResource FrameOEBBHD}" />
-                            <Label x:Name="t_1" Style="{StaticResource BBHDOELable}" Text="BBHD Themes"/>
-                        </Grid>
+                            <!--DATA 1-->
+                            <Grid Grid.Row="3" RowSpacing="0" ColumnSpacing="0">
+                                <Frame Style="{StaticResource FrameOEBBHD}" />
+                                <Label x:Name="t_1" Style="{StaticResource BBHDOELable}" Text="BBHD Themes"/>
+                            </Grid>
 
-                        <!--Data 2 -->
-                        <Grid Grid.Row="5" RowSpacing="0" ColumnSpacing="0">
-                            <Frame x:Name="f_6"  Style="{StaticResource ShopFrame}"/>
-                            <Grid RowSpacing="0" ColumnSpacing="0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="2*"/>
-                                    <ColumnDefinition Width="11*"/>
-                                    <ColumnDefinition Width="2*"/>
-                                    <ColumnDefinition Width="27*"/>
-                                    <ColumnDefinition Width="2*"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid Grid.Column="1" x:Name="c_6">
-                                    <Image Source="{local:ImageResoureExtention KesonContest.Image.done.png}" 
+                            <!--Data 6 -->
+                            <Grid Grid.Row="5" RowSpacing="0" ColumnSpacing="0">
+                                <Frame x:Name="f_6"  Style="{StaticResource ShopFrame}"/>
+                                <Grid RowSpacing="0" ColumnSpacing="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="11*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="27*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Grid.Column="1" x:Name="c_6">
+                                        <Image Source="{local:ImageResoureExtention KesonContest.Image.done.png}" 
                                        VerticalOptions="Center"
                                        HorizontalOptions="Center" />
-                                    <Label x:Name="l_6" Style="{StaticResource SumScore}" />
+                                        <Label x:Name="l_6" Style="{StaticResource SumScore}" />
+                                    </Grid>
+                                    <Grid Grid.Column="3">
+                                        <Label x:Name="t_6"  Style="{StaticResource ShopLable}"/>
+                                    </Grid>
                                 </Grid>
-                                <Grid Grid.Column="3">
-                                    <Label x:Name="t_6"  Style="{StaticResource ShopLable}"/>
-                                </Grid>
+                                <Button x:Name="b_6"  Style="{StaticResource ShopButton}" Clicked="b_6_Clicked"/>
                             </Grid>
-                            <Button x:Name="b_6"  Style="{StaticResource ShopButton}" Clicked="b_6_Clicked"/>
-                        </Grid>
 
-                        <!--Data 3-->
-                        <Grid Grid.Row="7" RowSpacing="0" ColumnSpacing="0">
-                            <Frame x:Name="f_7"  Style="{StaticResource ShopFrame}"/>
-                            <Grid RowSpacing="0" ColumnSpacing="0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="2*"/>
-                                    <ColumnDefinition Width="11*"/>
-                                    <ColumnDefinition Width="2*"/>
-                                    <ColumnDefinition Width="27*"/>
-                                    <ColumnDefinition Width="2*"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid Grid.Column="1" x:Name="c_7">
-                                    <Image Source="{local:ImageResoureExtention KesonContest.Image.done.png}" 
+                            <!--Data 7-->
+                            <Grid Grid.Row="7" RowSpacing="0" ColumnSpacing="0">
+                                <Frame x:Name="f_7"  Style="{StaticResource ShopFrame}"/>
+                                <Grid RowSpacing="0" ColumnSpacing="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="11*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="27*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Grid.Column="1" x:Name="c_7">
+                                        <Image Source="{local:ImageResoureExtention KesonContest.Image.done.png}" 
                                        VerticalOptions="Center"
                                        HorizontalOptions="Center" />
-                                    <Label x:Name="l_7" Style="{StaticResource SumScore}" />
+                                        <Label x:Name="l_7" Style="{StaticResource SumScore}" />
+                                    </Grid>
+                                    <Grid Grid.Column="3">
+                                        <Label x:Name="t_7" Style="{StaticResource ShopLable}"/>
+                                    </Grid>
                                 </Grid>
-                                <Grid Grid.Column="3">
-                                    <Label x:Name="t_7" Style="{StaticResource ShopLable}"/>
-                                </Grid>
+                                <Button  x:Name="b_7" Style="{StaticResource ShopButton}" Clicked="b_7_Clicked"/>
                             </Grid>
-                            <Button  x:Name="b_7" Style="{StaticResource ShopButton}" Clicked="b_7_Clicked"/>
-                        </Grid>
 
-                        <!--Data 4-->
-                        <Grid Grid.Row="9" RowSpacing="0" ColumnSpacing="0">
-                            <Frame  x:Name="f_8" Style="{StaticResource ShopFrame}"/>
-                            <Grid RowSpacing="0" ColumnSpacing="0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="2*"/>
-                                    <ColumnDefinition Width="11*"/>
-                                    <ColumnDefinition Width="2*"/>
-                                    <ColumnDefinition Width="27*"/>
-                                    <ColumnDefinition Width="2*"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid Grid.Column="1" x:Name="c_8">
-                                    <Image Source="{local:ImageResoureExtention KesonContest.Image.done.png}" 
+                            <!--Data 8-->
+                            <Grid Grid.Row="9" RowSpacing="0" ColumnSpacing="0">
+                                <Frame  x:Name="f_8" Style="{StaticResource ShopFrame}"/>
+                                <Grid RowSpacing="0" ColumnSpacing="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="11*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="27*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Grid.Column="1" x:Name="c_8">
+                                        <Image Source="{local:ImageResoureExtention KesonContest.Image.done.png}" 
                                        VerticalOptions="Center"
                                        HorizontalOptions="Center" />
-                                    <Label x:Name="l_8" Style="{StaticResource SumScore}" />
+                                        <Label x:Name="l_8" Style="{StaticResource SumScore}" />
+                                    </Grid>
+                                    <Grid Grid.Column="3">
+                                        <Label x:Name="t_8" Style="{StaticResource ShopLable}"/>
+                                    </Grid>
                                 </Grid>
-                                <Grid Grid.Column="3">
-                                    <Label x:Name="t_8" Style="{StaticResource ShopLable}"/>
-                                </Grid>
+                                <Button x:Name="b_8"  Style="{StaticResource ShopButton}" Clicked="b_8_Clicked"/>
                             </Grid>
-                            <Button x:Name="b_8"  Style="{StaticResource ShopButton}" Clicked="b_8_Clicked"/>
-                        </Grid>
 
-                        <!--Data 5-->
-                        <Grid Grid.Row="11"  RowSpacing="0" ColumnSpacing="0">
-                            <Frame  x:Name="f_9" Style="{StaticResource ShopFrame}"/>
-                            <Grid RowSpacing="0" ColumnSpacing="0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="2*"/>
-                                    <ColumnDefinition Width="11*"/>
-                                    <ColumnDefinition Width="2*"/>
-                                    <ColumnDefinition Width="27*"/>
-                                    <ColumnDefinition Width="2*"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid Grid.Column="1" x:Name="c_9">
-                                    <Image Source="{local:ImageResoureExtention KesonContest.Image.done.png}" 
+                            <!--Data 9-->
+                            <Grid Grid.Row="11"  RowSpacing="0" ColumnSpacing="0">
+                                <Frame  x:Name="f_9" Style="{StaticResource ShopFrame}"/>
+                                <Grid RowSpacing="0" ColumnSpacing="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="11*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="27*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Grid.Column="1" x:Name="c_9">
+                                        <Image Source="{local:ImageResoureExtention KesonContest.Image.done.png}" 
                                        VerticalOptions="Center"
                                        HorizontalOptions="Center" />
-                                    <Label x:Name="l_9" Style="{StaticResource SumScore}" />
+                                        <Label x:Name="l_9" Style="{StaticResource SumScore}" />
+                                    </Grid>
+                                    <Grid Grid.Column="3">
+                                        <Label x:Name="t_9" Style="{StaticResource ShopLable}"/>
+                                    </Grid>
                                 </Grid>
-                                <Grid Grid.Column="3">
-                                    <Label x:Name="t_9" Style="{StaticResource ShopLable}"/>
-                                </Grid>
+                                <Button  x:Name="b_9"  Style="{StaticResource ShopButton}" Clicked="b_9_Clicked"/>
                             </Grid>
-                            <Button  x:Name="b_9"  Style="{StaticResource ShopButton}" Clicked="b_9_Clicked"/>
+                        </Grid>
+                        <Grid  RowSpacing="0" ColumnSpacing="0" x:Name="gr_Theme2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="90*"/>
+                                <RowDefinition Height="104*"/>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="1">
+                                <Button x:Name="bt_Theme2" Opacity="0" Clicked="bt_Theme2_Clicked"/>
+                            </Grid>
                         </Grid>
                     </Grid>
 
