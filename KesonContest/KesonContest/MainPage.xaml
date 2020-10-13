@@ -87,7 +87,7 @@
                 <Setter Property="TextColor" Value="White"/>
                 <Setter Property="FontSize" Value="9.5"/>
                 <Setter Property="VerticalOptions" Value="Center"/>
-                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="HorizontalTextAlignment" Value="Start"/>
                 <Setter Property="FontAttributes" Value="Italic"/>
                 <Setter Property="Text" Value="(1) Theme is ahihi ahuhu challenging and offers the value predominating over other comertitor"/>
             </Style>
@@ -131,7 +131,7 @@
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="0.2*"/>
             </Grid.RowDefinitions>
-            <Grid RowSpacing="0" ColumnSpacing="0" Grid.Row="1">
+            <Grid RowSpacing="0" ColumnSpacing="0" Grid.Row="1" x:Name="gr_address" IsVisible="false">
                 <Entry x:Name="et_ttgk" TextColor="White" FontSize="10"/>
             </Grid>
             <Grid RowSpacing="0" ColumnSpacing="0" Grid.Row="3">
@@ -145,39 +145,62 @@
                         CornerRadius="20"/>
             </Grid>
             <Grid RowSpacing="0" ColumnSpacing="0" Grid.Row="5">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="0.2*"/>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="0.2*"/>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="0.2*"/>
-                    <ColumnDefinition Width="1*"/>
-                </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0">
-                    <Label x:Name="lb_SetSize" Style="{StaticResource ThemeNameLable}" Text="a b c d e f g h i j k l m n o p q r s t u v w x y z"/>
-                </Grid>
-                <Grid RowSpacing="0" ColumnSpacing="0" Grid.Column="1">
-                    <Button x:Name="bt_Connect"
+                <Grid RowSpacing="0" ColumnSpacing="0"  x:Name="gr_setting" IsVisible="false">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="0.2*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="0.2*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="0.2*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Label x:Name="lb_SetSize" Style="{StaticResource ThemeNameLable}" Text="a b c d e f g h i j k l m n o p q r s t u v w x y z"/>
+                    </Grid>
+                    <Grid RowSpacing="0" ColumnSpacing="0" Grid.Column="1">
+                        <Button x:Name="bt_Connect"
                         Clicked="bt_Connect_Clicked"
                         Text="New Data" Style="{StaticResource St_ButtonAdmin}"/>
-                </Grid>
-                <Grid RowSpacing="0" ColumnSpacing="0" Grid.Column="3">
-                    <Button x:Name="bt_ResetResult"
+                    </Grid>
+                    <Grid RowSpacing="0" ColumnSpacing="0" Grid.Column="3">
+                        <Button x:Name="bt_ResetResult"
                             Clicked="bt_ResetResult_Clicked"
                         Text="Reset Result"  Style="{StaticResource St_ButtonAdmin}" />
-                </Grid>
-                <Grid Grid.Column="5">
-                    <Button x:Name="bt_SizeUp"
+                    </Grid>
+                    <Grid Grid.Column="5">
+                        <Button x:Name="bt_SizeUp"
                             Clicked="bt_SizeUp_Clicked"
                         Text="Up Size"  Style="{StaticResource St_ButtonAdmin}" />
-                </Grid>
-                <Grid Grid.Column="7">
-                    <Button x:Name="bt_SizeDown"
+                    </Grid>
+                    <Grid Grid.Column="7">
+                        <Button x:Name="bt_SizeDown"
                             Clicked="bt_SizeDown_Clicked"
                         Text="Down size"  Style="{StaticResource St_ButtonAdmin}" />
+                    </Grid>
                 </Grid>
+                <Grid x:Name="gr_admin" ColumnSpacing="0" RowSpacing="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.5*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="0.3*"/>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="0.3*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="1">
+                        <Label Style="{StaticResource ThemeNameLable}" Text="Password for admin setting"/>
+                    </Grid>
+                    <Grid Grid.Column="3">
+                        <Entry x:Name="et_pass" TextColor="White" FontSize="10" Keyboard="Numeric"/>
+                    </Grid>
+                    <Grid Grid.Column="5">
+                        <Button Style="{StaticResource St_ButtonAdmin}" x:Name="bt_Pass" Text="Admin Setting" Clicked="bt_Pass_Clicked_1"/>
+                    </Grid>
+                </Grid>
+                
             </Grid>
         </Grid>
             
@@ -834,16 +857,75 @@
                 </Grid>
 
                 <!--Save button + note area-->
-                <Grid Grid.Row="3"  >
+                <Grid Grid.Row="3" RowSpacing="0" ColumnSpacing="0" >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="135*"/>
                         <ColumnDefinition Width="135*"/>
                         <ColumnDefinition Width="135*"/>
                     </Grid.ColumnDefinitions>
+                    <Grid Grid.Row="0" RowSpacing="0" ColumnSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.5*"/>
+                            <RowDefinition Height="4*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="4*"/>
+                            <RowDefinition Height="0.5*"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="3" RowSpacing="0" ColumnSpacing="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.5*"/>
+                                <ColumnDefinition Width="1.7*"/>
+                                <ColumnDefinition Width="0.2*"/>
+                                <ColumnDefinition Width="5*"/>
+                                <ColumnDefinition Width="4*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="1">
+                                <Frame Style="{StaticResource ShopFrame}" BackgroundColor="#30f000"/>
+                            </Grid>
+                            <Grid Grid.Column="3">
+                                <Label Style="{StaticResource DetailLable}" Text="Current selection" />
+                            </Grid>
+                        </Grid>
+
+                        <Grid Grid.Row="1" RowSpacing="0" ColumnSpacing="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.5*"/>
+                                <ColumnDefinition Width="1.7*"/>
+                                <ColumnDefinition Width="0.2*"/>
+                                <ColumnDefinition Width="5*"/>
+                                <ColumnDefinition Width="4*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="1">
+                                <Frame Style="{StaticResource ShopFrame}" BackgroundColor="#ffb400"/>
+                            </Grid>
+                            <Grid Grid.Column="3">
+                                <Label Style="{StaticResource DetailLable}" Text="Saved data" />
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    
                     <Grid Grid.Column="1">
                         <Frame x:Name="f_save" BackgroundColor="#018fff" CornerRadius="10"/>
                         <Label x:Name="l_save" Style="{StaticResource BBHDOELable}" Text="SAVE (Total 94)"/>
                         <Button x:Name="bt_save" Opacity="0" Clicked="bt_save_Clicked"/>
+                    </Grid>
+                    <Grid Grid.Column="2" RowSpacing="0" ColumnSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="3*"/>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="0.5*"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="1" RowSpacing="0" ColumnSpacing="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="10*"/>
+                                <ColumnDefinition Width="1.2*"/>
+                                <ColumnDefinition Width="0.2*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="1">
+                                <Image x:Name="im_connect" Opacity="0.2"
+                                       Source="{local:ImageResoureExtention KesonContest.Image.done.png}" />
+                            </Grid>
+                        </Grid>
                     </Grid>
                 </Grid>
             </Grid>

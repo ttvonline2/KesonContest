@@ -21,6 +21,7 @@ namespace KesonContest
         string filettGK = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ttgk.txt");
         string fileResult = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "result.txt");
         string fileFont = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "font.txt");
+        string fileState = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "state.txt");
 
         bool bol_connected = false;
         String[] St_Data = new String[50];
@@ -78,16 +79,16 @@ namespace KesonContest
                         db_FontShop = db_FontSize * 17 / 13;
                         db_FontSum = db_FontSize * 10 / 13;
                     }
-                    catch
+                    catch(Exception ee)
                     {
-                        Console.WriteLine("Catch of Read Font Size");
-                        DependencyService.Get<Toast>().Show("Fail to read font size");
+                        Console.WriteLine(ee);
+                        //DependencyService.Get<Toast>().Show("Fail to read font size");
                     }
                 }
             }
 
         }
-
+          
         #region Page1
 
         void tryConnect()
@@ -167,6 +168,7 @@ namespace KesonContest
             setup_string_code();
             File.WriteAllText(fileData, "");    // Delete old data
             File.WriteAllText(fileResult, DefaulResult);
+            File.WriteAllText(fileState, "0");
             TextReceive = "";
             int_step = 5;
             tryConnect();
@@ -190,6 +192,7 @@ namespace KesonContest
             setup_string_code();
             tryConnect();
             File.WriteAllText(fileResult, DefaulResult);
+            File.WriteAllText(fileState, "0");
             gr_page1.IsVisible = false;
             gr_page2.IsVisible = true;
 
@@ -209,7 +212,7 @@ namespace KesonContest
                     bol_connected = true;
                     ClientSocket.Connect(address, PORT);
                     SendString(st_code[0]);
-                    Console.WriteLine("Connect to server Successfully");
+                    Console.WriteLine("Connect to server Successfully"); im_connect.Opacity = 1;
                     if (int_step >0)
                     {
                         SendString(st_code[1]);
@@ -319,7 +322,7 @@ namespace KesonContest
         }
         #endregion
 
-         #region Stream DATA
+        #region Stream DATA
 
         private void bt_Theme2_Clicked(object sender, EventArgs e)
         {
@@ -339,6 +342,11 @@ namespace KesonContest
                 {
                     St_Result[i, 4] = (Convert.ToInt16(n[1]) + Convert.ToInt16(n[2]) + Convert.ToInt16(n[3])).ToString();
                 }
+            }
+            string _State = File.ReadAllText(fileState);
+            if(_State == "1")
+            {
+                gr_Theme2.IsVisible = false;
             }
         }
         void inputVar()
@@ -660,6 +668,7 @@ namespace KesonContest
         void ShowDisconnect()
         {
             bol_connected = false;
+            im_connect.Opacity = 0.2;
         }
         async void RequestLoop()
         {
@@ -727,6 +736,7 @@ namespace KesonContest
                 else if (b == "*nex")
                 {
                     gr_Theme2.IsVisible = false;
+                    File.WriteAllText(fileState, "1");
                     TextReceive = "";
                 }
             });
@@ -934,6 +944,20 @@ namespace KesonContest
             pressScoreC2(33); f_33.BackgroundColor = Color.FromHex(st_HexColorOrange);
         }
 
+
+        private void bt_Pass_Clicked_1(object sender, EventArgs e)
+        {
+            if (et_pass.Text == "1997")
+            {
+                gr_admin.IsVisible = false;
+                gr_address.IsVisible = true;
+                gr_setting.IsVisible = true;
+            }
+            else
+            {
+                DependencyService.Get<Toast>().Show("Incorrect password! Please press Continue");
+            }
+        }
 
         private void t_32_Clicked(object sender, EventArgs e)
         {
