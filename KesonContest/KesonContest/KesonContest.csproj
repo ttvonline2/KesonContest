@@ -16,12 +16,10 @@
     <None Remove="Fonts\NotoSansKR-Medium.otf" />
     <None Remove="Fonts\OFL.txt" />
     <None Remove="Fonts\PassionOne-Regular.ttf" />
-    <None Remove="Image\aaa.png" />
     <None Remove="Image\avatar.JPG" />
-    <None Remove="Image\Cdone.png" />
-    <None Remove="Image\crown.png" />
     <None Remove="Image\done.png" />
     <None Remove="Image\KesonContest.png" />
+    <None Remove="Image\white.png" />
     <None Remove="KesonContest.png" />
   </ItemGroup>
 
@@ -32,16 +30,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Fonts\OFL.txt" />
     <EmbeddedResource Include="Fonts\PassionOne-Regular.ttf" />
-    <EmbeddedResource Include="Image\aaa.png" />
     <EmbeddedResource Include="Image\avatar.JPG" />
-    <EmbeddedResource Include="Image\Cdone.png" />
-    <EmbeddedResource Include="Image\crown.png" />
     <EmbeddedResource Include="Image\done.png" />
     <EmbeddedResource Include="Image\KesonContest.png" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Image\BackGround.png" />
+    <EmbeddedResource Include="Image\white.png" />
     <Page Include="KesonContest.png" />
   </ItemGroup>
 

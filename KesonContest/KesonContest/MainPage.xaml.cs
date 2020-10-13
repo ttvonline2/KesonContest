@@ -5,8 +5,9 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
-
+using System.Timers;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -21,6 +22,7 @@ namespace KesonContest
         string fileResult = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "result.txt");
         string fileFont = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "font.txt");
 
+        bool bol_connected = false;
         String[] St_Data = new String[50];
         String[,] St_Result = new String[8, 5];
         String DefaulResult = "0-0-0-0-0|0-0-0-0-0|0-0-0-0-0|0-0-0-0-0|0-0-0-0-0|0-0-0-0-0|0-0-0-0-0|0-0-0-0-0";
@@ -30,7 +32,7 @@ namespace KesonContest
         string st_HexColorSave0 = "#018fff";
         string st_HexcolorScore0 = "#c5c6ff";
         IPAddress address;
-        private static readonly Socket ClientSocket = new Socket
+        Socket ClientSocket = new Socket
           (AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         String TextReceive;
         private const int PORT = 197;
@@ -43,6 +45,8 @@ namespace KesonContest
         double db_FontSize = 13; // Theme name font size
         double db_FontThemeName = 13, db_FontChallenge = 15, db_FontDetail = 9.5, db_FontScore = 24,
             db_FontOEBBHD = 18, db_FontName = 10, db_FontSave = 24, db_FontShop = 17, db_FontSum = 10;
+
+        private static System.Timers.Timer TimerConnect;
 
         #endregion
         public MainPage()
@@ -76,6 +80,7 @@ namespace KesonContest
                     }
                     catch
                     {
+                        Console.WriteLine("Catch of Read Font Size");
                         DependencyService.Get<Toast>().Show("Fail to read font size");
                     }
                 }
@@ -84,6 +89,30 @@ namespace KesonContest
         }
 
         #region Page1
+
+        void tryConnect()
+        {
+            TimerConnect = new System.Timers.Timer(3000);
+            // Hook up the Elapsed event for the timer. 
+            TimerConnect.Elapsed += TimeEvent;
+            TimerConnect.AutoReset = true;
+            TimerConnect.Enabled = true;
+        }
+
+        private void TimeEvent(Object source, ElapsedEventArgs e)
+        {
+            if (!ClientSocket.Connected)
+            {
+                ClientSocket.Close();
+                Thread.Sleep(50);
+                Console.WriteLine("Create new ClientSocket");
+                Socket _clSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                ClientSocket = _clSocket;
+                ConnectToServer();
+                RequestLoop();
+            }
+        }
+
         void setup_string_code()
         {
 
@@ -100,12 +129,13 @@ namespace KesonContest
                 }
                 catch
                 {
+                    Console.WriteLine("Catch of setup_string_code");
                     File.WriteAllText(filettGK, _ttgk);
                     string tt = File.ReadAllText(filettGK);
                     string[] line = tt.Split(':');
                     address = IPAddress.Parse(line[0]);
                     _ttgk = line[1];
-                    DependencyService.Get<Toast>().Show("Used current address");
+                    //DependencyService.Get<Toast>().Show("Used current address");
                 }
 
             }
@@ -121,7 +151,8 @@ namespace KesonContest
                 }
                 catch
                 {
-                    DependencyService.Get<Toast>().Show("The current address have problem");
+                    Console.WriteLine("Catch of String Code");
+                    // DependencyService.Get<Toast>().Show("The current address have problem");
                 }
 
             }
@@ -130,26 +161,22 @@ namespace KesonContest
             st_code[2] = "~~*re" + _ttgk; // Send data to server
 
         }
-        private void bt_Connect_Clicked(object sender, EventArgs e)
+        
+        private  void bt_Connect_Clicked(object sender, EventArgs e)
         {
             setup_string_code();
-            ConnectToServer();
-
             File.WriteAllText(fileData, "");    // Delete old data
             File.WriteAllText(fileResult, DefaulResult);
             TextReceive = "";
-            int_step = 0;
-            SendString(st_code[1]);
-            RequestLoop();              // Replace new data
-
+            int_step = 5;
+            tryConnect();
         }
 
         private void bt_Skip_Clicked(object sender, EventArgs e)
         {
-            int_step++;
+            int_step = 0;
             setup_string_code();
-            ConnectToServer();
-            RequestLoop();              // Replace new data
+            tryConnect();
             gr_page1.IsVisible = false;
             gr_page2.IsVisible = true;
 
@@ -159,10 +186,9 @@ namespace KesonContest
         }
         private void bt_ResetResult_Clicked(object sender, EventArgs e)
         {
-            int_step++;
+            int_step = 0;
             setup_string_code();
-            ConnectToServer();
-            RequestLoop();              // Replace new data
+            tryConnect();
             File.WriteAllText(fileResult, DefaulResult);
             gr_page1.IsVisible = false;
             gr_page2.IsVisible = true;
@@ -173,21 +199,27 @@ namespace KesonContest
         }
 
 
-        private void ConnectToServer()
+        void ConnectToServer()
         {
 
-            while (!ClientSocket.Connected)
+            if (!ClientSocket.Connected)
             {
                 try
                 {
+                    bol_connected = true;
                     ClientSocket.Connect(address, PORT);
                     SendString(st_code[0]);
-                    DependencyService.Get<Toast>().Show("Connect Successfully");
-
+                    Console.WriteLine("Connect to server Successfully");
+                    if (int_step >0)
+                    {
+                        SendString(st_code[1]);
+                        int_step = 0;
+                    }
                 }
-                catch (SocketException)
+                catch
                 {
-                    DependencyService.Get<Toast>().Show("Connect Fail");
+                    ShowDisconnect();
+                    Console.WriteLine("Catch of  Connect to server");
                 }
             }
 
@@ -287,7 +319,7 @@ namespace KesonContest
         }
         #endregion
 
-        #region Stream DATA
+         #region Stream DATA
 
         private void bt_Theme2_Clicked(object sender, EventArgs e)
         {
@@ -608,27 +640,50 @@ namespace KesonContest
         #endregion
 
         #region NetWork
-        private static void SendString(string text)
+        void SendString(string text)
         {
-            byte[] buffer = Encoding.ASCII.GetBytes(text);
-            ClientSocket.Send(buffer, 0, buffer.Length, SocketFlags.None);
+            if(ClientSocket.Connected)
+            {
+                Console.WriteLine("Successfully SendString");
+                byte[] buffer = Encoding.ASCII.GetBytes(text);
+                ClientSocket.Send(buffer, 0, buffer.Length, SocketFlags.None);
+            }
+            else
+            {
+                Console.WriteLine("Catch of SendString");
+                ShowDisconnect();
+            }
+
 
         }
 
-        private async void RequestLoop()
+        void ShowDisconnect()
+        {
+            bol_connected = false;
+        }
+        async void RequestLoop()
         {
             await Task.Run(() =>
             {
                 while (ClientSocket.Connected)
                 {
-                    ReceiveResponse();
+                    try
+                    {
+                        ReceiveResponse();
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Catch of RequestLoop");
+
+                    }
+                    
                 }
 
             });
-            DependencyService.Get<Toast>().Show("Server disconnect!");
+           // DependencyService.Get<Toast>().Show("Server disconnect!");
         }
 
-        private void ReceiveResponse()
+        void ReceiveResponse()
         {
             var buffer = new byte[1024];
             int received = ClientSocket.Receive(buffer, SocketFlags.None);
@@ -646,6 +701,7 @@ namespace KesonContest
                 catch (Exception e)
                 {
                     Console.WriteLine(e);
+                    Console.WriteLine("Catch of ReceiveResponse");
                 }
                 if (b == ".end")
                 {
@@ -867,8 +923,6 @@ namespace KesonContest
         {
             pressScoreC1(30); f_30.BackgroundColor = Color.FromHex(st_HexColorOrange);
         }
-
-
         //c2 
         private void t_31_Clicked(object sender, EventArgs e)
         {
@@ -1023,7 +1077,6 @@ namespace KesonContest
                 SubmitData();
 
             }
-
         }
         void HideCheckDone()
         {

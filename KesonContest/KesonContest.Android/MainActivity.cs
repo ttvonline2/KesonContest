@@ -16,16 +16,21 @@ namespace KesonContest.Droid
 
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
+        readonly string[] Permission =
+                {
+            Android.Manifest.Permission.WriteExternalStorage
+        };
         protected override void OnCreate(Bundle savedInstanceState)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
-            Window.AddFlags(WindowManagerFlags.Fullscreen);
-            Window.SetFlags(WindowManagerFlags.KeepScreenOn, WindowManagerFlags.KeepScreenOn);
 
             base.OnCreate(savedInstanceState);
+            this.Window.AddFlags(WindowManagerFlags.Fullscreen);
+            Window.SetFlags(WindowManagerFlags.KeepScreenOn, WindowManagerFlags.KeepScreenOn);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+            RequestPermissions(Permission, 0);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
             DependencyService.Register<AddImage>();
